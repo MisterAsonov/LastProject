@@ -6,54 +6,34 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <RelativeLayout
-        android:id="@+id/relativeLayout2"
+    <!--android:background="#E6EE9C"-->
+
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-        <!--Top tollbar-->
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/rellayout1"
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="#E6EE9C"
+        android:id="@+id/toolbar" />
+
+        <com.google.android.material.tabs.TabLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#E6EE9C"
-            android:theme="@style/Theme.Material3.Light.NoActionBar"
-            app:liftOnScroll="true">
+            android:id="@+id/tablayout"
+            android:background="#E6EE9C"/>
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/main_tollbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize" />
-
-        </com.google.android.material.appbar.AppBarLayout>
-
-        <!--Tabs collums-->
-        <RelativeLayout
-            android:id="@+id/rellaoyt2"
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewpage2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/rellayout1"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="0dp">
+            android:layout_height="646dp"
+            android:layout_below="@+id/tablayout"
+            android:background="#E6EE9C" />
 
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tab_layout"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="#E6EE9C" />
 
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/view_page2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tab_layout"
-                android:layout_alignParentBottom="true"
-                android:background="#E6EE9C"
-              />
-
-        </RelativeLayout>
-
-    </RelativeLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
+

@@ -3,7 +3,11 @@ package com.example.lastproject;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.Lifecycle;
+import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 
@@ -14,35 +18,39 @@ import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayout;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity {
-
+   private Toolbar mToolbar;
    TabLayout tabLayout;
-   ViewPager2 page2;
+   ViewPager2 pager2;
    FragmentAdapter adapter;
-    private Toolbar mToolbar;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tabLayout = findViewById(R.id.tab_layout);
-        page2 = findViewById(R.id.view_page2);
+        mToolbar =(Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
+
+        tabLayout = findViewById(R.id.tablayout);
+        pager2 = findViewById(R.id.viewpage2);
 
         FragmentManager fm = getSupportFragmentManager();
         adapter = new FragmentAdapter(fm, getLifecycle());
-        page2.setAdapter(adapter);
+        pager2.setAdapter(adapter);
 
-        tabLayout.addTab(tabLayout.newTab().setText("First"));
-        tabLayout.addTab(tabLayout.newTab().setText("Second"));
-        tabLayout.addTab(tabLayout.newTab().setText("Third"));
+        tabLayout.addTab(tabLayout.newTab().setText("ACTIVITIES"));
+        tabLayout.addTab(tabLayout.newTab().setText("CALENDAR"));
+        tabLayout.addTab(tabLayout.newTab().setText("REPORTS"));
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                page2.setCurrentItem(tab.getPosition());
+                pager2.setCurrentItem(tab.getPosition());
             }
 
             @Override
@@ -56,20 +64,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        page2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+        pager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
                 tabLayout.selectTab(tabLayout.getTabAt(position));
             }
         });
 
-
-
-        mToolbar =(Toolbar) findViewById(R.id.main_tollbar);
-        setSupportActionBar(mToolbar)
-        ;
-
     }
+
+
+
 
 
     @Override
