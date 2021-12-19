@@ -69,22 +69,6 @@ public class FirstFragment extends Fragment {
 
     }
 
-    /**
-     *  models = new ArrayList<>();
-     *         models.add(new Model(R.drawable.ic_desert, "Desert", "Beatufull desert in the middel of Israel. We are goin to dod camping with barbieq"));
-     *         models.add(new Model(R.drawable.ic_moutin, "Mountin", "Beatufull moint on the North of the Israel. We going to 3 days trip with all paralel"));
-     *
-     *
-     *         viewPager = onCreateView();
-     *         adapter = new CardViewAdapter(models, getActivity().getApplicationContext());
-     *
-     *
-     *         viewPager.setAdapter(adapter);
-     *         viewPager.setPadding(130, 0, 130, 0);
-     *
-     */
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -101,7 +85,8 @@ public class FirstFragment extends Fragment {
         adapter = new CardViewAdapter(models, getActivity().getApplicationContext());
 
         viewPager.setAdapter(adapter);
-        viewPager.setPadding(130, 0, 130, 0);
+        viewPager.setClipToPadding(false);
+        viewPager.setPadding(20, 10, 20, 0);
 
         return view;
     }

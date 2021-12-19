@@ -1,23 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".FirstFragment"
-    android:background="#E6EE9C"
     >
 
+
+    <TextView
+        android:id="@+id/myTravels"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="16dp"
+
+        android:layout_marginTop="15dp"
+        android:background="@color/white"
+        android:text="My Travels"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+
+    <androidx.viewpager.widget.ViewPager
+
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:background="@color/white"
+        android:clipToPadding="false"
+        android:foregroundGravity="center"
+        android:overScrollMode="ifContentScrolls">
+
+    </androidx.viewpager.widget.ViewPager>
+
     <!-- TODO: Update blank fragment layout -->
-   <androidx.viewpager.widget.ViewPager
-       android:foregroundGravity="center"
-       android:id="@+id/viewPager"
-       android:layout_centerInParent="true"
-       android:overScrollMode="never"
-       android:clipToPadding="false"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content">
 
-
-   </androidx.viewpager.widget.ViewPager>
-
-</FrameLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
