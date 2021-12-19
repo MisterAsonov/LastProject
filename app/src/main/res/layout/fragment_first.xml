@@ -8,4 +8,16 @@
     >
 
     <!-- TODO: Update blank fragment layout -->
+   <androidx.viewpager.widget.ViewPager
+       android:foregroundGravity="center"
+       android:id="@+id/viewPager"
+       android:layout_centerInParent="true"
+       android:overScrollMode="never"
+       android:clipToPadding="false"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+
+
+   </androidx.viewpager.widget.ViewPager>
+
 </FrameLayout>

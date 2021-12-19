@@ -2,15 +2,19 @@ package com.example.lastproject;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+
+
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -18,6 +22,10 @@ import java.util.ArrayList;
  * create an instance of this fragment.
  */
 public class FirstFragment extends Fragment {
+
+    ViewPager viewPager;
+    CardViewAdapter adapter;
+    ArrayList<Model> models;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -58,9 +66,23 @@ public class FirstFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
+
     }
 
-
+    /**
+     *  models = new ArrayList<>();
+     *         models.add(new Model(R.drawable.ic_desert, "Desert", "Beatufull desert in the middel of Israel. We are goin to dod camping with barbieq"));
+     *         models.add(new Model(R.drawable.ic_moutin, "Mountin", "Beatufull moint on the North of the Israel. We going to 3 days trip with all paralel"));
+     *
+     *
+     *         viewPager = onCreateView();
+     *         adapter = new CardViewAdapter(models, getActivity().getApplicationContext());
+     *
+     *
+     *         viewPager.setAdapter(adapter);
+     *         viewPager.setPadding(130, 0, 130, 0);
+     *
+     */
 
 
 
@@ -68,6 +90,23 @@ public class FirstFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_first, container, false);
+        View view = inflater.inflate(R.layout.fragment_first, container, false);
+
+        models = new ArrayList<>();
+        models.add(new Model(R.drawable.ic_desert, "Desert", "Beatufull desert in the middel of Israel. We are goin to dod camping with barbieq"));
+        models.add(new Model(R.drawable.ic_moutin, "Mountin", "Beatufull moint on the North of the Israel. We going to 3 days trip with all paralel"));
+
+        viewPager = view.findViewById(R.id.viewPager);
+
+        adapter = new CardViewAdapter(models, getActivity().getApplicationContext());
+
+        viewPager.setAdapter(adapter);
+        viewPager.setPadding(130, 0, 130, 0);
+
+        return view;
     }
+
+
+
+
 }
