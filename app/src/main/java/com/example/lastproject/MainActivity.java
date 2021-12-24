@@ -26,7 +26,6 @@ import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
-    Button btn_login, btn_signin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
