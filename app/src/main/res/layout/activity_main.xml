@@ -8,32 +8,6 @@
 
     <!--android:background="#E6EE9C"-->
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    <androidx.appcompat.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
-        android:background="@color/white"
-        android:id="@+id/toolbar" />
-
-        <com.google.android.material.tabs.TabLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tablayout"
-            android:background="@color/white"/>
-
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/viewpage2"
-            android:layout_width="match_parent"
-            android:layout_height="626dp"
-            android:layout_below="@+id/tablayout"
-            android:background="@color/white" />
-
-
-    </com.google.android.material.appbar.AppBarLayout>
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

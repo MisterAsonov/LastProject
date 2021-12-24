@@ -6,9 +6,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-public class FragmentAdapter extends FragmentStateAdapter {
+public class LoginAdapter extends FragmentStateAdapter {
 
-    public FragmentAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
+    public LoginAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
         super(fragmentManager, lifecycle);
     }
 
@@ -16,17 +16,18 @@ public class FragmentAdapter extends FragmentStateAdapter {
     @Override
     public Fragment createFragment(int position) {
         switch (position){
+            case 0:
+                return new LoginTabFragment();
             case 1:
-                return new SecondFragment();
-            case 2:
-                return new ThirdFragment();
+                return new SignUpTabFragment();
+            default:
+                return null;
         }
-        return new FirstFragment();
-
     }
 
     @Override
     public int getItemCount() {
-        return 3;
+        return 1;
     }
 }
+
