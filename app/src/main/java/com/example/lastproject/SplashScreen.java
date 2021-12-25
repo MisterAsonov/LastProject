@@ -32,15 +32,7 @@ public class SplashScreen extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
 
         handler = new Handler();
-        Fade fade = new Fade();
-        View decor = getWindow().getDecorView();
 
-        fade.excludeTarget(decor.findViewById(R.id.action_bar_container), true);
-        fade.excludeTarget(android.R.id.statusBarBackground, true);
-        fade.excludeTarget(android.R.id.navigationBarBackground, true);
-
-        getWindow().setEnterTransition(fade);
-        getWindow().setExitTransition(fade);
 
         logo = findViewById(R.id.SplashScreen_logo);
 
@@ -48,8 +40,8 @@ public class SplashScreen extends AppCompatActivity {
             @Override
             public void run() {
                 Intent intent = new Intent(SplashScreen.this, HelloScreen.class);
-                ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(SplashScreen.this, logo, ViewCompat.getTransitionName(logo));
-                startActivity(intent, options.toBundle());
+                startActivity(intent);
+                finish();
 
             }
         },5000);

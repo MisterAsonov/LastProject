@@ -6,6 +6,10 @@ import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
+import android.transition.Fade;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
@@ -15,6 +19,8 @@ public class LoginScreen extends AppCompatActivity {
     ViewPager2 pager2;
     FloatingActionButton google;
     LoginAdapter adapter;
+    ImageView logo;
+    TextView text;
     float v = 0;
 
     @Override
@@ -22,6 +28,9 @@ public class LoginScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_screen);
 
+
+        logo = findViewById(R.id.imageView2);
+        text = findViewById(R.id.log_text);
         tabLayout = findViewById(R.id.tab_layout);
         pager2 = findViewById(R.id.view_pager);
         google = findViewById(R.id.fab_google);
@@ -58,8 +67,6 @@ public class LoginScreen extends AppCompatActivity {
             }
         });
 
-
     }
 
-
-    }
+}

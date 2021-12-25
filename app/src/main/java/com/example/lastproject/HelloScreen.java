@@ -1,18 +1,26 @@
 package com.example.lastproject;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.view.ViewCompat;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.transition.Fade;
+import android.util.Pair;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.google.android.gms.common.util.Hex;
 
 public class HelloScreen extends AppCompatActivity {
     Button btn_start;
     ImageView logo;
+    TextView text;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,15 +30,9 @@ public class HelloScreen extends AppCompatActivity {
 
         btn_start = findViewById(R.id.btn_start);
         logo = findViewById(R.id.hello_logo);
+        text = findViewById(R.id.textView2);
 
-        Fade fade = new Fade();
-        View decor = getWindow().getDecorView();
-        fade.excludeTarget(decor.findViewById(R.id.action_bar_container), true);
-        fade.excludeTarget(android.R.id.statusBarBackground, true);
-        fade.excludeTarget(android.R.id.navigationBarBackground, true);
 
-        getWindow().setEnterTransition(fade);
-        getWindow().setExitTransition(fade);
 
         btn_start.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,6 +40,8 @@ public class HelloScreen extends AppCompatActivity {
 
                 Intent intent = new Intent(HelloScreen.this, LoginScreen.class);
                 startActivity(intent);
+                finish();
+
             }
         });
     }
