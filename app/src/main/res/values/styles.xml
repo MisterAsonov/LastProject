@@ -2,7 +2,8 @@
 <resources>
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">#7E57C2</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimaryDark">#646595</item>
+        <item name="colorAccent">#646595</item>
+        <item name="android:windowContentTransitions">true</item>
     </style>
 </resources>

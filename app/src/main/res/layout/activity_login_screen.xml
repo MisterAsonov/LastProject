@@ -9,9 +9,9 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:srcCompat="@drawable/fon"
+        app:srcCompat="@drawable/fon1"
         app:layout_constraintHeight_percent=".27"
         android:scaleType="centerCrop"
         app:layout_constraintVertical_bias="0"
@@ -62,6 +62,7 @@
             android:backgroundTint="@color/white"
             android:elevation="35dp"
             android:src="@drawable/google"
+            app:backgroundTint="#CC646595"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
@@ -74,9 +75,9 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:src="@drawable/ic_launcher_foreground"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/logo_white"
         app:layout_constraintVertical_bias=".3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -87,7 +88,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-       android:text="Hello text"
+       android:text="Welcome to the Campus"
         android:textColor="@color/white"
         android:textStyle="bold"
         android:textSize="16sp"
