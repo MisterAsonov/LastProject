@@ -18,16 +18,14 @@ public class LoginAdapter extends FragmentStateAdapter {
         switch (position){
             case 0:
                 return new LoginTabFragment();
-            case 1:
-                return new SignUpTabFragment();
-            default:
-                return null;
+
         }
+        return new SignUpTabFragment();
     }
 
     @Override
     public int getItemCount() {
-        return 1;
+        return 2;
     }
 }
 

@@ -14,8 +14,6 @@ public class SignUpTabFragment extends Fragment {
     Button btn_signup;
     float v = 0;
 
-    public class LoginTabFragment extends Fragment {
-        @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
             ViewGroup view = (ViewGroup) inflater.inflate(R.layout.signup_tab_fragment,container,false);
 
@@ -24,7 +22,7 @@ public class SignUpTabFragment extends Fragment {
             return view;
         }
     }
-}
+
 /**email = view.findViewById(R.id.signup_email);
  name = view.findViewById(R.id.signup_name);
  lastname = view.findViewById(R.id.signup_lastName);
@@ -54,3 +52,4 @@ public class SignUpTabFragment extends Fragment {
  btn_signup.animate().translationY(0).alpha(1).setDuration(800).setStartDelay(900).start();
  *
  */
+

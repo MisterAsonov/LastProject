@@ -17,26 +17,29 @@
         android:paddingBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.074"
+        app:layout_constraintVertical_bias="0.128"
         app:layout_constraintWidth_percent=".8" />
 
     <EditText
         android:id="@+id/signup_password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="420dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/edit_text_bg"
         android:hint="Password"
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ind_code"
+        app:layout_constraintVertical_bias="0.019"
         app:layout_constraintWidth_percent=".8" />
 
     <EditText
@@ -44,37 +47,35 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="23dp"
-        android:hint="Name"
+        android:layout_marginTop="24dp"
         android:background="@drawable/edit_text_bg"
+        android:hint="Name"
         android:paddingLeft="15dp"
+
         android:paddingTop="10dp"
 
         android:paddingBottom="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/ind_code"
         app:layout_constraintEnd_toStartOf="@+id/signup_lastName"
         app:layout_constraintHorizontal_bias="0.0"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signup_email"
-        app:layout_constraintVertical_bias="0.0"
         app:layout_constraintWidth_percent=".35" />
 
     <EditText
         android:id="@+id/signup_lastName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:layout_marginEnd="40dp"
-        android:hint="Last Name"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/edit_text_bg"
+        android:hint="Last Name"
         android:paddingLeft="15dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         app:layout_constraintBottom_toTopOf="@+id/ind_code"
+
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signup_email"
-        app:layout_constraintVertical_bias="0.0"
         app:layout_constraintWidth_percent=".35" />
 
     <EditText
@@ -82,17 +83,18 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="40dp"
-        android:layout_marginBottom="44dp"
         android:background="@drawable/edit_text_bg"
         android:hint="Code"
         android:paddingLeft="15dp"
         android:paddingTop="10dp"
+
         android:paddingBottom="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/signup_password"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signup_name" />
 
     <Button
         android:id="@+id/btn_signup"
@@ -105,10 +107,9 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.579"
+        app:layout_constraintTop_toBottomOf="@+id/signup_password"
+        app:layout_constraintVertical_bias="0.672"
         app:layout_constraintWidth_percent=".8" />
 
 
