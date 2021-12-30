@@ -25,7 +25,7 @@ public class LoginTabFragment extends Fragment {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), MainActivity.class);
+                Intent intent = new Intent(getActivity(), SplashScreen.class);
                 startActivity(intent);
             }
         });

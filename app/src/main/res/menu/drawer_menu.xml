@@ -8,7 +8,7 @@
 
         <item android:id="@+id/profile"
             android:icon="@drawable/ic_profile"
-            android:title="Profile"/>
+            android:title="Profile" />
 
         <item android:id="@+id/activities"
             android:icon="@drawable/ic_events"

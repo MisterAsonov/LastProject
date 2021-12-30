@@ -10,24 +10,30 @@
 
 
     <ImageView
+        android:paddingTop="10dp"
+        android:layout_width="81dp"
+        android:layout_height="80dp"
         android:layout_weight="1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_launcher_foreground" />
+        android:src="@drawable/ic_profile" />
 
     <TextView
+        android:layout_weight="0.5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="8dp"
+
         android:text="Valery Asonov"
         android:textColor="@color/white"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:textStyle="bold"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="valerki357@gmail.com"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:textStyle="italic"
+        />
 
 
 </LinearLayout>
