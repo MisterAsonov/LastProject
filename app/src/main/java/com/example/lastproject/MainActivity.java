@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawer;
     TabLayout tabLayout;
     ViewPager2 pager2;
-    LoginAdapter adapter;
+    MainTabAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         FragmentManager fm = getSupportFragmentManager();
-        adapter = new LoginAdapter(fm, getLifecycle());
+        adapter = new MainTabAdapter(fm, getLifecycle());
         pager2.setAdapter(adapter);
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {

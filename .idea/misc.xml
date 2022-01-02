@@ -4,9 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/LastProject/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.37395833333333334" />
+        <entry key="..\:/LastProject/app/src/main/res/drawable/back_select.xml" value="0.26614583333333336" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/baseline_account_circle_18.xml" value="0.37864583333333335" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/button_bg.xml" value="0.37864583333333335" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/calendar_background.xml" value="0.37395833333333334" />
+        <entry key="..\:/LastProject/app/src/main/res/drawable/card_view_bg.xml" value="0.37864583333333335" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/edit_text_bg.xml" value="0.37864583333333335" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/fon1.xml" value="0.37864583333333335" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.37395833333333334" />
@@ -26,6 +28,7 @@
         <entry key="..\:/LastProject/app/src/main/res/drawable/ic_search_black_24dp.xml" value="0.37395833333333334" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/ic_settings.xml" value="0.37864583333333335" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/round.xml" value="0.37395833333333334" />
+        <entry key="..\:/LastProject/app/src/main/res/drawable/selected_tab_bg.xml" value="0.26614583333333336" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/tab_indicator.xml" value="0.26614583333333336" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/view_bg.xml" value="0.37864583333333335" />
         <entry key="..\:/LastProject/app/src/main/res/layout/Event_fragment.xml" value="0.25" />
@@ -49,6 +52,8 @@
         <entry key="..\:/LastProject/app/src/main/res/layout/nav_header.xml" value="0.3625" />
         <entry key="..\:/LastProject/app/src/main/res/layout/profile_fragment.xml" value="0.25" />
         <entry key="..\:/LastProject/app/src/main/res/layout/reports_fragment.xml" value="0.28532608695652173" />
+        <entry key="..\:/LastProject/app/src/main/res/layout/reports_list.xml" value="0.3625" />
+        <entry key="..\:/LastProject/app/src/main/res/layout/row_list_reports.xml" value="0.3625" />
         <entry key="..\:/LastProject/app/src/main/res/layout/settings_fragment.xml" value="0.26197916666666665" />
         <entry key="..\:/LastProject/app/src/main/res/layout/signup_tab_fragment.xml" value="0.2" />
         <entry key="..\:/LastProject/app/src/main/res/layout/support_fragment.xml" value="0.25" />
