@@ -6,8 +6,10 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -36,13 +38,17 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ViewHolder
             explanation = (TextView) view.findViewById(R.id.explanationOfProblem);
             status = (TextView) view.findViewById(R.id.status);
             date = (TextView) view.findViewById(R.id.dateOfProblem);
+
         }
+
+
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.reports_list, viewGroup, false);
+
         return new ViewHolder(view);
 
     }
@@ -54,6 +60,13 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ViewHolder
         viewHolder.explanation.setText(String.valueOf(tmp.getExplanation()));
         viewHolder.status.setText(String.valueOf(tmp.getStatus()));
         viewHolder.date.setText(String.valueOf(tmp.getDate()));
+
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, tmp.getTitle(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override

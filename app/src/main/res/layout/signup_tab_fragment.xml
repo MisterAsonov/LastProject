@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/signup_email"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -23,17 +23,17 @@
         app:layout_constraintVertical_bias="0.128"
         app:layout_constraintWidth_percent=".8" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/signup_password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:background="@drawable/edit_text_bg"
         android:hint="Password"
+        android:inputType="textPassword"
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
-        android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.512"
@@ -42,7 +42,7 @@
         app:layout_constraintVertical_bias="0.019"
         app:layout_constraintWidth_percent=".8" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/signup_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -51,18 +51,15 @@
         android:background="@drawable/edit_text_bg"
         android:hint="Name"
         android:paddingLeft="15dp"
-
         android:paddingTop="10dp"
-
         android:paddingBottom="10dp"
         app:layout_constraintEnd_toStartOf="@+id/signup_lastName"
         app:layout_constraintHorizontal_bias="0.0"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signup_email"
         app:layout_constraintWidth_percent=".35" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/signup_lastName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -74,11 +71,10 @@
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         app:layout_constraintBottom_toTopOf="@+id/ind_code"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintWidth_percent=".35" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/ind_code"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -89,7 +85,6 @@
         android:hint="Code"
         android:paddingLeft="15dp"
         android:paddingTop="10dp"
-
         android:paddingBottom="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -111,7 +106,6 @@
         app:layout_constraintTop_toBottomOf="@+id/signup_password"
         app:layout_constraintVertical_bias="0.672"
         app:layout_constraintWidth_percent=".8" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

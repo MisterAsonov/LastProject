@@ -6,6 +6,7 @@ import androidx.core.view.ViewCompat;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.transition.Fade;
 import android.util.Pair;
@@ -21,6 +22,8 @@ public class HelloScreen extends AppCompatActivity {
     Button btn_start;
     ImageView logo;
     TextView text;
+    boolean flag;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +34,23 @@ public class HelloScreen extends AppCompatActivity {
         btn_start = findViewById(R.id.btn_start);
         logo = findViewById(R.id.hello_logo);
         text = findViewById(R.id.textView2);
+
+
+        SharedPreferences prefs = getSharedPreferences("your_key", MODE_PRIVATE);
+        flag = prefs.getBoolean("First_open", false);//"No name defined" is the default value.
+
+        if(!flag) {
+            flag = true;
+            SharedPreferences.Editor editor = getSharedPreferences("your_key", MODE_PRIVATE).edit();
+            editor.putBoolean("First_open", true);
+            editor.apply();
+        }
+        else{
+            Intent intent = new Intent(HelloScreen.this, LoginScreen.class);
+            startActivity(intent);
+            finish();
+        }
+
 
 
 
