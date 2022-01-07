@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".Profile"
+            android:exported="true" />
+        <activity
+            android:name=".Notifications"
+            android:exported="true" />
+        <activity
             android:name=".succesful_report"
             android:exported="true" />
         <activity

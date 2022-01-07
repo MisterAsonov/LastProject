@@ -6,27 +6,29 @@
 
     <group android:checkableBehavior="single">
 
-        <item android:id="@+id/profile"
-            android:icon="@drawable/ic_profile"
-            android:title="Profile" />
+        <item android:id="@+id/Home"
+            android:icon="@drawable/ic_baseline_home_24"
+            android:title="Home"/>
 
-        <item android:id="@+id/activities"
-            android:icon="@drawable/ic_events"
-            android:title="Events"/>
+        <item android:id="@+id/notification"
+            android:icon="@drawable/ic_baseline_notifications_24"
+            android:title="Notification"/>
 
-        <item android:id="@+id/reports"
-            android:icon="@drawable/ic_flag"
-            android:title="Reports"/>
 
         <item android:id="@+id/support"
             android:icon="@drawable/ic_help"
             android:title="Support"/>
 
-        <item android:id="@+id/settings"
-            android:icon="@drawable/ic_settings"
-            android:title="Settings"/>
 
 
+            <item android:id="@+id/settings"
+                android:icon="@drawable/ic_settings"
+                android:title="Settings"/>
+            <item
+                android:id="@+id/logout"
+                android:icon="@drawable/baseline_logout_24"
+                android:title="Log out" />
 
     </group>
+
 </menu>
