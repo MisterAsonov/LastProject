@@ -5,8 +5,11 @@ import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,8 +26,9 @@ public class SignUpTabFragment extends Fragment {
     private FirebaseAuth mAuth;
     FirebaseDatabase database;
 
-
-    EditText ETemail, ETname, ETlastname, ETcode, ETpassword;
+    String who;
+    Spinner spinner;
+    EditText ETemail, ETname, ETlastname, ETpassword;
     Button btn_signup;
     float v = 0;
 
@@ -33,11 +37,32 @@ public class SignUpTabFragment extends Fragment {
 
             mAuth = FirebaseAuth.getInstance();
 
+
             ETemail = view.findViewById(R.id.signup_email);
             ETname = view.findViewById(R.id.signup_name);
             ETlastname = view.findViewById(R.id.signup_lastName);
-            ETcode = view.findViewById(R.id.ind_code);
+            spinner = view.findViewById(R.id.who);
             ETpassword = view.findViewById(R.id.signup_password);
+
+            ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                    getActivity(),
+                    R.array.who,
+                    android.R.layout.simple_spinner_item);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+            spinner.setAdapter(adapter);
+
+            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                    who = adapterView.getItemAtPosition(i).toString();
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
+
+                }
+            });
 
             btn_signup = view.findViewById(R.id.btn_signup);
             btn_signup.setOnClickListener(new View.OnClickListener() {
@@ -58,7 +83,6 @@ public class SignUpTabFragment extends Fragment {
             String email = ETemail.getText().toString().trim();
             String name = ETname.getText().toString().trim();
             String lastname = ETlastname.getText().toString().trim();
-            String code = ETcode.getText().toString().trim();
             String password = ETpassword.getText().toString().trim();
 
 
@@ -86,11 +110,7 @@ public class SignUpTabFragment extends Fragment {
                 return;
             }
 
-            if(code.isEmpty()){
-                ETcode.setError("Code is required!");
-                ETcode.requestFocus();
-                return;
-            }
+
 
 
             if(password.isEmpty()){
@@ -111,7 +131,7 @@ public class SignUpTabFragment extends Fragment {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
 
-                                User user = new User(email, name, lastname, code);
+                                User user = new User(email, name, lastname, who);
 
                                 FirebaseDatabase.getInstance().getReference("Users")
                                         .child(FirebaseAuth.getInstance().getCurrentUser().getUid())

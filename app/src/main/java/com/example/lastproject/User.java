@@ -1,17 +1,17 @@
 package com.example.lastproject;
 
 public class User {
-    String email, name,lastname, code;
+    String email, name,lastname, who;
 
     public User(){
 
     }
 
-    public User(String email, String name, String lastname, String code) {
+    public User(String email, String name, String lastname, String who) {
         this.email = email;
         this.name = name;
         this.lastname = lastname;
-        this.code = code;
+        this.who = who;
     }
 
     public String getEmail() {
@@ -38,12 +38,12 @@ public class User {
         this.lastname = lastname;
     }
 
-    public String getCode() {
-        return code;
+    public String getWho() {
+        return who;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setWho(String who) {
+        this.who = who;
     }
 
 }

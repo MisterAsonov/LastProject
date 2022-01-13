@@ -38,7 +38,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ind_code"
+        app:layout_constraintTop_toBottomOf="@+id/who"
         app:layout_constraintVertical_bias="0.019"
         app:layout_constraintWidth_percent=".8" />
 
@@ -70,19 +70,19 @@
         android:paddingLeft="15dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/ind_code"
+        app:layout_constraintBottom_toTopOf="@+id/who"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintWidth_percent=".35" />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/ind_code"
+    <Spinner
+        android:id="@+id/who"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="40dp"
         android:background="@drawable/edit_text_bg"
-        android:hint="Code"
+        android:hint="Who are you?"
         android:paddingLeft="15dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"

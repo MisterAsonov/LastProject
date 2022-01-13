@@ -27,7 +27,7 @@ import java.util.concurrent.Executor;
 
 public class LoginTabFragment extends Fragment {
 
-    private FirebaseAuth mAuth;
+
 
     SharedPreferences sp;
     SharedPreferences.Editor editor;
@@ -45,7 +45,7 @@ public class LoginTabFragment extends Fragment {
         ETpassword = view.findViewById(R.id.login_password);
         saveme = view.findViewById(R.id.stayin);
 
-        mAuth = FirebaseAuth.getInstance();
+
 
         sp = getActivity().getApplicationContext().getSharedPreferences("MyPref", 0);
         editor = sp.edit();
@@ -63,19 +63,22 @@ public class LoginTabFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                userLogin();
+               if(userLogin()) {
+
+                   Intent intent = new Intent(getActivity(), SplashScreen.class);
+                   intent.putExtra("email", ETemail.getText().toString());
+                   intent.putExtra("password", ETpassword.getText().toString());
+                   startActivity(intent);
+               }
+
 
             }
         });
 
-
-
         return view;
     }
 
-
-
-    private void userLogin(){
+    private boolean userLogin(){
 
         boolean isChecked = saveme.isChecked();
         String email = ETemail.getText().toString().trim();
@@ -84,53 +87,34 @@ public class LoginTabFragment extends Fragment {
         if(email.isEmpty()){
             ETemail.setError("Email is required!");
             ETemail.requestFocus();
-            return;
+            return false;
         }
 
         if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
             ETemail.setError("Please provide valid email!");
             ETemail.requestFocus();
-            return;
+            return false;
         }
 
         if(password.isEmpty()){
             ETpassword.setError("Password is required!");
             ETpassword.requestFocus();
-            return;
+            return false;
         }
 
         if(password.length() < 6){
             ETpassword.setError("Min password length should be 6 characters!");
             ETpassword.requestFocus();
-            return;
+            return false;
         }
 
-        mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
+        //если только аторизация прошла сохранить логин и пароль
 
-                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    if(user.isEmailVerified()) {
+        if(isChecked){
+            saveUserData();
+        }
 
-                        if(isChecked){
-                            saveUserData();
-                        }
-
-                        Intent intent = new Intent(getActivity(), MainActivity.class);
-                        startActivity(intent);
-                    }else{
-                        user.sendEmailVerification();
-                        Toast.makeText(getContext(),"Check your email to verify your account", Toast.LENGTH_SHORT).show();
-                    }
-
-                }else{
-                    Toast.makeText(getContext(),"Faild to login! Please chek your email or password", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-
+        return true;
     }
 
     private void saveUserData() {
