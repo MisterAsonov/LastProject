@@ -20,6 +20,7 @@ public class ReportFragment extends Fragment {
     ArrayList<Report> reportsList;
     ReportAdapter adapter;
     FloatingActionButton fab_btn;
+    boolean flag = false;
 
 
     @Override
@@ -35,18 +36,33 @@ public class ReportFragment extends Fragment {
             }
         });
 
+
+        flag = getActivity().getIntent().getBooleanExtra("flag",true);
+
+        if(flag){
+            /**
+             * программа крашиться из за того что в первый раз все эти значения null
+             * но если я хочу что то передать из другого активити то ничего не работает
+             */
+            String titel = getActivity().getIntent().getExtras().getString("titel");
+            String room = getActivity().getIntent().getExtras().getString("room");
+            String building = getActivity().getIntent().getExtras().getString("building");
+            String desc = getActivity().getIntent().getExtras().getString("desc");
+            String status = getActivity().getIntent().getExtras().getString("status");
+            String date = getActivity().getIntent().getExtras().getString("date");
+
+            reportsList.add(new Report(titel,desc,status,date, room, building));
+
+            flag = true;
+
+        }
+
+
+
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         ArrayList<Report> reportsList = new ArrayList<Report>();
-
-
-        reportsList.add(new Report("Titel 1","Explanation 1","In progress","22.02.2021"));
-        reportsList.add(new Report("Titel 2","Explanation 2","In progress","22.02.2021"));
-        reportsList.add(new Report("Titel 3","Explanation 3","In progress","22.02.2021"));
-        reportsList.add(new Report("Titel 3","Explanation 4","In progress","22.02.2021"));
-        reportsList.add(new Report("Titel 5","Explanation 5","In progress","22.02.2021"));
-
 
 
         ReportAdapter adapter = new ReportAdapter(reportsList,getActivity());

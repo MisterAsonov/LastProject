@@ -5,12 +5,16 @@ public class Report {
     private String explanation;
     private String status;
     private String date;
+    private String room;
+    private String building;
 
-    public Report(String title, String explanation, String status, String date) {
+    public Report(String title, String explanation, String status, String date, String room, String building) {
         this.title = title;
         this.explanation = explanation;
         this.status = status;
         this.date = date;
+        this.room = room;
+        this.building = building;
     }
 
     public String getTitle() {
@@ -43,5 +47,21 @@ public class Report {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getRoom() {
+        return room;
+    }
+
+    public void setRoom(String room) {
+        this.room = room;
+    }
+
+    public String getBuilding() {
+        return building;
+    }
+
+    public void setBuilding(String building) {
+        this.building = building;
     }
 }
