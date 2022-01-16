@@ -22,13 +22,15 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.UUID;
+
 public class SignUpTabFragment extends Fragment {
     private FirebaseAuth mAuth;
     FirebaseDatabase database;
 
     String who;
     Spinner spinner;
-    EditText ETemail, ETname, ETlastname, ETpassword;
+    EditText ETemail, ETname, ETlastname, ETpassword, ETrefereal_link;
     Button btn_signup;
     float v = 0;
 
@@ -43,6 +45,7 @@ public class SignUpTabFragment extends Fragment {
             ETlastname = view.findViewById(R.id.signup_lastName);
             spinner = view.findViewById(R.id.who);
             ETpassword = view.findViewById(R.id.signup_password);
+            ETrefereal_link = view.findViewById(R.id.referal_link);
 
             ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                     getActivity(),
@@ -56,6 +59,12 @@ public class SignUpTabFragment extends Fragment {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                     who = adapterView.getItemAtPosition(i).toString();
+                    if(who.equals("Student")){
+                        ETrefereal_link.setVisibility(View.VISIBLE);
+                    }else{
+                        ETrefereal_link.setVisibility(View.GONE);
+                        ETrefereal_link.setText("");
+                    }
                 }
 
                 @Override
@@ -84,6 +93,7 @@ public class SignUpTabFragment extends Fragment {
             String name = ETname.getText().toString().trim();
             String lastname = ETlastname.getText().toString().trim();
             String password = ETpassword.getText().toString().trim();
+            String referal_link = ETrefereal_link.getText().toString().trim();
 
 
 
@@ -130,11 +140,12 @@ public class SignUpTabFragment extends Fragment {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
+                                String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-                                User user = new User(email, name, lastname, who);
+                                User user = new User(email, name, lastname, who, referal_link);
 
                                 FirebaseDatabase.getInstance().getReference("Users")
-                                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                        .child(id)
                                         .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
@@ -146,11 +157,28 @@ public class SignUpTabFragment extends Fragment {
                                         }
                                     }
                                 });
+                                if(!referal_link.isEmpty()){
+                                    PersonInGroup person = new PersonInGroup(id);
+                                        FirebaseDatabase.getInstance().getReference("Groups")
+                                        .child(referal_link).push()
+                                        .setValue(person).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if(task.isSuccessful()){
+                                            Toast.makeText(getContext(),"Successfuly added to group", Toast.LENGTH_SHORT).show();
+
+                                        }else{
+                                            Toast.makeText(getContext(),"Faild to add! Try again!", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+                            }
                             }else{
                                 Toast.makeText(getContext(),"Faild to register the user", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
+
         }
     }
 

@@ -92,8 +92,35 @@ public class SplashScreen extends AppCompatActivity {
                                     Log.d(TAG, "user profile: " + whois);
                                     whois = userProfile.who;
 
+                                    if (whois.equals("Boss")) {
 
-                                }
+                                        Log.d(TAG, "boss");
+
+                                        Intent intent = new Intent(SplashScreen.this, MainActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+
+                                    if (whois.equals("Teacher")) {
+
+                                        Log.d(TAG, "teacher");
+
+                                        Intent intent = new Intent(SplashScreen.this, Teacher_Main_Screen.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+
+                                    if (whois.equals("Student")) {
+
+                                        Log.d(TAG, "student");
+
+                                        Intent intent = new Intent(SplashScreen.this, MainActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+
+
+                                    }
 
                                 @Override
                                 public void onCancelled(@NonNull DatabaseError error) {
@@ -102,48 +129,18 @@ public class SplashScreen extends AppCompatActivity {
                             });
 
 
-                            /*
-                             *проверак пользователя (кто он) - не работает!
-                             * потому что whois null???
-                             */
 
-                            if (whois.equals("Boss")) {
 
-                                Log.d(TAG, "boss");
-
-                                Intent intent = new Intent(SplashScreen.this, MainActivity.class);
-                                startActivity(intent);
-                                finish();
-                            }
-
-                            if (whois.equals("Teacher")) {
-
-                                Log.d(TAG, "teacher");
-
-                                Intent intent = new Intent(SplashScreen.this, Teacher_Main_Screen.class);
-                                startActivity(intent);
-                                finish();
-                            }
-
-                            if (whois.equals("Student")) {
-
-                                Log.d(TAG, "student");
-
-                                Intent intent = new Intent(SplashScreen.this, MainActivity.class);
-                                startActivity(intent);
-                                finish();
-                            }
 
 
                         } else {
 
-                            //За то выкидывает из авторизации постоянно и 100% работает
-
                             Log.d(TAG, "back");
-
+                            Toast.makeText(SplashScreen.this, "Faild to enter! Check your email or password", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(SplashScreen.this, LoginScreen.class);
                             startActivity(intent);
                             finish();
+
 
                             //Что бы на логин скрине появился тост что авторизация не прошла
 

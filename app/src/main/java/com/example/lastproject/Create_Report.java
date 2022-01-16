@@ -8,9 +8,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.UUID;
 
 public class Create_Report extends AppCompatActivity {
 
@@ -18,10 +22,14 @@ public class Create_Report extends AppCompatActivity {
     String  status, date;
     Button btn_confirm;
 
+    private DatabaseReference mDatabase;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_report);
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         titel = findViewById(R.id.report_titel);
         room = findViewById(R.id.room);
@@ -31,26 +39,22 @@ public class Create_Report extends AppCompatActivity {
         date = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).format(new Date());
 
 
-        /**
-         * Это надо как то передать в  ArrayList<Report> reportsList который находится в ReportFragment
-         * и перенести это через succesful_report
-         */
-
         btn_confirm = findViewById(R.id.btn_confirmreport);
         btn_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(Create_Report.this, succesful_report.class);
-                intent.putExtra("titel", titel.getText().toString());
-                intent.putExtra("room", room.getText().toString());
-                intent.putExtra("building", building.getText().toString());
-                intent.putExtra("desc", desc.getText().toString());
-                intent.putExtra("status", status);
-                intent.putExtra("date", date);
-                startActivity(intent);
+                writeNewReport(new Report(titel.getText().toString(), desc.getText().toString(), status,date,room.getText().toString(), building.getText().toString()));
                 finish();
             }
         });
+    }
+
+    public void writeNewReport(Report report) {
+
+    String id = UUID.randomUUID().toString();
+
+
+        mDatabase.child("Reports").child(id).setValue(report);
     }
 }

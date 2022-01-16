@@ -5,12 +5,19 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -21,6 +28,8 @@ public class ReportFragment extends Fragment {
     ReportAdapter adapter;
     FloatingActionButton fab_btn;
     boolean flag = false;
+
+    DatabaseReference post_ref;
 
 
     @Override
@@ -36,38 +45,40 @@ public class ReportFragment extends Fragment {
             }
         });
 
-
-        flag = getActivity().getIntent().getBooleanExtra("flag",true);
-
-        if(flag){
-            /**
-             * программа крашиться из за того что в первый раз все эти значения null
-             * но если я хочу что то передать из другого активити то ничего не работает
-             */
-            String titel = getActivity().getIntent().getExtras().getString("titel");
-            String room = getActivity().getIntent().getExtras().getString("room");
-            String building = getActivity().getIntent().getExtras().getString("building");
-            String desc = getActivity().getIntent().getExtras().getString("desc");
-            String status = getActivity().getIntent().getExtras().getString("status");
-            String date = getActivity().getIntent().getExtras().getString("date");
-
-            reportsList.add(new Report(titel,desc,status,date, room, building));
-
-            flag = true;
-
-        }
-
-
+        reportsList = new ArrayList<Report>();
 
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        ArrayList<Report> reportsList = new ArrayList<Report>();
 
-
-        ReportAdapter adapter = new ReportAdapter(reportsList,getActivity());
+        adapter = new ReportAdapter(reportsList,getActivity());
         recyclerView.setAdapter(adapter);
 
+        post_ref = FirebaseDatabase.getInstance().
+                getReference("Reports");
+
+        retrieveData();
+
+
         return view;
+    }
+    private void retrieveData() {
+        post_ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                reportsList.clear();
+                for (DataSnapshot data : snapshot.getChildren()) {
+                    Report p = data.getValue(Report.class);
+                    reportsList.add(p);
+                }
+
+                recyclerView.setAdapter(adapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                //no interesting in our purpose in the lesson
+            }
+        });
     }
 }

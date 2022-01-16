@@ -8,6 +8,9 @@ public class Report {
     private String room;
     private String building;
 
+    public Report() {
+    }
+
     public Report(String title, String explanation, String status, String date, String room, String building) {
         this.title = title;
         this.explanation = explanation;

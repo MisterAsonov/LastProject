@@ -10,44 +10,49 @@
         android:id="@+id/signup_email"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
         android:background="@drawable/edit_text_bg"
         android:hint="Email"
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintHorizontal_bias="0.481"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.128"
+        app:layout_constraintVertical_bias="0.104"
         app:layout_constraintWidth_percent=".8" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/signup_password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="40dp"
         android:background="@drawable/edit_text_bg"
         android:hint="Password"
         android:inputType="textPassword"
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/who"
-        app:layout_constraintVertical_bias="0.019"
-        app:layout_constraintWidth_percent=".8" />
+        app:layout_constraintTop_toBottomOf="@+id/referal_link"
+        app:layout_constraintVertical_bias="0.007" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/signup_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="145dp"
+        android:layout_height="44dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/edit_text_bg"
         android:hint="Name"
         android:paddingLeft="15dp"
@@ -56,38 +61,35 @@
         app:layout_constraintEnd_toStartOf="@+id/signup_lastName"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signup_email"
-        app:layout_constraintWidth_percent=".35" />
+        app:layout_constraintTop_toBottomOf="@+id/signup_email" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/signup_lastName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="145dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="40dp"
-        android:layout_marginBottom="20dp"
         android:background="@drawable/edit_text_bg"
         android:hint="Last Name"
         android:paddingLeft="15dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/who"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintWidth_percent=".35" />
+        app:layout_constraintTop_toBottomOf="@+id/signup_email" />
 
     <Spinner
         android:id="@+id/who"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="40dp"
         android:background="@drawable/edit_text_bg"
         android:hint="Who are you?"
         android:paddingLeft="15dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signup_name" />
 
@@ -100,12 +102,34 @@
         android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signup_password"
-        app:layout_constraintVertical_bias="0.672"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.873"
         app:layout_constraintWidth_percent=".8" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/referal_link"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="40dp"
+        android:background="@drawable/edit_text_bg"
+        android:ems="10"
+        android:hint="Referal Link"
+        android:inputType="textPersonName"
+        android:paddingLeft="15dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/who" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
