@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -63,7 +64,9 @@ public class ReportFragment extends Fragment {
         return view;
     }
     private void retrieveData() {
-        post_ref.addValueEventListener(new ValueEventListener() {
+        String creatorID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        post_ref.child(creatorID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 reportsList.clear();

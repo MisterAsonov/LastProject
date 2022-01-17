@@ -8,6 +8,7 @@ public class Report {
     private String room;
     private String building;
 
+
     public Report() {
     }
 
@@ -67,4 +68,5 @@ public class Report {
     public void setBuilding(String building) {
         this.building = building;
     }
+
 }

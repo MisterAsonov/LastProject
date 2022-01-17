@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -29,7 +30,7 @@ public class Create_Report extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_report);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+
 
         titel = findViewById(R.id.report_titel);
         room = findViewById(R.id.room);
@@ -52,9 +53,8 @@ public class Create_Report extends AppCompatActivity {
 
     public void writeNewReport(Report report) {
 
-    String id = UUID.randomUUID().toString();
+        String creatorID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-
-        mDatabase.child("Reports").child(id).setValue(report);
+        FirebaseDatabase.getInstance().getReference("Reports").child(creatorID).push().setValue(report);
     }
 }
