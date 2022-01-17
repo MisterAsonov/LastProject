@@ -11,6 +11,13 @@ public class PersonInGroup {
 
     }
 
+    @Override
+    public String toString() {
+        return "PersonInGroup{" +
+                "Id_of_student='" + Id_of_student + '\'' +
+                '}';
+    }
+
     public String getId_of_student() {
         return Id_of_student;
     }

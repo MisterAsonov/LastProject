@@ -15,6 +15,17 @@ public class User {
         this.referal_link = referal_link;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "email='" + email + '\'' +
+                ", name='" + name + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", who='" + who + '\'' +
+                ", referal_link='" + referal_link + '\'' +
+                '}';
+    }
+
     public String getEmail() {
         return email;
     }

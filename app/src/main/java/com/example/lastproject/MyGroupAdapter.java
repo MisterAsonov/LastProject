@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class MyGroupAdapter extends RecyclerView.Adapter<MyGroupAdapter.MyViewHolder> {
+public class MyGroupAdapter extends RecyclerView.Adapter<MyGroupAdapter.ViewHolder> {
 
     ArrayList<User> users;
     Context context;
@@ -22,10 +22,10 @@ public class MyGroupAdapter extends RecyclerView.Adapter<MyGroupAdapter.MyViewHo
         this.context = context;
     }
 
-    public class MyViewHolder  extends RecyclerView.ViewHolder  {
+    public class ViewHolder  extends RecyclerView.ViewHolder  {
         TextView name,lastName,who;
 
-        public MyViewHolder (View view) {
+        public ViewHolder (View view) {
             super(view);
             name = (TextView) view.findViewById(R.id.Name);
             lastName = (TextView) view.findViewById(R.id.LastName);
@@ -37,23 +37,23 @@ public class MyGroupAdapter extends RecyclerView.Adapter<MyGroupAdapter.MyViewHo
     }
 
 
-    public MyViewHolder  onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+    public ViewHolder  onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.students_list, viewGroup, false);
 
-        return new MyViewHolder (view);
+        return new ViewHolder (view);
 
     }
 
 
 
-    public void onBindViewHolder(@NonNull MyViewHolder  holder, int i) {
+    public void onBindViewHolder(@NonNull ViewHolder  viewHolder, int i) {
         User tmp = users.get(i);
-        holder.name.setText(String.valueOf(tmp.getName()));
-        holder.lastName.setText(String.valueOf(tmp.getLastname()));
-        holder.who.setText(String.valueOf(tmp.getWho()));
+        viewHolder.name.setText(String.valueOf(tmp.getName()));
+        viewHolder.lastName.setText(String.valueOf(tmp.getLastname()));
+        viewHolder.who.setText(String.valueOf(tmp.getWho()));
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(context, tmp.getName(), Toast.LENGTH_SHORT).show();

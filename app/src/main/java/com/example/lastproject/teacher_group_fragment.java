@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,49 +27,61 @@ public class teacher_group_fragment extends Fragment {
     ArrayList<User> StudentsList;
     MyGroupAdapter adapter;
 
+    private static final String TAG = "Student";
+
     DatabaseReference post_ref, student;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         ViewGroup view = (ViewGroup) inflater.inflate(R.layout.activity_teacher_group_fragment,container,false);
 
+        StudentsList = new ArrayList<User>();
+
         recyclerView = view.findViewById(R.id.group_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        StudentsList = new ArrayList<User>();
+
+        adapter = new MyGroupAdapter(StudentsList, getActivity());
+
+
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),3));
 
         post_ref = FirebaseDatabase.getInstance().
                 getReference("Groups");
         student = FirebaseDatabase.getInstance().
                 getReference("Users");
 
-        MyGroupAdapter adapter = new MyGroupAdapter(StudentsList, getActivity());
-
         retrieveData();
 
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),3));
-
+        Log.d(TAG, "StudentsList: " + StudentsList);
+        //Student list пустой
         return view;
+
     }
 
     private void retrieveData() {
+
         String teaceherId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
         post_ref.child(teaceherId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 StudentsList.clear();
-
-                for (DataSnapshot data : snapshot.getChildren()) {
-                    PersonInGroup Student = snapshot.getValue(PersonInGroup.class);
-                    String idOfstident = Student.getId_of_student();
-
-                    //idOfstident пишет что он null
+                for (DataSnapshot tmp : snapshot.getChildren()) {
+                    PersonInGroup st = tmp.getValue(PersonInGroup.class);
+                    String idOfstident = st.getId_of_student();
 
                     student.child(idOfstident).addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            User p = data.getValue(User.class);
+                            User p = snapshot.getValue(User.class);
+
                             StudentsList.add(p);
+
+                            recyclerView.setAdapter(adapter);
+                            Log.d(TAG, "StudentsList2: " + StudentsList);
+                            //Student list тут есть ученики
+
                         }
 
                         @Override
@@ -76,10 +89,12 @@ public class teacher_group_fragment extends Fragment {
 
                         }
                     });
-
                 }
 
-                recyclerView.setAdapter(adapter);
+                Log.d(TAG, "StudentsList3: " + StudentsList);
+                //Student list пустой
+
+
             }
 
             @Override
@@ -87,5 +102,6 @@ public class teacher_group_fragment extends Fragment {
                 //no interesting in our purpose in the lesson
             }
         });
+
     }
 }
