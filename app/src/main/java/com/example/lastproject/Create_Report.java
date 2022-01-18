@@ -20,7 +20,7 @@ import java.util.UUID;
 public class Create_Report extends AppCompatActivity {
 
     EditText titel, room, building, desc;
-    String  status, date;
+    String  status, date, creatorID;
     Button btn_confirm;
 
     private DatabaseReference mDatabase;
@@ -38,6 +38,7 @@ public class Create_Report extends AppCompatActivity {
         desc = findViewById(R.id.description);
         status = "In progress";
         date = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).format(new Date());
+        creatorID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
 
         btn_confirm = findViewById(R.id.btn_confirmreport);
@@ -45,15 +46,13 @@ public class Create_Report extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                writeNewReport(new Report(titel.getText().toString(), desc.getText().toString(), status,date,room.getText().toString(), building.getText().toString()));
+                writeNewReport(new Report(titel.getText().toString(), desc.getText().toString(), status,date,room.getText().toString(), building.getText().toString(), creatorID));
                 finish();
             }
         });
     }
 
     public void writeNewReport(Report report) {
-
-        String creatorID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         FirebaseDatabase.getInstance().getReference("Reports").child(creatorID).push().setValue(report);
     }

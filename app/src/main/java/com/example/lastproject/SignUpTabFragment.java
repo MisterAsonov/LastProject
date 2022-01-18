@@ -142,7 +142,7 @@ public class SignUpTabFragment extends Fragment {
                             if(task.isSuccessful()){
                                 String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-                                User user = new User(email, name, lastname, who, referal_link);
+                                User user = new User(email, name, lastname, who, referal_link,id);
 
                                 FirebaseDatabase.getInstance().getReference("Users")
                                         .child(id)

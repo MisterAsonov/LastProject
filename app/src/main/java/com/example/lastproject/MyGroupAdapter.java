@@ -1,6 +1,7 @@
 package com.example.lastproject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,8 @@ public class MyGroupAdapter extends RecyclerView.Adapter<MyGroupAdapter.ViewHold
 
     public class ViewHolder  extends RecyclerView.ViewHolder  {
         TextView name,lastName,who;
+
+
 
         public ViewHolder (View view) {
             super(view);
@@ -53,10 +56,19 @@ public class MyGroupAdapter extends RecyclerView.Adapter<MyGroupAdapter.ViewHold
         viewHolder.lastName.setText(String.valueOf(tmp.getLastname()));
         viewHolder.who.setText(String.valueOf(tmp.getWho()));
 
+
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, tmp.getName(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, teacher_Student_Profile.class);
+                intent.putExtra("tv_name", tmp.getName());
+                intent.putExtra("tv_lname", tmp.getLastname());
+                intent.putExtra("tv_email", tmp.getEmail());
+                intent.putExtra("tv_who", tmp.getWho());
+                intent.putExtra("tv_id", tmp.getUID());
+
+                context.startActivity(intent);
+
             }
         });
     }

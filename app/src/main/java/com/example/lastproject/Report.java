@@ -7,18 +7,20 @@ public class Report {
     private String date;
     private String room;
     private String building;
+    private String creator_id;
 
 
     public Report() {
     }
 
-    public Report(String title, String explanation, String status, String date, String room, String building) {
+    public Report(String title, String explanation, String status, String date, String room, String building, String creator_id) {
         this.title = title;
         this.explanation = explanation;
         this.status = status;
         this.date = date;
         this.room = room;
         this.building = building;
+        this.creator_id = creator_id;
     }
 
     public String getTitle() {
@@ -69,4 +71,11 @@ public class Report {
         this.building = building;
     }
 
+    public String getCreator_id() {
+        return creator_id;
+    }
+
+    public void setCreator_id(String creator_id) {
+        this.creator_id = creator_id;
+    }
 }

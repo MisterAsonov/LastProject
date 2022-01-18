@@ -12,12 +12,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".report_for_student"
+            android:exported="true" />
+        <activity
+            android:name=".report_for_teacher"
+            android:exported="true" />
+        <activity
+            android:name=".teacher_Student_Profile"
+            android:exported="true" />
+        <activity
             android:name=".Teacher_Main_Screen"
-            android:exported="true" >
-
-
-        </activity>
-
+            android:exported="true" />
         <activity
             android:name=".Profile"
             android:exported="true" />
@@ -32,25 +37,19 @@
             android:exported="true" />
         <activity
             android:name=".LoginScreen"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".HelloScreen"
-            android:exported="true">
-
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
-            android:exported="true" >
-
-
-
-        </activity>
+            android:exported="true" />
     </application>
 
 </manifest>
