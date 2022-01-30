@@ -39,7 +39,6 @@
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.487"
@@ -122,14 +121,30 @@
         android:background="@drawable/edit_text_bg"
         android:ems="10"
         android:hint="Referal Link"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         android:paddingLeft="15dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/who" />
+        app:layout_constraintTop_toBottomOf="@+id/who" >
+
+
+    </com.google.android.material.textfield.TextInputEditText>
+
+    <ImageView
+        android:id="@+id/qr_scanner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/referal_link"
+        app:layout_constraintEnd_toEndOf="@+id/referal_link"
+        app:layout_constraintHorizontal_bias="0.951"
+        app:layout_constraintStart_toStartOf="@+id/referal_link"
+        app:layout_constraintTop_toTopOf="@+id/referal_link"
+        app:layout_constraintVertical_bias="0.428"
+        app:srcCompat="@drawable/ic_baseline_qr_code_24" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

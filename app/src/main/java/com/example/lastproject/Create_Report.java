@@ -36,7 +36,7 @@ public class Create_Report extends AppCompatActivity {
         room = findViewById(R.id.room);
         building = findViewById(R.id.building);
         desc = findViewById(R.id.description);
-        status = "In progress";
+        status = "Waiting for confirmation";
         date = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).format(new Date());
         creatorID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
@@ -45,6 +45,28 @@ public class Create_Report extends AppCompatActivity {
         btn_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                if(titel.getText().toString().isEmpty()){
+                    titel.setError("Titel is empty!");
+                    titel.requestFocus();
+                    return;
+                }
+
+                if(room.getText().toString().isEmpty()){
+                    room.setError("Room is empty!");
+                    room.requestFocus();
+                    return;
+                }
+                if(building.getText().toString().isEmpty()){
+                    building.setError("Building is empty!");
+                    building.requestFocus();
+                    return;
+                }
+                if(desc.getText().toString().isEmpty()){
+                    desc.setError("Description is empty!");
+                    desc.requestFocus();
+                    return;
+                }
 
                 writeNewReport(new Report(titel.getText().toString(), desc.getText().toString(), status,date,room.getText().toString(), building.getText().toString(), creatorID));
                 finish();

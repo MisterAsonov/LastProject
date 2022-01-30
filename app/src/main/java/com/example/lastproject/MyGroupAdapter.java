@@ -17,6 +17,12 @@ public class MyGroupAdapter extends RecyclerView.Adapter<MyGroupAdapter.ViewHold
 
     ArrayList<User> users;
     Context context;
+    ArrayList<String> keys;
+
+    public void setKeys(ArrayList<String> keys) {
+        this.keys = keys;
+        notifyDataSetChanged();
+    }
 
     public MyGroupAdapter(ArrayList<User> users, Context context) {
         this.users = users;
@@ -50,7 +56,8 @@ public class MyGroupAdapter extends RecyclerView.Adapter<MyGroupAdapter.ViewHold
 
 
 
-    public void onBindViewHolder(@NonNull ViewHolder  viewHolder, int i) {
+    public void onBindViewHolder(@NonNull ViewHolder  viewHolder, int g) {
+        int i = viewHolder.getAdapterPosition();
         User tmp = users.get(i);
         viewHolder.name.setText(String.valueOf(tmp.getName()));
         viewHolder.lastName.setText(String.valueOf(tmp.getLastname()));
@@ -66,6 +73,7 @@ public class MyGroupAdapter extends RecyclerView.Adapter<MyGroupAdapter.ViewHold
                 intent.putExtra("tv_email", tmp.getEmail());
                 intent.putExtra("tv_who", tmp.getWho());
                 intent.putExtra("tv_id", tmp.getUID());
+                intent.putExtra("key", keys.get(i));
 
                 context.startActivity(intent);
 

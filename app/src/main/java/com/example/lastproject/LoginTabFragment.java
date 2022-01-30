@@ -5,6 +5,7 @@ import static android.content.ContentValues.TAG;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -26,15 +28,13 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.concurrent.Executor;
 
 public class LoginTabFragment extends Fragment {
-
-
-
     SharedPreferences sp;
     SharedPreferences.Editor editor;
 
     EditText ETemail, ETpassword;
     Button btn_login;
     CheckBox saveme;
+    ImageView visible, invisible;
 
 
     @Override
@@ -44,6 +44,29 @@ public class LoginTabFragment extends Fragment {
         ETemail = view.findViewById(R.id.login_email);
         ETpassword = view.findViewById(R.id.login_password);
         saveme = view.findViewById(R.id.stayin);
+        visible = view.findViewById(R.id.visible_password);
+        invisible = view.findViewById(R.id.invisible_password);
+
+        visible.setVisibility(View.VISIBLE);
+        invisible.setVisibility(View.GONE);
+
+        visible.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ETpassword.setInputType(InputType.TYPE_CLASS_TEXT);
+                visible.setVisibility(View.GONE);
+                invisible.setVisibility(View.VISIBLE);
+            }
+        });
+
+        invisible.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ETpassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                visible.setVisibility(View.VISIBLE);
+                invisible.setVisibility(View.GONE);
+            }
+        });
 
 
 

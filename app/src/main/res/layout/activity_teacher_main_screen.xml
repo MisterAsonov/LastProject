@@ -12,35 +12,31 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-
-        <androidx.appcompat.widget.Toolbar
+        <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
-            app:titleTextColor="@color/white"
-            android:background="#FF646595"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:elevation="4dp"
-            android:theme="@style/ThemeOverlay.AppCompat.Light"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0" />
+            android:background="@color/colorAccent"
+            app:navigationIcon="@drawable/ic_baseline_menu_24"
+            app:title="Campus"
+            app:titleTextColor="@color/white" />
 
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tab_layout3"
-            android:layout_width="match_parent"
-            android:layout_height="54dp"
-            app:tabIndicator="@drawable/tab_indicator"
-            app:tabIndicatorAnimationMode="elastic"
-            app:tabIndicatorGravity="stretch"
-            app:tabMode="fixed"
-            android:layout_margin="5dp"
-            app:tabSelectedTextColor="@color/white"
-            app:tabTextColor="@color/colorAccent" />
-
+            <com.google.android.material.tabs.TabLayout
+                android:layout_below="@+id/toolbar"
+                android:id="@+id/tab_layout3"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_margin="5dp"
+                app:tabIndicator="@drawable/tab_indicator"
+                app:tabIndicatorAnimationMode="elastic"
+                app:tabIndicatorGravity="stretch"
+                app:tabMode="fixed"
+                app:tabSelectedTextColor="@color/white"
+                app:tabTextColor="@color/colorAccent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
         <androidx.viewpager2.widget.ViewPager2
+            android:background="@color/white"
             android:id="@+id/view_pager3"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -48,18 +44,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent">
-
         </androidx.viewpager2.widget.ViewPager2>
 
-
     </LinearLayout>
+
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view_teacher"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        app:headerLayout="@layout/nav_header"
-        app:menu="@menu/drawer_menu_teacher" />
+        app:menu="@menu/drawer_menu_teacher"
+        android:visibility="visible"/>
 
 </androidx.drawerlayout.widget.DrawerLayout>

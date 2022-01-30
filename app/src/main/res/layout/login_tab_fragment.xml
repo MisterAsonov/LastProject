@@ -84,5 +84,31 @@
         app:layout_constraintTop_toBottomOf="@+id/login_password"
         app:layout_constraintVertical_bias="0.046" />
 
+    <ImageView
+        android:id="@+id/visible_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/login_password"
+        app:layout_constraintEnd_toEndOf="@+id/login_password"
+        app:layout_constraintHorizontal_bias="0.951"
+        app:layout_constraintStart_toStartOf="@+id/login_password"
+        app:layout_constraintTop_toTopOf="@+id/login_password"
+        app:layout_constraintVertical_bias="0.476"
+        app:srcCompat="@drawable/ic_baseline_visibility_24" />
+
+    <ImageView
+        android:id="@+id/invisible_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/login_password"
+        app:layout_constraintEnd_toEndOf="@+id/login_password"
+        app:layout_constraintHorizontal_bias="0.951"
+        app:layout_constraintStart_toStartOf="@+id/login_password"
+        app:layout_constraintTop_toTopOf="@+id/login_password"
+        app:layout_constraintVertical_bias="0.476"
+        app:srcCompat="@drawable/ic_baseline_visibility_off_24" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

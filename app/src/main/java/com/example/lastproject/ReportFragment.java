@@ -26,6 +26,7 @@ public class ReportFragment extends Fragment {
 
     RecyclerView recyclerView;
     ArrayList<Report> reportsList;
+    ArrayList<String> keys;
     ReportAdapter adapter;
     FloatingActionButton fab_btn;
     boolean flag = false;
@@ -47,6 +48,8 @@ public class ReportFragment extends Fragment {
         });
 
         reportsList = new ArrayList<Report>();
+        keys = new ArrayList<>();
+        reportsList.clear();
 
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
@@ -65,17 +68,19 @@ public class ReportFragment extends Fragment {
     }
     private void retrieveData() {
         String creatorID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
+        reportsList.clear();
         post_ref.child(creatorID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                reportsList.clear();
+
                 for (DataSnapshot data : snapshot.getChildren()) {
                     Report p = data.getValue(Report.class);
                     reportsList.add(p);
+                    keys.add(data.getKey());
                 }
-
+                adapter.setKeys(keys);
                 recyclerView.setAdapter(adapter);
+
             }
 
             @Override

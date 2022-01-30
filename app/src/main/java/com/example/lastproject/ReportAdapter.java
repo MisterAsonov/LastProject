@@ -26,6 +26,12 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ViewHolder
     Context context;
     private FirebaseAuth mAuth;
     private String userID;
+    ArrayList<String> keys;
+
+    public void setKeys(ArrayList<String> keys) {
+        this.keys = keys;
+        notifyDataSetChanged();
+    }
 
     public ReportAdapter(ArrayList<Report> reports, Context context) {
         this.reports = reports;
@@ -64,7 +70,8 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(ViewHolder viewHolder, int g) {
+        int i = viewHolder.getAdapterPosition();
         Report tmp = reports.get(i);
         viewHolder.title.setText(String.valueOf(tmp.getTitle()));
         viewHolder.explanation.setText(String.valueOf(tmp.getExplanation()));
@@ -83,7 +90,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ViewHolder
                     intent.putExtra("report_room", tmp.getRoom());
                     intent.putExtra("report_date", tmp.getDate());
                     intent.putExtra("report_creator_id", tmp.getCreator_id());
-
+                    intent.putExtra("key", keys.get(i));
                     context.startActivity(intent);
                 }else{
 
@@ -95,7 +102,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ViewHolder
                     intent.putExtra("report_room", tmp.getRoom());
                     intent.putExtra("report_date", tmp.getDate());
                     intent.putExtra("report_creator_id", tmp.getCreator_id());
-
+                    intent.putExtra("key", keys.get(i));
                     context.startActivity(intent);
                 }
             }

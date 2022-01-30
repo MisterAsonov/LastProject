@@ -1,5 +1,7 @@
 package com.example.lastproject;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.LayoutInflater;
@@ -9,10 +11,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -31,8 +35,9 @@ public class SignUpTabFragment extends Fragment {
     String who;
     Spinner spinner;
     EditText ETemail, ETname, ETlastname, ETpassword, ETrefereal_link;
+    ImageView qr_scanner;
     Button btn_signup;
-    float v = 0;
+    public static int SighAppTabRequestCode = 989;
 
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
             ViewGroup view = (ViewGroup) inflater.inflate(R.layout.signup_tab_fragment,container,false);
@@ -46,6 +51,10 @@ public class SignUpTabFragment extends Fragment {
             spinner = view.findViewById(R.id.who);
             ETpassword = view.findViewById(R.id.signup_password);
             ETrefereal_link = view.findViewById(R.id.referal_link);
+            qr_scanner = view.findViewById(R.id.qr_scanner);
+
+            Intent intent = getActivity().getIntent();
+            ETrefereal_link.setText(intent.getStringExtra("referal_link"));
 
             ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                     getActivity(),
@@ -61,8 +70,11 @@ public class SignUpTabFragment extends Fragment {
                     who = adapterView.getItemAtPosition(i).toString();
                     if(who.equals("Student")){
                         ETrefereal_link.setVisibility(View.VISIBLE);
+                        qr_scanner.setVisibility(View.VISIBLE);
+
                     }else{
                         ETrefereal_link.setVisibility(View.GONE);
+                        qr_scanner.setVisibility(View.GONE);
                         ETrefereal_link.setText("");
                     }
                 }
@@ -84,10 +96,33 @@ public class SignUpTabFragment extends Fragment {
 
             });
 
+            qr_scanner.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getActivity(), qr_scanner.class);
+
+                    startActivityForResult(intent, SighAppTabRequestCode );
+
+                }
+            });
+
             return view;
         }
 
-        private void registerUser(){
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == Activity.RESULT_OK && requestCode == SighAppTabRequestCode) {
+
+           if(data != null && data.hasExtra("ref_link"))
+            ETrefereal_link.setText( data.getStringExtra("ref_link"));
+
+        }
+
+    }
+
+    private void registerUser(){
 
             String email = ETemail.getText().toString().trim();
             String name = ETname.getText().toString().trim();

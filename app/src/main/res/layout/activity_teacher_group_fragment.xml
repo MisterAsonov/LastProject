@@ -6,12 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".teacher_group_fragment">
 
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/group_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="2dp" />
-
+        android:layout_margin="2dp"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_btn"
@@ -21,6 +21,6 @@
         android:layout_margin="32dp"
         app:backgroundTint="@color/colorAccent"
         android:elevation="6dp"
-        android:src="@drawable/ic_baseline_add_24"/>
+        android:src="@drawable/ic_baseline_qr_code_white_24"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
