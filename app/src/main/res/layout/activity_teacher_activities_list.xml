@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="180dp"
+    android:layout_height="180dp"
+    tools:context=".teacher_activities_list">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="165dp"
+        android:layout_height="165dp"
+        android:layout_margin="8dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="5dp"
+        >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/card_view_bg"
+            android:weightSum="3">
+
+
+            <ImageView
+                android:id="@+id/profile_icon"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_margin="5dp"
+                android:layout_weight="0"
+                app:srcCompat="@drawable/ic_profile" />
+
+            <TextView
+                android:id="@+id/teacher_type_of_activitie"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:gravity="center"
+                android:text="Trip"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/teacher_nem_of_activitie"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_weight="0"
+                android:gravity="center"
+                android:text="Ramat HaGolan"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+
+
+
+            <TextView
+                android:id="@+id/when"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="25.01.2021"
+                android:textSize="15sp"
+                android:layout_marginRight="20dp"
+                android:gravity="right|top"/>
+
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+</LinearLayout>

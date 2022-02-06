@@ -51,6 +51,8 @@
         <entry key="..\:/LastProject/app/src/main/res/layout/activity_report_for_teacher.xml" value="0.264" />
         <entry key="..\:/LastProject/app/src/main/res/layout/activity_splash_screen.xml" value="0.33" />
         <entry key="..\:/LastProject/app/src/main/res/layout/activity_succesful_report.xml" value="0.3625" />
+        <entry key="..\:/LastProject/app/src/main/res/layout/activity_teacher_activities_list.xml" value="0.30972222222222223" />
+        <entry key="..\:/LastProject/app/src/main/res/layout/activity_teacher_fragment.xml" value="0.32222222222222224" />
         <entry key="..\:/LastProject/app/src/main/res/layout/activity_teacher_group_fragment.xml" value="0.3625" />
         <entry key="..\:/LastProject/app/src/main/res/layout/activity_teacher_main_screen.xml" value="0.264" />
         <entry key="..\:/LastProject/app/src/main/res/layout/activity_teacher_requests_fragment.xml" value="0.32222222222222224" />
@@ -58,6 +60,7 @@
         <entry key="..\:/LastProject/app/src/main/res/layout/calendar_cell.xml" value="0.3578125" />
         <entry key="..\:/LastProject/app/src/main/res/layout/calendar_fragment.xml" value="0.28532608695652173" />
         <entry key="..\:/LastProject/app/src/main/res/layout/create_report.xml" value="0.3625" />
+        <entry key="..\:/LastProject/app/src/main/res/layout/fab_layout.xml" value="0.32222222222222224" />
         <entry key="..\:/LastProject/app/src/main/res/layout/fragment_first.xml" value="0.3484375" />
         <entry key="..\:/LastProject/app/src/main/res/layout/fragment_second.xml" value="0.3484375" />
         <entry key="..\:/LastProject/app/src/main/res/layout/fragment_third.xml" value="0.3625" />
@@ -76,6 +79,7 @@
         <entry key="..\:/LastProject/app/src/main/res/layout/signup_tab_fragment.xml" value="0.33" />
         <entry key="..\:/LastProject/app/src/main/res/layout/students_list.xml" value="0.32222222222222224" />
         <entry key="..\:/LastProject/app/src/main/res/layout/support_fragment.xml" value="0.25" />
+        <entry key="..\:/LastProject/app/src/main/res/layout/teacher_activities_list.xml" value="0.32222222222222224" />
         <entry key="..\:/LastProject/app/src/main/res/menu/drawer_menu.xml" value="0.33" />
         <entry key="..\:/LastProject/app/src/main/res/menu/drawer_menu_teacher.xml" value="0.2" />
         <entry key="..\:/LastProject/app/src/main/res/menu/main_menu.xml" value="0.3625" />

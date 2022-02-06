@@ -12,7 +12,9 @@
         android:roundIcon="@color/white"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity
+            android:name=".teacher_activity_fragment"
+            android:exported="true" />
         <activity
             android:name=".qr_scanner"
             android:exported="true" />

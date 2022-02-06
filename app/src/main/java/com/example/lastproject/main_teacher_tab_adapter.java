@@ -18,7 +18,7 @@ public class main_teacher_tab_adapter extends FragmentStateAdapter {
         switch (position){
             case 0:
 
-                return new ActivitiesFragment();
+                return new teacher_activity_fragment();
             case 1:
 
                 return new teacher_group_fragment();
