@@ -1,11 +1,14 @@
 package com.example.lastproject;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +16,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -79,7 +83,9 @@ public class teacher_activity_fragment extends Fragment {
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "Floating Action Button 1", Toast.LENGTH_SHORT).show();
+                DialogFragment timePickerFragment = new TimePickerFragment();
+                timePickerFragment.setCancelable(false);
+                timePickerFragment.show(getParentFragmentManager() , "timePicker");
             }
         });
 
@@ -93,7 +99,9 @@ public class teacher_activity_fragment extends Fragment {
         fab3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "Floating Action Button 3", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), teacher_creation_of_travel.class);
+                startActivity(intent);
+
             }
         });
 
@@ -107,17 +115,25 @@ public class teacher_activity_fragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         activitie_list.add(new Activitie("Ramat HaGalan","Trip to Ramat HaGolan","Trip","05.02.2022","07.02.2022","6"));
+        activitie_list.add(new Activitie("Ramat HaGalan","Trip to Ramat HaGolan","Peilut","05.02.2022","07.02.2022","6"));
+        activitie_list.add(new Activitie("Ramat HaGalan","Trip to Ramat HaGolan","Talk","05.02.2022","07.02.2022","6"));
         activitie_list.add(new Activitie("Ramat HaGalan","Trip to Ramat HaGolan","Trip","05.02.2022","07.02.2022","6"));
+        activitie_list.add(new Activitie("Ramat HaGalan","Trip to Ramat HaGolan","Peilut","05.02.2022","07.02.2022","6"));
+        activitie_list.add(new Activitie("Ramat HaGalan","Trip to Ramat HaGolan","Talk","05.02.2022","07.02.2022","6"));
         activitie_list.add(new Activitie("Ramat HaGalan","Trip to Ramat HaGolan","Trip","05.02.2022","07.02.2022","6"));
+        activitie_list.add(new Activitie("Ramat HaGalan","Trip to Ramat HaGolan","Peilut","05.02.2022","07.02.2022","6"));
+        activitie_list.add(new Activitie("Ramat HaGalan","Trip to Ramat HaGolan","Talk","05.02.2022","07.02.2022","6"));
         activitie_list.add(new Activitie("Ramat HaGalan","Trip to Ramat HaGolan","Trip","05.02.2022","07.02.2022","6"));
+        activitie_list.add(new Activitie("Ramat HaGalan","Trip to Ramat HaGolan","Peilut","05.02.2022","07.02.2022","6"));
+        activitie_list.add(new Activitie("Ramat HaGalan","Trip to Ramat HaGolan","Talk","05.02.2022","07.02.2022","6"));
         activitie_list.add(new Activitie("Ramat HaGalan","Trip to Ramat HaGolan","Trip","05.02.2022","07.02.2022","6"));
+        activitie_list.add(new Activitie("Ramat HaGalan","Trip to Ramat HaGolan","Peilut","05.02.2022","07.02.2022","6"));
+        activitie_list.add(new Activitie("Ramat HaGalan","Trip to Ramat HaGolan","Talk","05.02.2022","07.02.2022","6"));
         activitie_list.add(new Activitie("Ramat HaGalan","Trip to Ramat HaGolan","Trip","05.02.2022","07.02.2022","6"));
-        activitie_list.add(new Activitie("Ramat HaGalan","Trip to Ramat HaGolan","Trip","05.02.2022","07.02.2022","6"));
-        activitie_list.add(new Activitie("Ramat HaGalan","Trip to Ramat HaGolan","Trip","05.02.2022","07.02.2022","6"));
-        activitie_list.add(new Activitie("Ramat HaGalan","Trip to Ramat HaGolan","Trip","05.02.2022","07.02.2022","6"));
-        activitie_list.add(new Activitie("Ramat HaGalan","Trip to Ramat HaGolan","Trip","05.02.2022","07.02.2022","6"));
-        activitie_list.add(new Activitie("Ramat HaGalan","Trip to Ramat HaGolan","Trip","05.02.2022","07.02.2022","6"));
-        activitie_list.add(new Activitie("Ramat HaGalan","Trip to Ramat HaGolan","Trip","05.02.2022","07.02.2022","6"));
+        activitie_list.add(new Activitie("Ramat HaGalan","Trip to Ramat HaGolan","Peilut","05.02.2022","07.02.2022","6"));
+        activitie_list.add(new Activitie("Ramat HaGalan","Trip to Ramat HaGolan","Talk","05.02.2022","07.02.2022","6"));
+
+ 
 
         adapter = new teacher_activitie_adapter(activitie_list, getActivity());
         recyclerView.setAdapter(adapter);
@@ -126,6 +142,9 @@ public class teacher_activity_fragment extends Fragment {
 
         return view;
     }
+
+
+
 
     private void expandFAB() {
 
@@ -190,6 +209,7 @@ public class teacher_activity_fragment extends Fragment {
         fab3.startAnimation(hide_fab_3);
         fab3.setClickable(false);
     }
+
 
 
 }

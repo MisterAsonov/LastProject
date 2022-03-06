@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.google.android.material.appbar.MaterialToolbar;
@@ -25,7 +26,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class Teacher_Main_Screen extends AppCompatActivity {
+public class Teacher_Main_Screen extends AppCompatActivity implements TimePickerFragment.TimePickerListener{
 
     private DrawerLayout drawer;
     TabLayout tabLayout;
@@ -166,6 +167,11 @@ public class Teacher_Main_Screen extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    @Override
+    public void onTimeSet(TimePicker timePicker, int hour, int minute) {
 
     }
 

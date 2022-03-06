@@ -9,9 +9,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:src="@android:drawable/ic_menu_compass"
+        android:src="@drawable/ic_baseline_group_24"
         android:visibility="invisible"
-        app:backgroundTint="#95647d"
+        app:backgroundTint="#64957b"
+
         android:layout_margin="32dp"
          />
 
@@ -31,9 +32,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:src="@android:drawable/ic_menu_share"
+        android:src="@android:drawable/ic_menu_compass"
         android:visibility="invisible"
-        app:backgroundTint="#64957b"
+        app:backgroundTint="#95647d"
         android:layout_margin="32dp"
          />
 

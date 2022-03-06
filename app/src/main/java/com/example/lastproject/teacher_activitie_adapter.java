@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -29,12 +30,14 @@ public class teacher_activitie_adapter extends RecyclerView.Adapter<teacher_acti
 
     public class ViewHolder  extends RecyclerView.ViewHolder  {
         TextView type,name,when;
+        LinearLayout card_view;
 
         public ViewHolder (View view) {
             super(view);
             type = (TextView) view.findViewById(R.id.teacher_type_of_activitie);
             name = (TextView) view.findViewById(R.id.teacher_nem_of_activitie);
             when = (TextView) view.findViewById(R.id.when);
+            card_view = (LinearLayout) view.findViewById(R.id.xzxz);
 
         }
     }
@@ -53,6 +56,15 @@ public class teacher_activitie_adapter extends RecyclerView.Adapter<teacher_acti
         viewHolder.type.setText(String.valueOf(tmp.getType()));
         viewHolder.name.setText(String.valueOf(tmp.getName()));
         viewHolder.when.setText(String.valueOf(tmp.getWhen()));
+
+        if(tmp.getType().equals("Trip"))
+            viewHolder.card_view.setBackgroundResource(R.drawable.card_view_trip);
+
+        if(tmp.getType().equals("Peilut"))
+            viewHolder.card_view.setBackgroundResource(R.drawable.card_view_peilut);
+
+        if(tmp.getType().equals("Talk"))
+            viewHolder.card_view.setBackgroundResource(R.drawable.card_view_group_talk);
 
         /**
          * viewHolder.itemView.setOnClickListener(new View.OnClickListener() {

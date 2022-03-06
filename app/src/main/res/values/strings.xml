@@ -12,6 +12,11 @@
         <item>Student</item>
     </string-array>
 
+    <string-array name="notyfi">
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+
     <string-array name="status">
         <item>In progress</item>
         <item>Confirmed</item>

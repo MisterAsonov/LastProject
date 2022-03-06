@@ -4,6 +4,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
     <application
         android:allowBackup="true"
@@ -12,9 +14,17 @@
         android:roundIcon="@color/white"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <meta-data android:name="com.google.android.geo.API_KEY"
+        android:value="AIzaSyCVSDO5LAblYAfKjRvMGHtWkxWYLwk51sQ"/>
+
         <activity
-            android:name=".teacher_activity_fragment"
+            android:name=".teacher_creation_of_travel"
             android:exported="true" />
+        <activity
+            android:name=".teacher_creation_of_peilut"
+            android:exported="true" />
+
         <activity
             android:name=".qr_scanner"
             android:exported="true" />
