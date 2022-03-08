@@ -29,7 +29,7 @@ public class teacher_requests_fragment extends Fragment {
     ArrayList<String> keys;
     ReportAdapter adapter;
 
-    DatabaseReference post_ref,grup_ref;
+    DatabaseReference post_ref,grup_ref, student;
 
     private static final String TAG = "Student";
 
@@ -53,6 +53,9 @@ public class teacher_requests_fragment extends Fragment {
         grup_ref = FirebaseDatabase.getInstance().
                 getReference("Groups");
 
+        student = FirebaseDatabase.getInstance().
+                getReference("Users");
+
 
         reportsList.clear();
         retrieveData();
@@ -63,36 +66,49 @@ public class teacher_requests_fragment extends Fragment {
     private void retrieveData() {
         String creatorID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         reportsList.clear();
-        grup_ref.child(creatorID).addValueEventListener(new ValueEventListener() {
+        student.child(creatorID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User uid = snapshot.getValue(User.class);
 
-                for (DataSnapshot tmp : snapshot.getChildren()) {
-                    PersonInGroup st = tmp.getValue(PersonInGroup.class);
-                    String idOfstident = st.getId_of_student();
+                grup_ref.child(uid.UID).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                    post_ref.child(idOfstident).addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            for (DataSnapshot qwe : snapshot.getChildren()) {
-                                Log.d(TAG, "key: " + qwe.getKey());
-                                Report p = qwe.getValue(Report.class);
-                                keys.add(qwe.getKey());
-                                reportsList.add(p);
-                            }
-                            adapter.setKeys(keys);
-                            recyclerView.setAdapter(adapter);
-                            Log.d(TAG, "reportsList2: " + reportsList);
+                        for (DataSnapshot tmp : snapshot.getChildren()) {
+                            if(tmp.getKey().equals("Moadon")) continue;
+                            PersonInGroup st = tmp.getValue(PersonInGroup.class);
+                            String idOfstident = st.getId_of_student();
 
+                            post_ref.child(idOfstident).addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    for (DataSnapshot qwe : snapshot.getChildren()) {
+                                        Log.d(TAG, "key: " + qwe.getKey());
+                                        Report p = qwe.getValue(Report.class);
+                                        keys.add(qwe.getKey());
+                                        reportsList.add(p);
+                                    }
+                                    adapter.setKeys(keys);
+                                    recyclerView.setAdapter(adapter);
+                                    Log.d(TAG, "reportsList2: " + reportsList);
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
                         }
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
+                    }
 
-                        }
-                    });
-                }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
+                    }
+                });
             }
 
             @Override
@@ -100,6 +116,5 @@ public class teacher_requests_fragment extends Fragment {
 
             }
         });
-
     }
 }

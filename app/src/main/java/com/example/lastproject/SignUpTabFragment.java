@@ -68,15 +68,7 @@ public class SignUpTabFragment extends Fragment {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                     who = adapterView.getItemAtPosition(i).toString();
-                    if(who.equals("Student")){
-                        ETrefereal_link.setVisibility(View.VISIBLE);
-                        qr_scanner.setVisibility(View.VISIBLE);
 
-                    }else{
-                        ETrefereal_link.setVisibility(View.GONE);
-                        qr_scanner.setVisibility(View.GONE);
-                        ETrefereal_link.setText("");
-                    }
                 }
 
                 @Override
@@ -175,8 +167,10 @@ public class SignUpTabFragment extends Fragment {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
-                                String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
+                                String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                                if(who.equals("Teacher"))
+                                    id=referal_link;
                                 User user = new User(email, name, lastname, who, referal_link,id);
 
                                 FirebaseDatabase.getInstance().getReference("Users")

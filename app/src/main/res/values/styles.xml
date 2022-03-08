@@ -6,11 +6,22 @@
         <item name="colorAccent">#646595</item>
         <item name="android:windowContentTransitions">true</item>
         <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+
         <item name="android:statusBarColor">#5C5D8E</item>
+
 
     </style>
 
+    <style name="AppTheme.Dialog" parent="ThemeOverlay.MaterialComponents.Dialog">
+
+        <!-- add a minimun width to the dialog, so it's not too narrow -->
+        <item name="android:windowMinWidthMajor">@dimen/abc_dialog_min_width_major</item>
+        <item name="android:windowMinWidthMinor">@dimen/abc_dialog_min_width_minor</item>
+
+        <!-- display the title for dialogs -->
+        <item name="android:windowNoTitle">false</item>
+
+    </style>
 
 
 </resources>

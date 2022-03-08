@@ -14,6 +14,7 @@ public class User {
         this.who = who;
         this.referal_link = referal_link;
         this.UID = UID;
+
     }
 
     public String getEmail() {
@@ -63,4 +64,5 @@ public class User {
     public void setUID(String UID) {
         this.UID = UID;
     }
+
 }

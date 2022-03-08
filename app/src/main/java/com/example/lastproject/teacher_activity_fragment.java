@@ -85,6 +85,7 @@ public class teacher_activity_fragment extends Fragment {
             public void onClick(View v) {
                 DialogFragment timePickerFragment = new TimePickerFragment();
                 timePickerFragment.setCancelable(false);
+
                 timePickerFragment.show(getParentFragmentManager() , "timePicker");
             }
         });

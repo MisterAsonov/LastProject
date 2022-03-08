@@ -2,6 +2,7 @@ package com.example.lastproject;
 
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -27,6 +28,7 @@ import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -47,6 +49,7 @@ public class teacher_group_fragment extends Fragment {
     MyGroupAdapter adapter;
     FloatingActionButton btn_addStudent;
     ImageView qr_code;
+    String userID = "404";
 
     private static final String TAG = "Student";
 
@@ -101,8 +104,7 @@ public class teacher_group_fragment extends Fragment {
 
 
         mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String userID = user.getUid();
+
 
         qr_code = view.findViewById(R.id.qr_code_teqcher);
 
@@ -143,49 +145,64 @@ public class teacher_group_fragment extends Fragment {
     private void retrieveData() {
 
         String teaceherId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
-        post_ref.child(teaceherId).addValueEventListener(new ValueEventListener() {
+        student.child(teaceherId).addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot snapshot) {
-                StudentsList.clear();
-                for (DataSnapshot tmp : snapshot.getChildren()) {
-                    PersonInGroup st = tmp.getValue(PersonInGroup.class);
-                    String idOfstident = st.getId_of_student();
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+               User uid = snapshot.getValue(User.class);
+                userID = uid.UID;
+                post_ref.child(uid.UID).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot snapshot) {
+                        StudentsList.clear();
+                        for (DataSnapshot tmp : snapshot.getChildren()) {
+                            if(tmp.getKey().equals("Moadon")) continue;
+                            PersonInGroup st = tmp.getValue(PersonInGroup.class);
+                            String idOfstident = st.getId_of_student();
 
-                    student.child(idOfstident).addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            User p = snapshot.getValue(User.class);
+                            student.child(idOfstident).addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    User p = snapshot.getValue(User.class);
 
-                            StudentsList.add(p);
-                            keys.add(tmp.getKey());
+                                    StudentsList.add(p);
+                                    keys.add(tmp.getKey());
 
-                            adapter.setKeys(keys);
-                            recyclerView.setAdapter(adapter);
+                                    adapter.setKeys(keys);
+                                    recyclerView.setAdapter(adapter);
 
-                            Log.d(TAG, "StudentsList2: " + StudentsList);
+                                    Log.d(TAG, "StudentsList2: " + StudentsList);
 
 
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
                         }
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
-                }
-
-                Log.d(TAG, "StudentsList3: " + StudentsList);
-                //Student list пустой
+                        Log.d(TAG, "StudentsList3: " + StudentsList);
+                        //Student list пустой
 
 
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        //no interesting in our purpose in the lesson
+                    }
+                });
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                //no interesting in our purpose in the lesson
+
             }
         });
+
+
+
 
     }
 }

@@ -9,6 +9,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -35,9 +36,10 @@ public class Teacher_Main_Screen extends AppCompatActivity implements TimePicker
     NavigationView navigationView;
     MaterialToolbar toolbar;
     TextView header_email, header_name;
+    String userId;
 
 
-    private DatabaseReference reference;
+    private DatabaseReference reference, moadon_ref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +53,8 @@ public class Teacher_Main_Screen extends AppCompatActivity implements TimePicker
         reference = FirebaseDatabase.getInstance().
                 getReference("Users");
         String creatorID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        moadon_ref = FirebaseDatabase.getInstance().getReference("Groups");
 
         tabLayout = findViewById(R.id.tab_layout3);
         pager2 = findViewById(R.id.view_pager3);
@@ -172,7 +176,21 @@ public class Teacher_Main_Screen extends AppCompatActivity implements TimePicker
 
     @Override
     public void onTimeSet(TimePicker timePicker, int hour, int minute) {
+        String teaceherId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        reference.child(teaceherId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User uid = snapshot.getValue(User.class);
+                userId = uid.UID;
+                moadon_ref.child(uid.UID).child("Moadon").setValue(new Moadon(hour, minute));
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        Toast.makeText(Teacher_Main_Screen.this, String.valueOf(hour) + " "+ String.valueOf(minute), Toast.LENGTH_SHORT).show();
     }
 
 
