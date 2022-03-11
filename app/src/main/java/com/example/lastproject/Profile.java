@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.motion.widget.MotionLayout;
+import androidx.constraintlayout.utils.widget.ImageFilterView;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -33,7 +34,7 @@ public class Profile extends AppCompatActivity {
     DatabaseReference user_ref;
 
     TextView name, email;
-    ImageView photo;
+    ImageFilterView photo;
 
     private Uri mImageUri;
 
@@ -52,7 +53,7 @@ public class Profile extends AppCompatActivity {
                 Toast.makeText(Profile.this, "change_name selected", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.new_photo:
-                Toast.makeText(Profile.this, "new_photo selected", Toast.LENGTH_SHORT).show();
+                openFileChooser();
                 return true;
             case R.id.log_out:
                 FirebaseAuth.getInstance().signOut();
