@@ -14,8 +14,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="Campus"
-        app:titleTextColor="@color/white" />
+        app:title=""
+        app:titleTextColor="#00646595" />
 
     <TextView
         android:id="@+id/textView4"

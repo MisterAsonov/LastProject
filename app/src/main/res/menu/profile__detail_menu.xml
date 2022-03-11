@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".Profile">
+
+    <item
+        app:showAsAction="always"
+        android:icon="@drawable/ic_baseline_more_vert_24"
+        android:title="">
+        <menu>
+            <item
+                android:id="@+id/change_name"
+                android:title="Change name"
+                app:showAsAction="ifRoom"
+                android:icon="@drawable/ic_baseline_edit_24"
+                />
+
+            <item
+                android:id="@+id/new_photo"
+                android:title="New photo"
+                app:showAsAction="ifRoom"
+                android:icon="@drawable/ic_baseline_add_a_photo_24"
+                />
+
+            <item
+                android:id="@+id/log_out"
+                android:title="Log out"
+                app:showAsAction="ifRoom"
+                android:icon="@drawable/ic_baseline_login_purp_24"
+                />
+        </menu>
+    </item>
+
+
+</menu>
