@@ -28,6 +28,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class MainActivity extends AppCompatActivity  {
@@ -39,6 +42,7 @@ public class MainActivity extends AppCompatActivity  {
     NavigationView navigationView;
     MaterialToolbar toolbar;
     TextView header_email, header_name;
+    CircleImageView photo;
 
     private DatabaseReference reference;
 
@@ -106,6 +110,7 @@ public class MainActivity extends AppCompatActivity  {
         ImageView headerImage = headerView.findViewById(R.id.profile);
         header_email = headerView.findViewById(R.id.header_email);
         header_name = headerView.findViewById(R.id.header_name);
+        photo = headerImage.findViewById(R.id.profile);
 
         reference.child(creatorID).addValueEventListener(new ValueEventListener() {
             @Override
@@ -114,6 +119,9 @@ public class MainActivity extends AppCompatActivity  {
                 header_email.setText(p.getEmail());
                 header_name.setText(p.getName() + " " + p.getLastname());
 
+                String link = p.getmImageUrl();
+                if(!link.equals(""))
+                    Picasso.get().load(link).into(photo);
             }
 
             @Override

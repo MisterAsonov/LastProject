@@ -1,6 +1,5 @@
 package com.example.lastproject;
 
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -63,12 +62,10 @@ public class teacher_group_fragment extends Fragment {
         StudentsList = new ArrayList<User>();
         keys = new ArrayList<String>();
 
-
         recyclerView = view.findViewById(R.id.group_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         btn_addStudent = view.findViewById(R.id.fab_btn);
-
 
         btn_addStudent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,7 +78,6 @@ public class teacher_group_fragment extends Fragment {
 
         adapter = new MyGroupAdapter(StudentsList, getActivity());
 
-
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),3));
 
         post_ref = FirebaseDatabase.getInstance().
@@ -92,7 +88,6 @@ public class teacher_group_fragment extends Fragment {
         retrieveData();
 
         Log.d(TAG, "StudentsList: " + StudentsList);
-        //Student list пустой
         return view;
 
     }
@@ -102,9 +97,7 @@ public class teacher_group_fragment extends Fragment {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         ViewGroup view = (ViewGroup) inflater.inflate(R.layout.activity_qr_code_dialog,container,false);
 
-
         mAuth = FirebaseAuth.getInstance();
-
 
         qr_code = view.findViewById(R.id.qr_code_teqcher);
 
@@ -115,8 +108,6 @@ public class teacher_group_fragment extends Fragment {
             BarcodeEncoder  encoder = new BarcodeEncoder();
             Bitmap bitmap = encoder.createBitmap(matrix);
             qr_code.setImageBitmap(bitmap);
-
-
 
         } catch (WriterException e) {
             e.printStackTrace();
@@ -138,8 +129,6 @@ public class teacher_group_fragment extends Fragment {
             }
         });
 
-
-
     }
 
     private void retrieveData() {
@@ -149,8 +138,8 @@ public class teacher_group_fragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                User uid = snapshot.getValue(User.class);
-                userID = uid.UID;
-                post_ref.child(uid.UID).addValueEventListener(new ValueEventListener() {
+
+                post_ref.child(uid.referal_link).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot snapshot) {
                         StudentsList.clear();
@@ -172,7 +161,6 @@ public class teacher_group_fragment extends Fragment {
 
                                     Log.d(TAG, "StudentsList2: " + StudentsList);
 
-
                                 }
 
                                 @Override
@@ -183,14 +171,11 @@ public class teacher_group_fragment extends Fragment {
                         }
 
                         Log.d(TAG, "StudentsList3: " + StudentsList);
-                        //Student list пустой
-
 
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-                        //no interesting in our purpose in the lesson
                     }
                 });
             }
@@ -200,9 +185,6 @@ public class teacher_group_fragment extends Fragment {
 
             }
         });
-
-
-
 
     }
 }

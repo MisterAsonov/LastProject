@@ -125,7 +125,7 @@ public class Profile extends AppCompatActivity {
                 getReference("Users");
         creatorID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        mStorageRef = FirebaseStorage.getInstance().getReference("User");
+        mStorageRef = FirebaseStorage.getInstance().getReference("Users");
 
 
         user_ref.child(creatorID).addValueEventListener(new ValueEventListener() {
@@ -135,6 +135,10 @@ public class Profile extends AppCompatActivity {
                 email.setText(p.getEmail());
                 name.setText(p.getName() + " " + p.getLastname());
 
+                String link = p.getmImageUrl();
+
+                if(!link.equals(""))
+                    Picasso.get().load(link).into(photo);
             }
 
             @Override
@@ -154,30 +158,36 @@ public class Profile extends AppCompatActivity {
 
     private void uploadFile() {
         if (mImageUri != null) {
-            StorageReference fileReference = mStorageRef.child(creatorID
+            StorageReference fileReference = mStorageRef.child(System.currentTimeMillis()
                     + "." + getFileExtension(mImageUri));
 
             mUploadTask = fileReference.putFile(mImageUri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            Toast.makeText(Profile.this, "Upload successful", Toast.LENGTH_LONG).show();
 
-
-                            user_ref.child(creatorID).addValueEventListener(new ValueEventListener() {
-
+                            fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                 @Override
-                                public void onDataChange(DataSnapshot snapshot) {
-                                        User user = snapshot.getValue(User.class);
-                                        user.setmImageUrl(taskSnapshot.getMetadata().getReference().getDownloadUrl().toString());
-                                        user_ref.child(creatorID).setValue(user);
-                                        Toast.makeText(Profile.this, "Upload successful", Toast.LENGTH_LONG).show();
+                                public void onSuccess(Uri uri) {
+                                    String url = uri.toString();
 
+                                    user_ref.child(creatorID).addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(DataSnapshot snapshot) {
+                                            User user = snapshot.getValue(User.class);
 
-                                }
+                                            user.setmImageUrl(url);
 
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError error) {
-                                    //no interesting in our purpose in the lesson
+                                            user_ref.child(creatorID).setValue(user);
+
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+                                            //no interesting in our purpose in the lesson
+                                        }
+                                    });
                                 }
                             });
 

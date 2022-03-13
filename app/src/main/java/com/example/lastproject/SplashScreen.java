@@ -82,14 +82,6 @@ public class SplashScreen extends AppCompatActivity {
                                     User userProfile = snapshot.getValue(User.class);
 
 
-
-                                    /**
-                                     * получение данных пользователя
-                                     * вот тут что то не получается прям конкретно
-                                     */
-
-
-                                    Log.d(TAG, "user profile: " + whois);
                                     whois = userProfile.who;
 
                                     if (whois.equals("Boss")) {
@@ -102,8 +94,6 @@ public class SplashScreen extends AppCompatActivity {
                                     }
 
                                     if (whois.equals("Teacher")) {
-
-                                        Log.d(TAG, "teacher");
 
                                         Intent intent = new Intent(SplashScreen.this, Teacher_Main_Screen.class);
                                         startActivity(intent);

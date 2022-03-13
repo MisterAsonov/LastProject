@@ -22,8 +22,6 @@
             android:layout_height="match_parent"
             android:background="@drawable/card_view_bg">
 
-
-
             <TextView
                 android:id="@+id/NameOfProblem"
                 android:layout_width="wrap_content"

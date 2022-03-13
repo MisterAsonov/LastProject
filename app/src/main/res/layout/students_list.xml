@@ -20,14 +20,17 @@
             android:background="@drawable/card_view_bg"
             android:weightSum="3">
 
-
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profile_icon"
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:layout_margin="5dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:layout_weight="0"
-                app:srcCompat="@drawable/ic_profile" />
+                android:layout_margin="5dp"
+                android:layout_gravity="center"
+
+                android:background="@drawable/ic_profile"
+                />
+
 
             <TextView
                 android:id="@+id/Name"

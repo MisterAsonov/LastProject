@@ -9,13 +9,15 @@
     android:weightSum="3">
 
 
-    <ImageView
+
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile"
         android:paddingTop="10dp"
         android:layout_width="81dp"
         android:layout_height="80dp"
         android:layout_weight="1"
         android:src="@drawable/ic_profile" />
+
 
     <TextView
         android:id="@+id/header_name"

@@ -26,6 +26,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Teacher_Main_Screen extends AppCompatActivity implements TimePickerFragment.TimePickerListener{
 
@@ -35,6 +38,7 @@ public class Teacher_Main_Screen extends AppCompatActivity implements TimePicker
     main_teacher_tab_adapter adapter;
     NavigationView navigationView;
     MaterialToolbar toolbar;
+    CircleImageView photo;
     TextView header_email, header_name;
     String userId;
 
@@ -107,6 +111,7 @@ public class Teacher_Main_Screen extends AppCompatActivity implements TimePicker
         ImageView headerImage = headerView.findViewById(R.id.profile);
         header_email = headerView.findViewById(R.id.header_email);
         header_name = headerView.findViewById(R.id.header_name);
+        photo = headerImage.findViewById(R.id.profile);
 
         reference.child(creatorID).addValueEventListener(new ValueEventListener() {
             @Override
@@ -114,6 +119,12 @@ public class Teacher_Main_Screen extends AppCompatActivity implements TimePicker
                     User p = snapshot.getValue(User.class);
                     header_email.setText(p.getEmail());
                     header_name.setText(p.getName() + " " + p.getLastname());
+
+                    String link = p.getmImageUrl();
+
+                if(!link.equals(""))
+                    Picasso.get().load(link).into(photo);
+
 
             }
 

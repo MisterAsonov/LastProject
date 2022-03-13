@@ -22,6 +22,7 @@ public class teacher_Student_Profile extends AppCompatActivity {
     TextView ETemail, ETwho;
     String name, lastname, email, who, id;
     String key;
+    String url_photo;
     DatabaseReference mPostReference;
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -65,6 +66,7 @@ public class teacher_Student_Profile extends AppCompatActivity {
         who = intent.getStringExtra("tv_who");
         id = intent.getStringExtra("tv_id");
         key = intent.getStringExtra("key");
+        url_photo = intent.getStringExtra("url_photo");
 
         ETname.setText(name);
         ETlastname.setText(lastname);
