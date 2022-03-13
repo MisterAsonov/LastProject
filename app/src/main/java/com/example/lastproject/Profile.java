@@ -20,6 +20,7 @@ import android.view.SubMenu;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -27,6 +28,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -48,7 +50,9 @@ public class Profile extends AppCompatActivity {
     private StorageReference mStorageRef;
 
 
-    TextView name, email;
+    TextView name, email, who;
+    ImageButton back;
+    FloatingActionButton btn_change_photo;
     ImageFilterView photo;
     private StorageTask mUploadTask;
 
@@ -116,8 +120,23 @@ public class Profile extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
 
         name = findViewById(R.id.textView5);
-        email = findViewById(R.id.textView6);
+        email = findViewById(R.id.email_profile);
         photo = findViewById(R.id.photo);
+        who = findViewById(R.id.who_profile);
+        back = findViewById(R.id.arrow_btn);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(Profile.this, "Back", Toast.LENGTH_SHORT).show();
+            }
+        });
+        btn_change_photo = findViewById(R.id.float_btn_add_photo_profile);
+        btn_change_photo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openFileChooser();
+            }
+        });
 
         setSupportActionBar(findViewById(R.id.toolbar4));
 
@@ -134,6 +153,7 @@ public class Profile extends AppCompatActivity {
                 User p = snapshot.getValue(User.class);
                 email.setText(p.getEmail());
                 name.setText(p.getName() + " " + p.getLastname());
+                who.setText(p.getWho());
 
                 String link = p.getmImageUrl();
 

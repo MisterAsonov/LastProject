@@ -8,11 +8,15 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -24,6 +28,8 @@ import com.squareup.picasso.Picasso;
 
 public class teacher_Student_Profile extends AppCompatActivity {
 
+    ImageButton btn_back;
+    FloatingActionButton btn_add_photo;
     TextView ETname, ETemail, ETwho;
     ImageView photo;
     String name, lastname, email, who, id;
@@ -73,6 +79,23 @@ public class teacher_Student_Profile extends AppCompatActivity {
          ETemail = findViewById(R.id.email);
          ETwho = findViewById(R.id.who20);
          photo = findViewById(R.id.photo_of_student_profile);
+
+        btn_add_photo = findViewById(R.id.float_btn_add_photo);
+        btn_add_photo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(teacher_Student_Profile.this, "Send message", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+         btn_back = findViewById(R.id.arrow_btn);
+         btn_back.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+                 Intent intent = new Intent(teacher_Student_Profile.this, Teacher_Main_Screen.class);
+                 startActivity(intent);
+             }
+         });
 
         setSupportActionBar(findViewById(R.id.toolbar6));
 

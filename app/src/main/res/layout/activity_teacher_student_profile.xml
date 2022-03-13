@@ -5,17 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layoutDescription="@xml/activity_teacher_student_profile_scence"
-    tools:context=".teacher_Student_Profile">
+    tools:context=".teacher_Student_Profile"
+    android:id="@+id/profile_layout">
 
     <View
         android:id="@+id/view_student_profile"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="350dp"
         android:background="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="@id/photo_of_student_profile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0"/>
 
     <androidx.constraintlayout.utils.widget.ImageFilterView
         android:id="@+id/photo_of_student_profile"
@@ -27,6 +29,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <TextView
         android:id="@+id/name_of_student_profile"
         android:layout_width="match_parent"
@@ -37,10 +40,12 @@
         android:text="PROFILE"
         android:textColor="@color/white"
         android:textSize="25sp"
-
+        android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="@id/photo_of_student_profile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar6"
@@ -52,6 +57,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:menu="@menu/teacher_student_profile"
         app:titleTextColor="#00646595" />
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout1"
@@ -79,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:layout_marginStart="20sp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:text="Information"
                 android:textColor="@color/colorAccent"
                 android:textSize="20sp" />
@@ -102,7 +108,7 @@
                 android:layout_gravity="start"
                 android:layout_marginStart="20sp"
                 android:text="Email"
-                android:textSize="10sp"
+                android:textSize="15sp"
                 />
 
             <TextView
@@ -123,11 +129,37 @@
                 android:layout_gravity="start"
                 android:layout_marginStart="20sp"
                 android:text="Type of user"
-                android:textSize="10sp"
+                android:textSize="15sp"
                 />
 
         </LinearLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageButton
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/arrow_btn"
+        android:background="@drawable/ic_baseline_arrow_back_24"
+        app:layout_constraintBottom_toBottomOf="@id/toolbar6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias=".0"
+        app:layout_constraintHorizontal_bias=".0"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/float_btn_add_photo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:elevation="20dp"
+        android:src="@drawable/ic_flag"
+        app:layout_constraintTop_toTopOf="@id/layout1"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="-30dp"/>
+
 </androidx.constraintlayout.motion.widget.MotionLayout>
