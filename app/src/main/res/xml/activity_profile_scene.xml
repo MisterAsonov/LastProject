@@ -28,9 +28,6 @@
             <CustomAttribute
                 motion:attributeName="roundPercent"
                 motion:customFloatValue="0.0000001"/>
-
-
-
         </Constraint>
     </ConstraintSet>
 

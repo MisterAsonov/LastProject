@@ -169,9 +169,11 @@ public class SignUpTabFragment extends Fragment {
                             if(task.isSuccessful()){
 
                                 String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                                if(who.equals("Teacher"))
-                                    id=referal_link;
-                                User user = new User(email, name, lastname, who, referal_link,id);
+                                String referal_link = ETrefereal_link.getText().toString().trim();
+
+                                if(who.equals("Teacher") && referal_link.isEmpty())
+                                    referal_link = id;
+                                User user = new User(email, name, lastname, who, referal_link,id,"");
 
                                 FirebaseDatabase.getInstance().getReference("Users")
                                         .child(id)

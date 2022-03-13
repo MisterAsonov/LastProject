@@ -6,25 +6,38 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.constraintlayout.utils.widget.ImageFilterView;
 
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
+import android.webkit.MimeTypeMap;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
+import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 public class Profile extends AppCompatActivity {
@@ -32,11 +45,16 @@ public class Profile extends AppCompatActivity {
     private static final int PICK_IMAGE_REQUEST = 1;
 
     DatabaseReference user_ref;
+    private StorageReference mStorageRef;
+
 
     TextView name, email;
     ImageFilterView photo;
+    private StorageTask mUploadTask;
 
     private Uri mImageUri;
+
+
 
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -83,6 +101,12 @@ public class Profile extends AppCompatActivity {
             mImageUri = data.getData();
 
             Picasso.get().load(mImageUri).into(photo);
+
+            if (mUploadTask != null && mUploadTask.isInProgress()) {
+                Toast.makeText(Profile.this, "Upload in progress", Toast.LENGTH_SHORT).show();
+            } else {
+                uploadFile();
+            }
         }
     }
 
@@ -97,10 +121,12 @@ public class Profile extends AppCompatActivity {
 
         setSupportActionBar(findViewById(R.id.toolbar4));
 
-
         user_ref = FirebaseDatabase.getInstance().
                 getReference("Users");
         creatorID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        mStorageRef = FirebaseStorage.getInstance().getReference("User");
+
 
         user_ref.child(creatorID).addValueEventListener(new ValueEventListener() {
             @Override
@@ -119,4 +145,55 @@ public class Profile extends AppCompatActivity {
 
 
     }
+
+    private String getFileExtension(Uri uri) {
+        ContentResolver cR = getContentResolver();
+        MimeTypeMap mime = MimeTypeMap.getSingleton();
+        return mime.getExtensionFromMimeType(cR.getType(uri));
+    }
+
+    private void uploadFile() {
+        if (mImageUri != null) {
+            StorageReference fileReference = mStorageRef.child(creatorID
+                    + "." + getFileExtension(mImageUri));
+
+            mUploadTask = fileReference.putFile(mImageUri)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+
+                            user_ref.child(creatorID).addValueEventListener(new ValueEventListener() {
+
+                                @Override
+                                public void onDataChange(DataSnapshot snapshot) {
+                                        User user = snapshot.getValue(User.class);
+                                        user.setmImageUrl(taskSnapshot.getMetadata().getReference().getDownloadUrl().toString());
+                                        user_ref.child(creatorID).setValue(user);
+                                        Toast.makeText(Profile.this, "Upload successful", Toast.LENGTH_LONG).show();
+
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+                                    //no interesting in our purpose in the lesson
+                                }
+                            });
+
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(Profile.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+        } else {
+            Toast.makeText(this, "No file selected", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
 }
