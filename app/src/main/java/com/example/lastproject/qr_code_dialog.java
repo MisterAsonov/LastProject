@@ -3,6 +3,7 @@ package com.example.lastproject;
 import android.app.Dialog;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.ColorSpace;
 import android.graphics.LightingColorFilter;
@@ -91,6 +92,8 @@ public class qr_code_dialog extends DialogFragment {
 
         return view;
     }
+
+
 
 
     private void retrieveData() {
