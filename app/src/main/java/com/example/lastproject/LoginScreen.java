@@ -1,6 +1,7 @@
 package com.example.lastproject;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
@@ -8,6 +9,8 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.os.Bundle;
 import android.transition.Fade;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,13 +24,13 @@ public class LoginScreen extends AppCompatActivity {
     LoginAdapter adapter;
     ImageView logo;
     TextView text;
+    ConstraintLayout constraintLayout;
     float v = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_screen);
-
 
         logo = findViewById(R.id.imageView2);
         text = findViewById(R.id.log_text);
@@ -36,7 +39,7 @@ public class LoginScreen extends AppCompatActivity {
         google = findViewById(R.id.fab_google);
 
         tabLayout.addTab(tabLayout.newTab().setText("Log In"));
-        tabLayout.addTab(tabLayout.newTab().setText("Sign In"));
+        tabLayout.addTab(tabLayout.newTab().setText("Sign Up"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         FragmentManager fm = getSupportFragmentManager();

@@ -5,6 +5,7 @@ import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.view.ViewCompat;
 
 import android.app.ActivityOptions;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ public class HelloScreen extends AppCompatActivity {
     TextView text;
     boolean flag;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,22 +37,21 @@ public class HelloScreen extends AppCompatActivity {
         logo = findViewById(R.id.hello_logo);
         text = findViewById(R.id.textView2);
 
-
         SharedPreferences prefs = getSharedPreferences("your_key", MODE_PRIVATE);
-        flag = prefs.getBoolean("First_open", false);//"No name defined" is the default value.
+        flag = prefs.getBoolean("First_open", false);
+
 
         if(!flag) {
-            flag = true;
-            SharedPreferences.Editor editor = getSharedPreferences("your_key", MODE_PRIVATE).edit();
-            editor.putBoolean("First_open", true);
-            editor.apply();
-        }
-        else{
-            Intent intent = new Intent(HelloScreen.this, LoginScreen.class);
-            startActivity(intent);
-            finish();
-        }
-
+                    flag = true;
+                    SharedPreferences.Editor editor = getSharedPreferences("your_key", MODE_PRIVATE).edit();
+                    editor.putBoolean("First_open", true);
+                    editor.apply();
+                }
+                else{
+                    Intent intent = new Intent(HelloScreen.this, LoginScreen.class);
+                    startActivity(intent);
+                    finish();
+                }
 
 
 
@@ -59,8 +60,10 @@ public class HelloScreen extends AppCompatActivity {
             public void onClick(View view) {
 
                 Intent intent = new Intent(HelloScreen.this, LoginScreen.class);
-                startActivity(intent);
-                finish();
+
+                ActivityOptions options_Logo = ActivityOptions.makeSceneTransitionAnimation(HelloScreen.this, new Pair<View, String>(logo,"hello_logo"));
+
+                startActivity(intent, options_Logo.toBundle());
 
             }
         });

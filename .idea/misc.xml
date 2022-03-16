@@ -4,10 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/LastProject/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.37395833333333334" />
+        <entry key="..\:/LastProject/app/src/main/res/drawable/back_bg.xml" value="0.3365740740740741" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/back_select.xml" value="0.26614583333333336" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/baseline_account_circle_18.xml" value="0.37864583333333335" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/baseline_logout_24.xml" value="0.3365740740740741" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/button_bg.xml" value="0.37864583333333335" />
+        <entry key="..\:/LastProject/app/src/main/res/drawable/button_bg_white.xml" value="0.3365740740740741" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/calendar_background.xml" value="0.37395833333333334" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/card_view_bg.xml" value="0.37864583333333335" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/card_view_bg3.xml" value="0.3365740740740741" />
@@ -41,6 +43,7 @@
         <entry key="..\:/LastProject/app/src/main/res/drawable/ic_profile_white.xml" value="0.3365740740740741" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/ic_search_black_24dp.xml" value="0.37395833333333334" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/ic_settings.xml" value="0.37864583333333335" />
+        <entry key="..\:/LastProject/app/src/main/res/drawable/qr_code_bg.xml" value="0.3365740740740741" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/round.xml" value="0.37395833333333334" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/selected_tab_bg.xml" value="0.26614583333333336" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/tab_indicator.xml" value="0.26614583333333336" />
@@ -50,7 +53,7 @@
         <entry key="..\:/LastProject/app/src/main/res/layout/activities_fragment.xml" value="0.28532608695652173" />
         <entry key="..\:/LastProject/app/src/main/res/layout/activity_create_report.xml" value="0.3625" />
         <entry key="..\:/LastProject/app/src/main/res/layout/activity_hello_screen.xml" value="0.33" />
-        <entry key="..\:/LastProject/app/src/main/res/layout/activity_login_screen.xml" value="0.264" />
+        <entry key="..\:/LastProject/app/src/main/res/layout/activity_login_screen.xml" value="0.33" />
         <entry key="..\:/LastProject/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/LastProject/app/src/main/res/layout/activity_notifications.xml" value="0.3625" />
         <entry key="..\:/LastProject/app/src/main/res/layout/activity_profile.xml" value="0.25" />
@@ -101,6 +104,7 @@
         <entry key="..\:/LastProject/app/src/main/res/menu/teacher_student_profile.xml" value="0.32222222222222224" />
         <entry key="..\:/LastProject/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.37864583333333335" />
         <entry key="..\:/LastProject/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.37864583333333335" />
+        <entry key="..\:/LastProject/app/src/main/res/xml/activity_teacher_main_screen_scence.xml" value="0.32222222222222224" />
         <entry key="..\:/LastProject/app/src/main/res/xml/activity_teacher_student_profile_scence.xml" value="0.32222222222222224" />
       </map>
     </option>

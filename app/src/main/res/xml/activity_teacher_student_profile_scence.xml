@@ -13,7 +13,7 @@
             motion:touchAnchorId="@id/layout1"
             motion:touchRegionId="@id/layout1"
             motion:touchAnchorSide="top"
-            motion:onTouchUp="autoComplete"
+            motion:onTouchUp="autoCompleteToStart"
             />
         <KeyFrameSet>
             <KeyPosition

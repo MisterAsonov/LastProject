@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -47,8 +49,7 @@ public class teacher_group_fragment extends Fragment {
     ArrayList<String> keys;
     MyGroupAdapter adapter;
     FloatingActionButton btn_addStudent;
-    ImageView qr_code;
-    String userID = "404";
+    Button back;
 
     private static final String TAG = "Student";
 
@@ -71,7 +72,12 @@ public class teacher_group_fragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                showDialog(container);
+                FragmentManager fragmentManager = getParentFragmentManager();
+                qr_code_dialog newFragmen = new qr_code_dialog();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                transaction.add(android.R.id.content, newFragmen).addToBackStack(null).commit();
+
 
             }
         });
@@ -89,45 +95,6 @@ public class teacher_group_fragment extends Fragment {
 
         Log.d(TAG, "StudentsList: " + StudentsList);
         return view;
-
-    }
-
-    private void showDialog(ViewGroup container) {
-
-        LayoutInflater inflater = LayoutInflater.from(getContext());
-        ViewGroup view = (ViewGroup) inflater.inflate(R.layout.activity_qr_code_dialog,container,false);
-
-        mAuth = FirebaseAuth.getInstance();
-
-        qr_code = view.findViewById(R.id.qr_code_teqcher);
-
-        MultiFormatWriter writer = new MultiFormatWriter();
-
-        try {
-            BitMatrix matrix = writer.encode(userID, BarcodeFormat.QR_CODE, 500,500);
-            BarcodeEncoder  encoder = new BarcodeEncoder();
-            Bitmap bitmap = encoder.createBitmap(matrix);
-            qr_code.setImageBitmap(bitmap);
-
-        } catch (WriterException e) {
-            e.printStackTrace();
-        }
-
-        Button OkButton = view.findViewById(R.id.btn_qr_code_ok);
-
-        Dialog Dialog = new Dialog(getActivity());
-
-        Dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        Dialog.setContentView(view);
-        Dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        Dialog.show();
-
-        OkButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Dialog.cancel();
-            }
-        });
 
     }
 

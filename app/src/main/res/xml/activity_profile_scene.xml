@@ -6,7 +6,7 @@
     <Transition
         motion:constraintSetEnd="@+id/middle"
         motion:constraintSetStart="@id/start"
-        motion:duration="2000"
+        motion:duration="500"
         motion:motionInterpolator="easeInOut">
         <OnSwipe
             motion:dragDirection="dragUp"
@@ -21,7 +21,8 @@
                 motion:percentY="0.2"
                 motion:percentX="0.55"
                 motion:framePosition="50"
-                motion:motionTarget="@+id/textView5"/>
+                motion:motionTarget="@+id/textView5"
+                motion:transitionEasing="cubic(0.4,0.0,0.2,1)"/>
 
         </KeyFrameSet>
     </Transition>
@@ -45,7 +46,8 @@
                 motion:keyPositionType="pathRelative"
                 motion:percentY="0.15"
                 motion:framePosition="50"
-                motion:motionTarget="@+id/photo"/>
+                motion:motionTarget="@+id/photo"
+                motion:transitionEasing="cubic(0.4, 0.0, 0.2, 1)"/>
 
         </KeyFrameSet>
     </Transition>
@@ -177,7 +179,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             motion:layout_constraintBottom_toBottomOf="@id/photo"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="10dp"
             motion:layout_constraintStart_toEndOf="@id/photo"
             motion:layout_constraintHorizontal_bias="0.0"
             android:layout_marginStart="16dp"
