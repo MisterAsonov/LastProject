@@ -66,7 +66,7 @@ public class teacher_activitie_adapter extends RecyclerView.Adapter<teacher_acti
 
         viewHolder.title.setText(String.valueOf(tmp.getEvent_title()));
         viewHolder.date.setText(String.valueOf(tmp.getEvent_date()));
-        viewHolder.number_of_people.setText((tmp.getEvent_participants()).size());
+        viewHolder.number_of_people.setText(String.valueOf((tmp.getEvent_participants()).size()));
 
         if(!String.valueOf(tmp.getImageUrl()).equals("")){
             Picasso.get()

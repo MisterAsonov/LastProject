@@ -1,14 +1,7 @@
 package com.example.lastproject;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,12 +9,23 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
+
+import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
+
 
 public class teacher_activity_fragment extends Fragment {
     RecyclerView recyclerView;
@@ -109,13 +113,97 @@ public class teacher_activity_fragment extends Fragment {
         activitie_list = new ArrayList<Activitie>();
         keys = new ArrayList<String>();
 
+        ArrayList<Integer> part = new ArrayList<>();
+        part.add(132);
+        part.add(153);
+        part.add(489);
+        part.add(789);
+        part.add(134562);
+
+        activitie_list.add(new Activitie("Shuka norda Stave vie Bu","Grand kanion","17/03/2022","9:00","Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently" +
+                " with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.","https://firebasestorage.googleapis.com/v0/b/lastproject-d86c0.appspot.com/o/Users%2F1647215392141.jpg?alt=media&token=84167bcc-89b6-4122-be7a-c9d54e8e26bf",part));
+
+        activitie_list.add(new Activitie("Shuka norda Stave vie Bu","Grand kanion","17/03/2022","9:00","Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently" +
+                " with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.","https://firebasestorage.googleapis.com/v0/b/lastproject-d86c0.appspot.com/o/Users%2F1647215392141.jpg?alt=media&token=84167bcc-89b6-4122-be7a-c9d54e8e26bf",part));
+
+        activitie_list.add(new Activitie("Shuka norda Stave vie Bu","Grand kanion","17/03/2022","9:00","Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently" +
+                " with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.","https://firebasestorage.googleapis.com/v0/b/lastproject-d86c0.appspot.com/o/Users%2F1647215392141.jpg?alt=media&token=84167bcc-89b6-4122-be7a-c9d54e8e26bf",part));
+
+        activitie_list.add(new Activitie("Shuka norda Stave vie Bu","Grand kanion","17/03/2022","9:00","Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently" +
+                " with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                "https://firebasestorage.googleapis.com/v0/b/lastproject-d86c0.appspot.com/o/Users%2F1647215392141.jpg?alt=media&token=84167bcc-89b6-4122-be7a-c9d54e8e26bf",part));
+
+        activitie_list.add(new Activitie("Shuka norda Stave vie Bu","Grand kanion","17/03/2022","9:00","Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently" +
+                " with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                "https://firebasestorage.googleapis.com/v0/b/lastproject-d86c0.appspot.com/o/Users%2F1647215392141.jpg?alt=media&token=84167bcc-89b6-4122-be7a-c9d54e8e26bf",part));
+
+        activitie_list.add(new Activitie("Shuka norda Stave vie Bu","Grand kanion","17/03/2022","9:00","Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently" +
+                " with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                "https://firebasestorage.googleapis.com/v0/b/lastproject-d86c0.appspot.com/o/Users%2F1647215392141.jpg?alt=media&token=84167bcc-89b6-4122-be7a-c9d54e8e26bf",part));
+
+        activitie_list.add(new Activitie("Shuka norda Stave vie Bu","Grand kanion","17/03/2022","9:00","Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently" +
+                " with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                "https://firebasestorage.googleapis.com/v0/b/lastproject-d86c0.appspot.com/o/Users%2F1647215392141.jpg?alt=media&token=84167bcc-89b6-4122-be7a-c9d54e8e26bf",part));
+
+
         adapter = new teacher_activitie_adapter(activitie_list, getActivity(), keys);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
 
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
+        itemTouchHelper.attachToRecyclerView(recyclerView);
 
         return view;
     }
+
+    Activitie deleted = null;
+
+    ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            return false;
+        }
+
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+
+            int position = viewHolder.getAdapterPosition();
+
+            switch (direction){
+                case ItemTouchHelper.LEFT:
+                    deleted = activitie_list.get(position);
+                    activitie_list.remove(position);
+                    adapter.notifyItemRemoved(position);
+                    Snackbar.make(recyclerView, deleted.getEvent_title(), Snackbar.LENGTH_LONG).setAction("Undo", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            activitie_list.add(position, deleted);
+                            adapter.notifyItemRemoved(position);
+                        }
+                    }).show();
+
+                    break;
+                case ItemTouchHelper.RIGHT:
+
+                    break;
+            }
+
+        }
+
+        @Override
+        public void onChildDraw (Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder,float dX, float dY,int actionState, boolean isCurrentlyActive){
+
+           new RecyclerViewSwipeDecorator.Builder(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
+                   .addSwipeLeftLabel("Delite")
+
+                   .addSwipeLeftBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorAccent))
+                   .addSwipeLeftActionIcon(R.drawable.ic_baseline_delete_white_24)
+                    .create()
+                    .decorate();
+
+            super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+        }
+    };
 
 
 

@@ -8,7 +8,6 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/teacher_activities_rv"
-        android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
          />
