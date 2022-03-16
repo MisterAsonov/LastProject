@@ -49,7 +49,6 @@ public class teacher_group_fragment extends Fragment {
     ArrayList<String> keys;
     MyGroupAdapter adapter;
     FloatingActionButton btn_addStudent;
-    Button back;
 
     private static final String TAG = "Student";
 

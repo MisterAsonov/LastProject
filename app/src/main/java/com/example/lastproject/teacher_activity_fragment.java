@@ -106,37 +106,10 @@ public class teacher_activity_fragment extends Fragment {
             }
         });
 
-
-
-
         activitie_list = new ArrayList<Activitie>();
         keys = new ArrayList<String>();
 
-
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        activitie_list.add(new Activitie("Ramat HaGalan","Trip to Ramat HaGolan","Trip","05.02.2022","07.02.2022","6"));
-        activitie_list.add(new Activitie("Ramat HaGalan","Trip to Ramat HaGolan","Peilut","05.02.2022","07.02.2022","6"));
-        activitie_list.add(new Activitie("Ramat HaGalan","Trip to Ramat HaGolan","Talk","05.02.2022","07.02.2022","6"));
-        activitie_list.add(new Activitie("Ramat HaGalan","Trip to Ramat HaGolan","Trip","05.02.2022","07.02.2022","6"));
-        activitie_list.add(new Activitie("Ramat HaGalan","Trip to Ramat HaGolan","Peilut","05.02.2022","07.02.2022","6"));
-        activitie_list.add(new Activitie("Ramat HaGalan","Trip to Ramat HaGolan","Talk","05.02.2022","07.02.2022","6"));
-        activitie_list.add(new Activitie("Ramat HaGalan","Trip to Ramat HaGolan","Trip","05.02.2022","07.02.2022","6"));
-        activitie_list.add(new Activitie("Ramat HaGalan","Trip to Ramat HaGolan","Peilut","05.02.2022","07.02.2022","6"));
-        activitie_list.add(new Activitie("Ramat HaGalan","Trip to Ramat HaGolan","Talk","05.02.2022","07.02.2022","6"));
-        activitie_list.add(new Activitie("Ramat HaGalan","Trip to Ramat HaGolan","Trip","05.02.2022","07.02.2022","6"));
-        activitie_list.add(new Activitie("Ramat HaGalan","Trip to Ramat HaGolan","Peilut","05.02.2022","07.02.2022","6"));
-        activitie_list.add(new Activitie("Ramat HaGalan","Trip to Ramat HaGolan","Talk","05.02.2022","07.02.2022","6"));
-        activitie_list.add(new Activitie("Ramat HaGalan","Trip to Ramat HaGolan","Trip","05.02.2022","07.02.2022","6"));
-        activitie_list.add(new Activitie("Ramat HaGalan","Trip to Ramat HaGolan","Peilut","05.02.2022","07.02.2022","6"));
-        activitie_list.add(new Activitie("Ramat HaGalan","Trip to Ramat HaGolan","Talk","05.02.2022","07.02.2022","6"));
-        activitie_list.add(new Activitie("Ramat HaGalan","Trip to Ramat HaGolan","Trip","05.02.2022","07.02.2022","6"));
-        activitie_list.add(new Activitie("Ramat HaGalan","Trip to Ramat HaGolan","Peilut","05.02.2022","07.02.2022","6"));
-        activitie_list.add(new Activitie("Ramat HaGalan","Trip to Ramat HaGolan","Talk","05.02.2022","07.02.2022","6"));
-
- 
-
-        adapter = new teacher_activitie_adapter(activitie_list, getActivity());
+        adapter = new teacher_activitie_adapter(activitie_list, getActivity(), keys);
         recyclerView.setAdapter(adapter);
 
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));

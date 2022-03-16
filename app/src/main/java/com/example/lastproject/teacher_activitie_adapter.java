@@ -9,84 +9,90 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.utils.widget.ImageFilterView;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class teacher_activitie_adapter extends RecyclerView.Adapter<teacher_activitie_adapter.ViewHolder> {
-    ArrayList<Activitie> activitie_list;
+import de.hdodenhof.circleimageview.CircleImageView;
+
+public class teacher_activitie_adapter extends RecyclerView.Adapter<teacher_activitie_adapter.ViewHolder>{
+
+    ArrayList<Activitie> activities;
     Context context;
     ArrayList<String> keys;
 
     public void setKeys(ArrayList<String> keys) {
         this.keys = keys;
-
+        notifyDataSetChanged();
     }
 
-    public teacher_activitie_adapter(ArrayList<Activitie> activitie_list, Context context) {
-        this.activitie_list = activitie_list;
+    public teacher_activitie_adapter(ArrayList<Activitie> activities, Context context, ArrayList<String> keys) {
+        this.activities = activities;
         this.context = context;
+        this.keys = keys;
     }
 
     public class ViewHolder  extends RecyclerView.ViewHolder  {
-        TextView type,name,when;
-        LinearLayout card_view;
+        TextView title, date, number_of_people;
+        ImageFilterView image;
 
         public ViewHolder (View view) {
             super(view);
-            type = (TextView) view.findViewById(R.id.teacher_type_of_activitie);
-            name = (TextView) view.findViewById(R.id.teacher_nem_of_activitie);
-            when = (TextView) view.findViewById(R.id.when);
-            card_view = (LinearLayout) view.findViewById(R.id.xzxz);
+            title = (TextView) view.findViewById(R.id.title_of_event_list);
+            date = (TextView) view.findViewById(R.id.date_event_list);
+            number_of_people = (TextView) view.findViewById(R.id.number_of_parcitipance);
+            image = (ImageFilterView) view.findViewById(R.id.image_of_event_list);
 
         }
+
     }
 
-    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+    public teacher_activitie_adapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.activity_teacher_activities_list, viewGroup, false);
 
-        return new ViewHolder(view);
+        return new teacher_activitie_adapter.ViewHolder(view);
+
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int g) {
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
         int i = viewHolder.getAdapterPosition();
-        Activitie tmp = activitie_list.get(i);
-        viewHolder.type.setText(String.valueOf(tmp.getType()));
-        viewHolder.name.setText(String.valueOf(tmp.getName()));
-        viewHolder.when.setText(String.valueOf(tmp.getWhen()));
+        Activitie tmp = activities.get(i);
 
-        if(tmp.getType().equals("Trip"))
-            viewHolder.card_view.setBackgroundResource(R.drawable.card_view_trip);
+        viewHolder.title.setText(String.valueOf(tmp.getEvent_title()));
+        viewHolder.date.setText(String.valueOf(tmp.getEvent_date()));
+        viewHolder.number_of_people.setText((tmp.getEvent_participants()).size());
 
-        if(tmp.getType().equals("Peilut"))
-            viewHolder.card_view.setBackgroundResource(R.drawable.card_view_peilut);
+        if(!String.valueOf(tmp.getImageUrl()).equals("")){
+            Picasso.get()
+                    .load(String.valueOf(tmp.getImageUrl()))
+                    .fit()
+                    .centerCrop()
+                    .into(viewHolder.image);}
 
-        if(tmp.getType().equals("Talk"))
-            viewHolder.card_view.setBackgroundResource(R.drawable.card_view_group_talk);
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-        /**
-         * viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-         *             @Override
-         *             public void onClick(View v) {
-         *                 Intent intent = new Intent(context, teacher_Student_Profile.class);
-         *                 intent.putExtra("tv_name", tmp.getName());
-         *                 intent.putExtra("tv_lname", tmp.getLastname());
-         *                 intent.putExtra("tv_email", tmp.getEmail());
-         *                 intent.putExtra("tv_who", tmp.getWho());
-         *                 intent.putExtra("tv_id", tmp.getUID());
-         *                 intent.putExtra("key", keys.get(i));
-         *
-         *                 context.startActivity(intent);
-         *
-         *             }
-         *         });
-         */
+                Intent intent = new Intent(context, teacher_Student_Profile.class);
+                intent.putExtra("key", keys.get(i));
+
+                context.startActivity(intent);
+
+            }
+        });
 
     }
 
+    @Override
     public int getItemCount() {
-        return activitie_list.size();
+        return activities.size();
     }
+
+
 }

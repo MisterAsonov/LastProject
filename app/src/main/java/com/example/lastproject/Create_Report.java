@@ -77,5 +77,6 @@ public class Create_Report extends AppCompatActivity {
     public void writeNewReport(Report report) {
 
         FirebaseDatabase.getInstance().getReference("Reports").child(creatorID).push().setValue(report);
+
     }
 }

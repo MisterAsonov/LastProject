@@ -1,65 +1,78 @@
 package com.example.lastproject;
 
+import java.util.ArrayList;
+
 public class Activitie {
-    String name, act_desc, type, date, when, creator_id;
 
-    public Activitie(String name, String act_desc, String type, String date, String when, String creator_id) {
-        this.name = name;
-        this.act_desc = act_desc;
-        this.type = type;
-        this.date = date;
-        this.when = when;
-        this.creator_id = creator_id;
+    String event_title, event_location, event_date, event_time, event_desc, imageUrl;
+    ArrayList<Integer> event_participants;
+
+    public Activitie(String event_title, String event_location, String event_date, String event_time, String event_desc, String imageUrl, ArrayList<Integer> event_participants) {
+        this.event_title = event_title;
+        this.event_location = event_location;
+        this.event_date = event_date;
+        this.event_time = event_time;
+        this.event_desc = event_desc;
+        this.imageUrl = imageUrl;
+        this.event_participants = event_participants;
     }
 
-    public Activitie() {
+    public Activitie() {}
+
+    public String getEvent_title() {
+        return event_title;
     }
 
-    public String getName() {
-        return name;
+    public void setEvent_title(String event_title) {
+        this.event_title = event_title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getEvent_location() {
+        return event_location;
     }
 
-    public String getAct_desc() {
-        return act_desc;
+    public void setEvent_location(String event_location) {
+        this.event_location = event_location;
     }
 
-    public void setAct_desc(String act_desc) {
-        this.act_desc = act_desc;
+    public String getEvent_date() {
+        return event_date;
     }
 
-    public String getType() {
-        return type;
+    public void setEvent_date(String event_date) {
+        this.event_date = event_date;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public String getEvent_time() {
+        return event_time;
     }
 
-    public String getDate() {
-        return date;
+    public void setEvent_time(String event_time) {
+        this.event_time = event_time;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public String getEvent_desc() {
+        return event_desc;
     }
 
-    public String getWhen() {
-        return when;
+    public void setEvent_desc(String event_desc) {
+        this.event_desc = event_desc;
     }
 
-    public void setWhen(String when) {
-        this.when = when;
+    public ArrayList<Integer> getEvent_participants() {
+        return event_participants;
     }
 
-    public String getCreator_id() {
-        return creator_id;
+    public void setEvent_participants(ArrayList<Integer> event_participants) {
+        this.event_participants = event_participants;
     }
 
-    public void setCreator_id(String creator_id) {
-        this.creator_id = creator_id;
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }
+

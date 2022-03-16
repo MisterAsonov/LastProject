@@ -1,67 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context=".teacher_creation_of_travel">
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF"
+    app:layoutDescription="@xml/activity_teacher_creation_of_travel_scene"
+    tools:context=".teacher_creation_of_travel"
+    android:id="@+id/create_travel_layout">
 
     <TextView
         android:id="@+id/add_event"
-        android:textSize="20sp"
-        android:text="Add Event"
-        android:gravity="center"
-        android:textColor="@color/black"
-        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="Add Event"
+        android:textColor="@color/black"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
-    <ImageView
+
+    <androidx.constraintlayout.utils.widget.ImageFilterView
         android:id="@+id/image_of_event"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
         android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
         android:scaleType="centerCrop"
         android:src="@drawable/ic_launcher_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_event" />
 
+
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/float_btn_add_image_trip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="-30dp"
+        android:layout_marginEnd="20dp"
         android:backgroundTint="@color/white"
         android:elevation="20dp"
         android:src="@drawable/ic_baseline_add_a_photo_24"
-        app:layout_constraintEnd_toEndOf="@id/image_of_event"
-        app:layout_constraintStart_toStartOf="@id/image_of_event"
-        app:layout_constraintTop_toBottomOf="@id/image_of_event"
         app:layout_constraintBottom_toBottomOf="@id/image_of_event"
+        app:layout_constraintEnd_toEndOf="@id/image_of_event"
         app:layout_constraintHorizontal_bias="1"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="-30dp"/>
+        app:layout_constraintStart_toStartOf="@id/image_of_event"
+        app:layout_constraintTop_toBottomOf="@id/image_of_event" />
+
+        <TextView
+            android:visibility="invisible"
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Upload Image"
+            android:textColor="#5E000000"
+            android:textSize="25dp"
+            app:layout_constraintBottom_toBottomOf="@id/float_btn_add_image_trip"
+            app:layout_constraintEnd_toEndOf="@id/float_btn_add_image_trip"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@id/float_btn_add_image_trip"
+            app:layout_constraintTop_toTopOf="@id/float_btn_add_image_trip"
+            app:layout_constraintVertical_bias="0.5"
+            />
 
     <EditText
         android:id="@+id/event_title"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
         android:background="@drawable/edit_text_bg"
         android:hint="Event Titel"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/float_btn_add_image_trip" />
+        app:layout_constraintTop_toBottomOf="@+id/image_of_event" />
 
     <EditText
         android:id="@+id/set_location"
@@ -78,122 +99,120 @@
         app:layout_constraintTop_toBottomOf="@+id/event_title" />
 
     <ImageView
+        android:id="@+id/imageView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="20dp"
         android:src="@drawable/ic_baseline_place_24"
         app:layout_constraintBottom_toBottomOf="@+id/set_location"
         app:layout_constraintEnd_toEndOf="@+id/set_location"
-        app:layout_constraintStart_toStartOf="set_location"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toStartOf="@+id/set_location"
         app:layout_constraintTop_toTopOf="@+id/set_location" />
 
     <TextView
         android:id="@+id/start_date"
-        android:text="19/01/2020"
-        android:gravity="center|start"
-        android:padding="10dp"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        android:layout_width="185dp"
+        android:layout_width="150dp"
         android:layout_height="40dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
         android:background="@drawable/edit_text_bg"
+        android:gravity="center|start"
+        android:padding="10dp"
+        android:text="19/01/2020"
+        android:textColor="@color/black"
+        android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/set_location" />
 
     <TextView
         android:id="@+id/start_time"
-        android:text="15:25"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        app:layout_constraintHorizontal_bias="1"
+        android:background="@drawable/edit_text_bg"
         android:gravity="center|start"
         android:padding="10dp"
+        android:text="15:25"
         android:textColor="@color/black"
         android:textSize="15sp"
-        android:layout_width="185dp"
-        android:layout_height="40dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/edit_text_bg"
-        app:layout_constraintStart_toEndOf="@+id/start_date"
-        app:layout_constraintTop_toBottomOf="@+id/set_location"
         app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintStart_toEndOf="@+id/start_date"
+        app:layout_constraintTop_toBottomOf="@+id/set_location" />
 
     <TextView
         android:id="@+id/tv_invite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Invite students"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/start_date"
-        app:layout_constraintHorizontal_bias="0"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="15dp"
-        />
+        android:text="Invite students"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/start_date" />
 
     <Button
         android:id="@+id/btn_invite"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/button_bg"
         android:text="INViTE"
-        android:textSize="12sp"
         android:textColor="@color/white"
-        app:layout_constraintStart_toEndOf="@+id/tv_invite"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/start_time"
         app:layout_constraintHorizontal_bias="0"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"/>
+        app:layout_constraintStart_toEndOf="@+id/tv_invite"
+        app:layout_constraintTop_toBottomOf="@id/start_time" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_invite"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
         android:layout_marginTop="10dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginRight="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_invite"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_invite" />
 
     <EditText
         android:id="@+id/disc_of_event"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:hint="Description"
-        android:gravity="start|top"
-        android:padding="10dp"
-        android:background="@drawable/edit_text_bg"
+        android:layout_height="200dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
         android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
         android:layout_marginBottom="10dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/edit_text_bg"
+        android:gravity="start|top"
+        android:hint="Description"
+        android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recycler_invite"
-        app:layout_constraintBottom_toTopOf="@+id/btn_save_trip"
-        app:layout_constraintVertical_bias="1"
-        app:layout_constraintHorizontal_bias="1"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recycler_invite" />
 
     <Button
         android:id="@+id/btn_save_trip"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
+        android:layout_marginBottom="30dp"
         android:background="@drawable/button_bg"
         android:text="SAVE"
         android:textColor="@color/white"
-        android:layout_marginBottom="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/disc_of_event"
-/>
+        app:layout_constraintVertical_bias="0" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.motion.widget.MotionLayout>

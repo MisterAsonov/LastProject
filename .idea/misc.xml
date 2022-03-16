@@ -17,6 +17,7 @@
         <entry key="..\:/LastProject/app/src/main/res/drawable/card_view_group_talk.xml" value="0.3365740740740741" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/card_view_peilut.xml" value="0.3365740740740741" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/card_view_trip.xml" value="0.3365740740740741" />
+        <entry key="..\:/LastProject/app/src/main/res/drawable/circle_button.xml" value="0.37864583333333335" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/curcle.xml" value="0.3365740740740741" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/edit_text_bg.xml" value="0.37864583333333335" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/fon1.xml" value="0.37864583333333335" />
@@ -27,6 +28,8 @@
         <entry key="..\:/LastProject/app/src/main/res/drawable/ic_baseline_arrow_forward_ios_24.xml" value="0.37395833333333334" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.3365740740740741" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/ic_baseline_event_note_24.xml" value="0.37864583333333335" />
+        <entry key="..\:/LastProject/app/src/main/res/drawable/ic_baseline_group_24.xml" value="0.37864583333333335" />
+        <entry key="..\:/LastProject/app/src/main/res/drawable/ic_baseline_hearing_24.xml" value="0.37864583333333335" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/ic_baseline_image_24.xml" value="0.37395833333333334" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/ic_baseline_keyboard_arrow_left_24.xml" value="0.37395833333333334" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/ic_baseline_outlined_flag_24.xml" value="0.37864583333333335" />
@@ -66,7 +69,7 @@
         <entry key="..\:/LastProject/app/src/main/res/layout/activity_succesful_report.xml" value="0.3625" />
         <entry key="..\:/LastProject/app/src/main/res/layout/activity_teacher_activities_list.xml" value="0.30972222222222223" />
         <entry key="..\:/LastProject/app/src/main/res/layout/activity_teacher_creation_of_peilut.xml" value="0.32222222222222224" />
-        <entry key="..\:/LastProject/app/src/main/res/layout/activity_teacher_creation_of_travel.xml" value="0.30972222222222223" />
+        <entry key="..\:/LastProject/app/src/main/res/layout/activity_teacher_creation_of_travel.xml" value="0.25" />
         <entry key="..\:/LastProject/app/src/main/res/layout/activity_teacher_fragment.xml" value="0.32222222222222224" />
         <entry key="..\:/LastProject/app/src/main/res/layout/activity_teacher_group_fragment.xml" value="0.3625" />
         <entry key="..\:/LastProject/app/src/main/res/layout/activity_teacher_grouptalk_dialog.xml" value="0.32222222222222224" />
