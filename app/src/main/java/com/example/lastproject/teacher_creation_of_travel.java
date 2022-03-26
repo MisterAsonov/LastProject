@@ -9,6 +9,9 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.DatePickerDialog;
 import android.content.ContentResolver;
@@ -16,7 +19,10 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -59,7 +65,10 @@ public class teacher_creation_of_travel extends AppCompatActivity implements Tim
     FloatingActionButton fab_add_image;
     EditText titel, location, desc;
     TextView date, time;
-    Button btn_save, brn_invite;
+    Button btn_save, brn_invite, btn_change_image;
+    Handler handler;
+    teacher_cr_act_participant_adapter adapter;
+    RecyclerView recyclerView;
 
     DatabaseReference user_ref;
     private StorageReference mStorageRef;
@@ -73,7 +82,6 @@ public class teacher_creation_of_travel extends AppCompatActivity implements Tim
         setContentView(R.layout.activity_teacher_creation_of_travel);
 
         image = findViewById(R.id.image_of_event);
-        fab_add_image = findViewById(R.id.float_btn_add_image_trip);
         titel = findViewById(R.id.event_title);
         location = findViewById(R.id.set_location);
         desc = findViewById(R.id.disc_of_event);
@@ -81,13 +89,61 @@ public class teacher_creation_of_travel extends AppCompatActivity implements Tim
         time = findViewById(R.id.start_time);
         btn_save = findViewById(R.id.btn_save_trip);
         brn_invite = findViewById(R.id.btn_invite);
+        btn_change_image = findViewById(R.id.btn_change_image);
+        recyclerView = findViewById(R.id.recycler_invite);
 
-        fab_add_image.setOnClickListener(new View.OnClickListener() {
+        Animation fade_in = AnimationUtils.loadAnimation(teacher_creation_of_travel.this, R.anim.fade_in);
+        Animation fade_out = AnimationUtils.loadAnimation(teacher_creation_of_travel.this, R.anim.fade_out);
+
+        handler = new Handler();
+
+        Toast.makeText(teacher_creation_of_travel.this, "Click on photo to change an image", Toast.LENGTH_SHORT).show();
+
+        ArrayList<String> id = new ArrayList<>();
+        String creatorID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        id.add(creatorID);
+        id.add("3FNfxjTVcmVY2AYzh7skHhAM0NI2");
+        id.add("3FNfxjTVcmVY2AYzh7skHhAM0NI2");
+        id.add("D20IMKQuUvVGzLpjj1T6h8TeS4z2");
+        id.add("D20IMKQuUvVGzLpjj1T6h8TeS4z2");
+        id.add("KBmSbP87LpNTIaZRzRQS7oozowt2");
+        id.add("KBmSbP87LpNTIaZRzRQS7oozowt2");
+
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(teacher_creation_of_travel.this,6, LinearLayoutManager.VERTICAL,false);
+        recyclerView.setLayoutManager(gridLayoutManager);
+
+        adapter = new teacher_cr_act_participant_adapter(id, teacher_creation_of_travel.this);
+
+        recyclerView.setAdapter(adapter);
+
+        image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openFileChooser();
+                btn_change_image.startAnimation(fade_in);
+                btn_change_image.setVisibility(View.VISIBLE);
+
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        btn_change_image.startAnimation(fade_out);
+                        btn_change_image.setVisibility(View.INVISIBLE);
+
+
+                    }
+                }, 2000);
+
             }
         });
+
+
+        btn_change_image.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        openFileChooser();
+                    }
+                });
+
 
         brn_invite.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -5,9 +5,9 @@ import java.util.ArrayList;
 public class Activitie {
 
     String event_title, event_location, event_date, event_time, event_desc, imageUrl;
-    ArrayList<Integer> event_participants;
+    ArrayList<String> event_participants;
 
-    public Activitie(String event_title, String event_location, String event_date, String event_time, String event_desc, String imageUrl, ArrayList<Integer> event_participants) {
+    public Activitie(String event_title, String event_location, String event_date, String event_time, String event_desc, String imageUrl, ArrayList<String> event_participants) {
         this.event_title = event_title;
         this.event_location = event_location;
         this.event_date = event_date;
@@ -59,11 +59,11 @@ public class Activitie {
         this.event_desc = event_desc;
     }
 
-    public ArrayList<Integer> getEvent_participants() {
+    public ArrayList<String> getEvent_participants() {
         return event_participants;
     }
 
-    public void setEvent_participants(ArrayList<Integer> event_participants) {
+    public void setEvent_participants(ArrayList<String> event_participants) {
         this.event_participants = event_participants;
     }
 

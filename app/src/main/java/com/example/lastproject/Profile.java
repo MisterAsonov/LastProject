@@ -146,7 +146,6 @@ public class Profile extends AppCompatActivity {
 
         mStorageRef = FirebaseStorage.getInstance().getReference("Users");
 
-
         user_ref.child(creatorID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {

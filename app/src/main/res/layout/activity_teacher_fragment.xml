@@ -10,7 +10,7 @@
         android:id="@+id/teacher_activities_rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-         />
+        android:layout_margin="2dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_teacher_add_activitie"

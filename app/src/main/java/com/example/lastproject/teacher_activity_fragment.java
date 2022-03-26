@@ -113,12 +113,12 @@ public class teacher_activity_fragment extends Fragment {
         activitie_list = new ArrayList<Activitie>();
         keys = new ArrayList<String>();
 
-        ArrayList<Integer> part = new ArrayList<>();
-        part.add(132);
-        part.add(153);
-        part.add(489);
-        part.add(789);
-        part.add(134562);
+        ArrayList<String> part = new ArrayList<>();
+        part.add("sdfsd");
+        part.add("sdfsdf");
+        part.add("dfsfs");
+        part.add("dfvvdg");
+        part.add("sdfcv");
 
         activitie_list.add(new Activitie("Shuka norda Stave vie Bu","Grand kanion","17/03/2022","9:00","Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently" +
                 " with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.","https://firebasestorage.googleapis.com/v0/b/lastproject-d86c0.appspot.com/o/Users%2F1647215392141.jpg?alt=media&token=84167bcc-89b6-4122-be7a-c9d54e8e26bf",part));
@@ -158,7 +158,7 @@ public class teacher_activity_fragment extends Fragment {
 
     Activitie deleted = null;
 
-    ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+    ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0,  ItemTouchHelper.RIGHT) {
         @Override
         public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
             return false;
@@ -170,7 +170,7 @@ public class teacher_activity_fragment extends Fragment {
             int position = viewHolder.getAdapterPosition();
 
             switch (direction){
-                case ItemTouchHelper.LEFT:
+                case ItemTouchHelper.RIGHT:
                     deleted = activitie_list.get(position);
                     activitie_list.remove(position);
                     adapter.notifyItemRemoved(position);
@@ -183,9 +183,7 @@ public class teacher_activity_fragment extends Fragment {
                     }).show();
 
                     break;
-                case ItemTouchHelper.RIGHT:
 
-                    break;
             }
 
         }
