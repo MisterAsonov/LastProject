@@ -13,6 +13,7 @@
         <entry key="..\:/LastProject/app/src/main/res/drawable/calendar_background.xml" value="0.37395833333333334" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/card_view_bg.xml" value="0.37864583333333335" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/card_view_bg3.xml" value="0.3365740740740741" />
+        <entry key="..\:/LastProject/app/src/main/res/drawable/card_view_bg4.xml" value="0.37864583333333335" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/card_view_bg_2.xml" value="0.3365740740740741" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/card_view_group_talk.xml" value="0.3365740740740741" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/card_view_peilut.xml" value="0.3365740740740741" />
@@ -26,6 +27,7 @@
         <entry key="..\:/LastProject/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.3365740740740741" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/ic_baseline_arrow_back_ios_24.xml" value="0.37395833333333334" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/ic_baseline_arrow_forward_ios_24.xml" value="0.37395833333333334" />
+        <entry key="..\:/LastProject/app/src/main/res/drawable/ic_baseline_check_24.xml" value="0.37864583333333335" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.3365740740740741" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/ic_baseline_event_note_24.xml" value="0.37864583333333335" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/ic_baseline_group_24.xml" value="0.37864583333333335" />
@@ -47,6 +49,7 @@
         <entry key="..\:/LastProject/app/src/main/res/drawable/ic_profile_white.xml" value="0.3365740740740741" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/ic_search_black_24dp.xml" value="0.37395833333333334" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/ic_settings.xml" value="0.37864583333333335" />
+        <entry key="..\:/LastProject/app/src/main/res/drawable/icon_bg.xml" value="0.37864583333333335" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/qr_code_bg.xml" value="0.3365740740740741" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/round.xml" value="0.37395833333333334" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/selected_tab_bg.xml" value="0.26614583333333336" />
@@ -68,6 +71,7 @@
         <entry key="..\:/LastProject/app/src/main/res/layout/activity_splash_screen.xml" value="0.33" />
         <entry key="..\:/LastProject/app/src/main/res/layout/activity_succesful_report.xml" value="0.3625" />
         <entry key="..\:/LastProject/app/src/main/res/layout/activity_teacher_activities_list.xml" value="0.30972222222222223" />
+        <entry key="..\:/LastProject/app/src/main/res/layout/activity_teacher_cr_travel_participants_list.xml" value="0.3625" />
         <entry key="..\:/LastProject/app/src/main/res/layout/activity_teacher_creation_of_peilut.xml" value="0.32222222222222224" />
         <entry key="..\:/LastProject/app/src/main/res/layout/activity_teacher_creation_of_travel.xml" value="0.25" />
         <entry key="..\:/LastProject/app/src/main/res/layout/activity_teacher_fragment.xml" value="0.32222222222222224" />

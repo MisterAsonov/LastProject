@@ -148,7 +148,8 @@ public class teacher_creation_of_travel extends AppCompatActivity implements Tim
         brn_invite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(teacher_creation_of_travel.this, "invite", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(teacher_creation_of_travel.this, teacher_cr_travel_participants_list.class);
+                startActivity(intent);
             }
         });
 
