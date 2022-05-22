@@ -60,7 +60,9 @@ import java.util.Locale;
 
 public class teacher_creation_of_travel extends AppCompatActivity implements TimePickerFragment.TimePickerListener, DatePickerFragment.DatePickerListener{
     private static final int PICK_IMAGE_REQUEST = 1;
+    private static final int SelectObjectRecuest = 789;
 
+    ArrayList<String> id = new ArrayList<>();
     ImageFilterView image;
     FloatingActionButton fab_add_image;
     EditText titel, location, desc;
@@ -99,20 +101,14 @@ public class teacher_creation_of_travel extends AppCompatActivity implements Tim
 
         Toast.makeText(teacher_creation_of_travel.this, "Click on photo to change an image", Toast.LENGTH_SHORT).show();
 
-        ArrayList<String> id = new ArrayList<>();
+
         String creatorID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        id.add(creatorID);
-        id.add("3FNfxjTVcmVY2AYzh7skHhAM0NI2");
-        id.add("3FNfxjTVcmVY2AYzh7skHhAM0NI2");
-        id.add("D20IMKQuUvVGzLpjj1T6h8TeS4z2");
-        id.add("D20IMKQuUvVGzLpjj1T6h8TeS4z2");
-        id.add("KBmSbP87LpNTIaZRzRQS7oozowt2");
-        id.add("KBmSbP87LpNTIaZRzRQS7oozowt2");
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(teacher_creation_of_travel.this,6, LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(gridLayoutManager);
 
         adapter = new teacher_cr_act_participant_adapter(id, teacher_creation_of_travel.this);
+        id.add(creatorID);
 
         recyclerView.setAdapter(adapter);
 
@@ -149,7 +145,8 @@ public class teacher_creation_of_travel extends AppCompatActivity implements Tim
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(teacher_creation_of_travel.this, teacher_cr_travel_participants_list.class);
-                startActivity(intent);
+                intent.putStringArrayListExtra("id", id);
+                startActivityForResult(intent,SelectObjectRecuest);
             }
         });
 
@@ -188,6 +185,7 @@ public class teacher_creation_of_travel extends AppCompatActivity implements Tim
 
     }
 
+
     private void openFileChooser() {
         Intent intent = new Intent();
         intent.setType("image/*");
@@ -210,7 +208,19 @@ public class teacher_creation_of_travel extends AppCompatActivity implements Tim
             } else {
                 //nothing
             }
+        }else if(requestCode == SelectObjectRecuest && resultCode == RESULT_OK
+                && data != null ){
+
+
+            ArrayList<String> test = data.getStringArrayListExtra("id");
+            //id.clear();
+            id.addAll(test);
+            adapter.notifyDataSetChanged();
+
+            Toast.makeText(teacher_creation_of_travel.this, test.toString() , Toast.LENGTH_SHORT).show();
+
         }
+
     }
 
     private String getFileExtension(Uri uri) {

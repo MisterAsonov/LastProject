@@ -6,11 +6,14 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -28,6 +31,7 @@ public class teacher_cr_travel_participants_list extends AppCompatActivity {
     ArrayList<User> StudentsList;
     ArrayList<String> keys;
     teacher_cr_travel_group_adapter adapter;
+    ImageButton back,clear,save;
 
     DatabaseReference post_ref, student;
 
@@ -39,12 +43,56 @@ public class teacher_cr_travel_participants_list extends AppCompatActivity {
         StudentsList = new ArrayList<User>();
         keys = new ArrayList<String>();
 
+        Intent data = getIntent();
 
+
+        back = (ImageButton) findViewById(R.id.arrrow_btn);
+        clear = (ImageButton) findViewById(R.id.clear_btn);
+        save = (ImageButton) findViewById(R.id.save_btn);
         recyclerView = findViewById(R.id.rc_patic_group);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        adapter = new teacher_cr_travel_group_adapter(StudentsList, this);
+        adapter = new teacher_cr_travel_group_adapter(StudentsList, this, data.getStringArrayListExtra("id"),new teacher_cr_travel_group_adapter.teacher_ivents() {
+            @Override
+            public void update_selections(int count) {
+                if(count>0) {
+                    back.setVisibility(View.INVISIBLE);
+                    clear.setVisibility(View.VISIBLE);
+                    save.setVisibility(View.VISIBLE);
+                }else{
+                    back.setVisibility(View.VISIBLE);
+                    clear.setVisibility(View.INVISIBLE);
+                    save.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+        clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                adapter.ClearSelections();
+            }
+        });
+
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            Intent returnIntent = new Intent();
+                            returnIntent.putStringArrayListExtra("id",adapter.getList());
+                            setResult(Activity.RESULT_OK, returnIntent);
+                            finish();
+
+            }
+        });
 
         recyclerView.setLayoutManager(new GridLayoutManager(this,3));
 

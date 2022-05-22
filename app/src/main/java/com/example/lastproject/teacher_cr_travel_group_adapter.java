@@ -22,6 +22,14 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class teacher_cr_travel_group_adapter extends RecyclerView.Adapter<teacher_cr_travel_group_adapter.ViewHolder>{
 
+    public interface teacher_ivents {
+
+        void update_selections(int count);
+
+
+    }
+
+    teacher_ivents ivents;
     ArrayList<User> users;
     Context context;
     ArrayList<String> keys;
@@ -35,7 +43,9 @@ public class teacher_cr_travel_group_adapter extends RecyclerView.Adapter<teache
         notifyDataSetChanged();
     }
 
-    public teacher_cr_travel_group_adapter(ArrayList<User> users, Context context) {
+    public teacher_cr_travel_group_adapter(ArrayList<User> users, Context context, ArrayList<String> ids,teacher_ivents ivents) {
+        this.id_of_participant = ids;
+        this.ivents = ivents;
         this.users = users;
         this.context = context;
     }
@@ -44,7 +54,7 @@ public class teacher_cr_travel_group_adapter extends RecyclerView.Adapter<teache
         String UID_of_participant;
         TextView name,lastName,who;
         CircleImageView photo, isSelected;
-        ImageButton back,clear,save;
+
 
         public ViewHolder (View view) {
             super(view);
@@ -53,10 +63,6 @@ public class teacher_cr_travel_group_adapter extends RecyclerView.Adapter<teache
             who = (TextView) view.findViewById(R.id.who);
             photo = (CircleImageView) view.findViewById(R.id.profile_icon);
             isSelected = (CircleImageView) view.findViewById(R.id.isSelected);
-
-            back = (ImageButton) view.findViewById(R.id.arrrow_btn);
-            clear = (ImageButton) view.findViewById(R.id.clear_btn);
-            save = (ImageButton) view.findViewById(R.id.save_btn);
 
         }
 
@@ -78,7 +84,11 @@ public class teacher_cr_travel_group_adapter extends RecyclerView.Adapter<teache
         viewHolder.lastName.setText(String.valueOf(tmp.getLastname()));
         viewHolder.who.setText(String.valueOf(tmp.getWho()));
 
-
+        if(!id_of_participant.contains(viewHolder.UID_of_participant)){
+            viewHolder.isSelected.setVisibility(View.INVISIBLE);
+        } else {
+            viewHolder.isSelected.setVisibility(View.VISIBLE);
+        }
 
         if(!String.valueOf(tmp.getmImageUrl()).equals("")){
             Picasso.get()
@@ -99,13 +109,17 @@ public class teacher_cr_travel_group_adapter extends RecyclerView.Adapter<teache
                     //viewHolder.clear.setVisibility(View.INVISIBLE);
                     //viewHolder.save.setVisibility(View.INVISIBLE);
 
+
+
                 } else {
                     viewHolder.isSelected.setVisibility(View.VISIBLE);
                     id_of_participant.add(viewHolder.UID_of_participant);
                     //viewHolder.save.setVisibility(View.VISIBLE);
                     //viewHolder.clear.setVisibility(View.VISIBLE);
                     //viewHolder.back.setVisibility(View.INVISIBLE);
+
                 }
+                ivents.update_selections(id_of_participant.size());
                 if(id_of_participant.size() == 0)
                     isSelected = false;
 
@@ -120,10 +134,13 @@ public class teacher_cr_travel_group_adapter extends RecyclerView.Adapter<teache
                     if(id_of_participant.contains(viewHolder.UID_of_participant)) {
                         viewHolder.isSelected.setVisibility(View.INVISIBLE);
                         id_of_participant.remove(viewHolder.UID_of_participant);
+
                     }else {
                         viewHolder.isSelected.setVisibility(View.VISIBLE);
                         id_of_participant.add(viewHolder.UID_of_participant);
+
                     }
+                    ivents.update_selections(id_of_participant.size());
                     if(id_of_participant.size() == 0)
                         isSelected = false;
                 }
@@ -134,6 +151,18 @@ public class teacher_cr_travel_group_adapter extends RecyclerView.Adapter<teache
 
     public int getItemCount() {
         return users.size();
+    }
+
+    public void ClearSelections(){
+        id_of_participant.clear();
+        isSelected = false;
+        notifyDataSetChanged();
+        ivents.update_selections(0);
+
+    }
+
+    public ArrayList<String> getList(){
+        return id_of_participant;
     }
 
 }

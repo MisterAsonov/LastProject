@@ -24,7 +24,7 @@ import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class teacher_cr_act_participant_adapter extends RecyclerView.Adapter<teacher_cr_act_participant_adapter.ViewHolder>{
+public class teacher_cr_act_participant_adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     ArrayList<String> id;
     ArrayList<String> keys;
     Context context;
@@ -52,24 +52,58 @@ public class teacher_cr_act_participant_adapter extends RecyclerView.Adapter<tea
 
     }
 
+    public class ViewHolderMoreStudents extends RecyclerView.ViewHolder {
+        TextView num;
+
+        public ViewHolderMoreStudents(View view) {
+            super(view);
+            num = view.findViewById(R.id.num_more_students);
+
+        }
+
+    }
+
     @Override
-    public teacher_cr_act_participant_adapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-        View view = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.participants_list, viewGroup, false);
+    public int getItemViewType(int position) {
+        if(position > 4)
+            return 1;
+        else
+            return 0;
+    }
 
-        /**
-         *  mAuth = FirebaseAuth.getInstance();
-         *         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-         *         userID = user.getUid();
-         */
+    @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+        if(viewType == 0) {
+            View view = LayoutInflater.from(viewGroup.getContext())
+                    .inflate(R.layout.participants_list, viewGroup, false);
 
-        return new ViewHolder(view);
+            /**
+             *  mAuth = FirebaseAuth.getInstance();
+             *         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+             *         userID = user.getUid();
+             */
+
+            return new ViewHolder(view);
+        }else{
+            View view = LayoutInflater.from(viewGroup.getContext())
+                    .inflate(R.layout.more_participants_list, viewGroup, false);
+
+            /**
+             *  mAuth = FirebaseAuth.getInstance();
+             *         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+             *         userID = user.getUid();
+             */
+
+            return new ViewHolderMoreStudents(view);
+        }
 
     }
 
 
     @Override
-    public void onBindViewHolder(teacher_cr_act_participant_adapter.ViewHolder viewHolder, int g) {
+    public void onBindViewHolder(RecyclerView.ViewHolder Holder, int g) {
+        if(Holder.getItemViewType()==0){
+        ViewHolder viewHolder   = (ViewHolder) Holder;
         int i = viewHolder.getAdapterPosition();
 
         student = FirebaseDatabase.getInstance().
@@ -92,11 +126,19 @@ public class teacher_cr_act_participant_adapter extends RecyclerView.Adapter<tea
 
             }
         });
+        }else{
+            ViewHolderMoreStudents viewHolder   = (ViewHolderMoreStudents) Holder;
+            viewHolder.num.setText(String.valueOf(id.size()-6) + "+");
+        }
+
 
     }
 
     @Override
     public int getItemCount() {
-        return id.size();
+            if(id.size() > 6)
+        return 6;
+        else
+            return id.size();
     }
 }
