@@ -103,8 +103,6 @@ public class teacher_cr_travel_participants_list extends AppCompatActivity {
 
         retrieveData();
 
-
-
     }
 
     private void retrieveData() {

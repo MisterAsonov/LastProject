@@ -3,9 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:motion="http://schemas.android.com/apk/res-auto">
 
+
     <Transition
+        motion:constraintSetStart="@+id/start"
         motion:constraintSetEnd="@+id/middle"
-        motion:constraintSetStart="@id/start"
         motion:duration="500"
         motion:motionInterpolator="easeInOut">
         <OnSwipe
@@ -212,5 +213,6 @@
 
             />
     </ConstraintSet>
+
 
 </MotionScene>

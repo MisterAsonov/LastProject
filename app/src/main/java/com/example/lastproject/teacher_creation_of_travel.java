@@ -283,8 +283,6 @@ public class teacher_creation_of_travel extends AppCompatActivity implements Tim
             id.addAll(test);
             adapter.notifyDataSetChanged();
 
-            Toast.makeText(teacher_creation_of_travel.this, test.toString() , Toast.LENGTH_SHORT).show();
-
         }
 
     }

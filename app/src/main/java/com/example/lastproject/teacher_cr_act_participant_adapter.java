@@ -80,22 +80,11 @@ public class teacher_cr_act_participant_adapter extends RecyclerView.Adapter<Rec
             View view = LayoutInflater.from(viewGroup.getContext())
                     .inflate(R.layout.participants_list, viewGroup, false);
 
-            /**
-             *  mAuth = FirebaseAuth.getInstance();
-             *         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-             *         userID = user.getUid();
-             */
-
             return new ViewHolder(view);
         }else{
             View view = LayoutInflater.from(viewGroup.getContext())
                     .inflate(R.layout.more_participants_list, viewGroup, false);
 
-            /**
-             *  mAuth = FirebaseAuth.getInstance();
-             *         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-             *         userID = user.getUid();
-             */
 
             return new ViewHolderMoreStudents(view);
         }
