@@ -59,6 +59,7 @@
         <entry key="..\:/LastProject/app/src/main/res/layout/Settings_fragment.xml" value="0.25" />
         <entry key="..\:/LastProject/app/src/main/res/layout/activities_fragment.xml" value="0.28532608695652173" />
         <entry key="..\:/LastProject/app/src/main/res/layout/activity_create_report.xml" value="0.3625" />
+        <entry key="..\:/LastProject/app/src/main/res/layout/activity_event_details.xml" value="0.22" />
         <entry key="..\:/LastProject/app/src/main/res/layout/activity_hello_screen.xml" value="0.33" />
         <entry key="..\:/LastProject/app/src/main/res/layout/activity_login_screen.xml" value="0.33" />
         <entry key="..\:/LastProject/app/src/main/res/layout/activity_main.xml" value="0.25" />
@@ -70,6 +71,7 @@
         <entry key="..\:/LastProject/app/src/main/res/layout/activity_report_for_teacher.xml" value="0.264" />
         <entry key="..\:/LastProject/app/src/main/res/layout/activity_splash_screen.xml" value="0.33" />
         <entry key="..\:/LastProject/app/src/main/res/layout/activity_succesful_report.xml" value="0.3625" />
+        <entry key="..\:/LastProject/app/src/main/res/layout/activity_teacher_activitie.xml" value="0.33" />
         <entry key="..\:/LastProject/app/src/main/res/layout/activity_teacher_activities_list.xml" value="0.30972222222222223" />
         <entry key="..\:/LastProject/app/src/main/res/layout/activity_teacher_cr_travel_participants_list.xml" value="0.3625" />
         <entry key="..\:/LastProject/app/src/main/res/layout/activity_teacher_creation_of_peilut.xml" value="0.32222222222222224" />
@@ -105,12 +107,14 @@
         <entry key="..\:/LastProject/app/src/main/res/layout/students_list.xml" value="0.8408071748878924" />
         <entry key="..\:/LastProject/app/src/main/res/layout/support_fragment.xml" value="0.25" />
         <entry key="..\:/LastProject/app/src/main/res/layout/teacher_activities_list.xml" value="0.32222222222222224" />
+        <entry key="..\:/LastProject/app/src/main/res/layout/teacher_event_menu.xml" value="0.11927083333333334" />
         <entry key="..\:/LastProject/app/src/main/res/menu/drawer_menu.xml" value="0.33" />
         <entry key="..\:/LastProject/app/src/main/res/menu/drawer_menu_teacher.xml" value="0.2" />
         <entry key="..\:/LastProject/app/src/main/res/menu/main_menu.xml" value="0.3625" />
         <entry key="..\:/LastProject/app/src/main/res/menu/menu_main.xml" value="0.32222222222222224" />
         <entry key="..\:/LastProject/app/src/main/res/menu/profile__detail_menu.xml" value="0.32222222222222224" />
         <entry key="..\:/LastProject/app/src/main/res/menu/studet_details_menu.xml" value="0.32222222222222224" />
+        <entry key="..\:/LastProject/app/src/main/res/menu/teacher_event_menu.xml" value="0.11927083333333334" />
         <entry key="..\:/LastProject/app/src/main/res/menu/teacher_student_profile.xml" value="0.32222222222222224" />
         <entry key="..\:/LastProject/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.37864583333333335" />
         <entry key="..\:/LastProject/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.37864583333333335" />

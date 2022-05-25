@@ -49,14 +49,11 @@ public class ReportFragment extends Fragment {
 
         reportsList = new ArrayList<Report>();
         keys = new ArrayList<>();
-        reportsList.clear();
 
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
         adapter = new ReportAdapter(reportsList,getActivity());
-        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         post_ref = FirebaseDatabase.getInstance().
                 getReference("Reports");
@@ -72,18 +69,21 @@ public class ReportFragment extends Fragment {
      */
     private void retrieveData() {
         String creatorID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        reportsList.clear();
+
         post_ref.child(creatorID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-
+                reportsList.clear();
                 for (DataSnapshot data : snapshot.getChildren()) {
                     Report p = data.getValue(Report.class);
+
                     reportsList.add(p);
                     keys.add(data.getKey());
+
+                    adapter.setKeys(keys);
+                    recyclerView.setAdapter(adapter);
+
                 }
-                adapter.setKeys(keys);
-                recyclerView.setAdapter(adapter);
 
             }
 

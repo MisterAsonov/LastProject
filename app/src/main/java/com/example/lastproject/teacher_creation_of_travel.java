@@ -106,9 +106,6 @@ public class teacher_creation_of_travel extends AppCompatActivity implements Tim
 
         Toast.makeText(teacher_creation_of_travel.this, "Click on photo to change an image", Toast.LENGTH_SHORT).show();
 
-
-
-
         GridLayoutManager gridLayoutManager = new GridLayoutManager(teacher_creation_of_travel.this,6, LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(gridLayoutManager);
 

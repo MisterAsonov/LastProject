@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.lastproject">
+    package="com.example.lastproject" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -13,7 +13,10 @@
         android:label="Campus"
         android:roundIcon="@color/white"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".event_details"
+            android:exported="true" />
         <activity
             android:name=".teacher_cr_travel_participants_list"
             android:exported="true" />
@@ -24,9 +27,6 @@
 
         <activity
             android:name=".teacher_creation_of_travel"
-            android:exported="true" />
-        <activity
-            android:name=".teacher_creation_of_peilut"
             android:exported="true" />
         <activity
             android:name=".qr_scanner"
@@ -57,10 +57,10 @@
             android:exported="true" />
         <activity
             android:name=".LoginScreen"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".HelloScreen"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

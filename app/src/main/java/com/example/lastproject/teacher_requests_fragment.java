@@ -42,10 +42,9 @@ public class teacher_requests_fragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.rv_requests);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         adapter = new ReportAdapter(reportsList,getActivity());
-        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         post_ref = FirebaseDatabase.getInstance().
                 getReference("Reports");
@@ -57,21 +56,22 @@ public class teacher_requests_fragment extends Fragment {
                 getReference("Users");
 
 
-        reportsList.clear();
+
         retrieveData();
+
         Log.d(TAG, "reportsList: " + reportsList);
         return view;
     }
 
     private void retrieveData() {
         String creatorID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        reportsList.clear();
+
         student.child(creatorID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User uid = snapshot.getValue(User.class);
-
-                grup_ref.child(uid.UID).addValueEventListener(new ValueEventListener() {
+                reportsList.clear();
+                grup_ref.child(uid.referal_link).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
 
@@ -86,11 +86,14 @@ public class teacher_requests_fragment extends Fragment {
                                     for (DataSnapshot qwe : snapshot.getChildren()) {
                                         Log.d(TAG, "key: " + qwe.getKey());
                                         Report p = qwe.getValue(Report.class);
+
                                         keys.add(qwe.getKey());
                                         reportsList.add(p);
+
+                                        adapter.setKeys(keys);
+                                        recyclerView.setAdapter(adapter);
                                     }
-                                    adapter.setKeys(keys);
-                                    recyclerView.setAdapter(adapter);
+
                                     Log.d(TAG, "reportsList2: " + reportsList);
 
                                 }

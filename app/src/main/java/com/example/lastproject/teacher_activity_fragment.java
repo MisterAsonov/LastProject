@@ -59,7 +59,7 @@ public class teacher_activity_fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         ViewGroup view = (ViewGroup) inflater.inflate(R.layout.activity_teacher_fragment,container,false);
 
-        recyclerView = view.findViewById(R.id.teacher_activities_rv);
+
 
         //Floating Action Buttons
         fab = view.findViewById(R.id.fab_teacher_add_activitie);
@@ -123,14 +123,18 @@ public class teacher_activity_fragment extends Fragment {
 
         activitie_list = new ArrayList<Activitie>();
         keys = new ArrayList<String>();
-
         activitie_list.clear();
 
-        adapter = new teacher_activitie_adapter(activitie_list, getActivity(), keys);
+
+        recyclerView = view.findViewById(R.id.teacher_activities_rv);
+
+
+        adapter = new teacher_activitie_adapter(activitie_list, getActivity());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(adapter);
+        //recyclerView.setAdapter(adapter);
 
         retrieveData();
+
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
         itemTouchHelper.attachToRecyclerView(recyclerView);
@@ -254,22 +258,22 @@ public class teacher_activity_fragment extends Fragment {
 
 
     private void retrieveData() {
-       String MyID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        activitie_list.clear();
+        String MyID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
         act_ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-
+                activitie_list.clear();
                 for (DataSnapshot data : snapshot.getChildren()) {
                     Activitie p = data.getValue(Activitie.class);
                     if(p.getEvent_participants().contains(MyID)) {
                         activitie_list.add(p);
                         keys.add(data.getKey());
+
+                        adapter.setKeys(keys);
+                        recyclerView.setAdapter(adapter);
                     }
                 }
-                adapter.setKeys(keys);
-                recyclerView.setAdapter(adapter);
-
             }
 
             @Override

@@ -30,10 +30,10 @@ public class teacher_activitie_adapter extends RecyclerView.Adapter<teacher_acti
         notifyDataSetChanged();
     }
 
-    public teacher_activitie_adapter(ArrayList<Activitie> activities, Context context, ArrayList<String> keys) {
+    public teacher_activitie_adapter(ArrayList<Activitie> activities, Context context) {
         this.activities = activities;
         this.context = context;
-        this.keys = keys;
+
     }
 
     public class ViewHolder  extends RecyclerView.ViewHolder  {
@@ -62,6 +62,7 @@ public class teacher_activitie_adapter extends RecyclerView.Adapter<teacher_acti
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
         int i = viewHolder.getAdapterPosition();
+
         Activitie tmp = activities.get(i);
 
         viewHolder.title.setText(String.valueOf(tmp.getEvent_title()));
@@ -79,8 +80,16 @@ public class teacher_activitie_adapter extends RecyclerView.Adapter<teacher_acti
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(context, teacher_Student_Profile.class);
-                intent.putExtra("key", keys.get(i));
+                Intent intent = new Intent(context, event_details.class);
+
+                intent.putExtra("event_titel", String.valueOf(tmp.getEvent_title()));
+                intent.putExtra("event_location", String.valueOf(tmp.getEvent_location()));
+                intent.putExtra("event_date", String.valueOf(tmp.getEvent_date()));
+                intent.putExtra("event_time", String.valueOf(tmp.getEvent_time()));
+                intent.putExtra("event_desc", String.valueOf(tmp.getEvent_desc()));
+                intent.putExtra("event_imageUrl", String.valueOf(tmp.getImageUrl()));
+                intent.putStringArrayListExtra("event_participants", tmp.getEvent_participants());
+                intent.putExtra("event_key", String.valueOf(keys.get(i)));
 
                 context.startActivity(intent);
 

@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/middle"
+        motion:constraintSetStart="@id/start"
+        motion:duration="500"
+        motion:motionInterpolator="easeInOut">
+        <OnSwipe
+            motion:dragDirection="dragUp"
+            motion:touchAnchorId="@id/motionlayout"
+            motion:touchRegionId="@id/motionlayout"
+            motion:touchAnchorSide="top"
+            motion:onTouchUp="autoComplete"
+            />
+        <KeyFrameSet>
+            <KeyPosition
+                motion:keyPositionType="pathRelative"
+                motion:percentY="0.2"
+                motion:percentX="0.55"
+                motion:framePosition="50"
+                motion:motionTarget="@+id/event_details_titel"
+                motion:transitionEasing="cubic(0.4,0.0,0.2,1)"/>
+
+        </KeyFrameSet>
+    </Transition>
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/middle"
+        motion:duration="2000"
+        motion:motionInterpolator="easeInOut">
+        <OnSwipe
+            motion:dragDirection="dragUp"
+            motion:touchAnchorId="@id/motionlayout"
+            motion:touchRegionId="@id/motionlayout"
+            motion:touchAnchorSide="top"
+            motion:onTouchUp="autoComplete"
+            />
+
+        <KeyFrameSet>
+
+            <KeyPosition
+                motion:keyPositionType="pathRelative"
+                motion:percentY="0.15"
+                motion:framePosition="50"
+                motion:motionTarget="@+id/event_detail_photo"
+                motion:transitionEasing="cubic(0.4, 0.0, 0.2, 1)"/>
+
+        </KeyFrameSet>
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint android:id="@+id/event_detail_photo">
+            <CustomAttribute
+                motion:attributeName="roundPercent"
+                motion:customFloatValue="0.0000001"/>
+        </Constraint>
+
+        <Constraint android:id="@+id/btn_event_back"
+            android:layout_height="30dp"
+            android:layout_width="30dp"
+            motion:layout_constraintVertical_bias=".0"
+            motion:layout_constraintHorizontal_bias=".0"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            motion:layout_constraintBottom_toBottomOf="@id/event_toolbar"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            />
+
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/middle">
+
+        <Constraint
+            android:id="@+id/event_details_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="@id/event_view"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintHorizontal_bias="0"
+            motion:layout_constraintVertical_bias="0"
+            />
+
+        <Constraint
+            android:id="@+id/event_view"
+            android:layout_height="150dp"
+            android:layout_width="match_parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <Constraint android:id="@+id/event_detail_photo"
+            android:layout_height="90dp"
+            android:layout_width="90dp"
+            motion:layout_constraintTop_toBottomOf="@+id/event_toolbar"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintBottom_toBottomOf="@id/event_view"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="16dp"
+            >
+            <CustomAttribute
+                motion:attributeName="roundPercent"
+                motion:customFloatValue="1"/>
+
+        </Constraint>
+
+        <Constraint android:id="@+id/btn_event_back"
+            android:layout_height="30dp"
+            android:layout_width="30dp"
+            motion:layout_constraintVertical_bias=".0"
+            motion:layout_constraintHorizontal_bias=".0"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            motion:layout_constraintBottom_toBottomOf="@id/event_toolbar"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            />
+
+        <Constraint
+            android:id="@+id/event_details_titel"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="@id/event_detail_photo"
+            motion:layout_constraintStart_toEndOf="@id/event_detail_photo"
+            motion:layout_constraintHorizontal_bias="0."
+            android:layout_marginBottom="40dp"
+            android:layout_marginStart="16dp"
+            >
+
+        </Constraint>
+
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+
+        <Constraint
+            android:id="@+id/event_detail_photo"
+            android:layout_height="50dp"
+            android:layout_width="50dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="10dp"
+            motion:layout_constraintStart_toEndOf="@+id/btn_event_back"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintBottom_toBottomOf="@id/event_toolbar">
+
+            <CustomAttribute
+                motion:attributeName="roundPercent"
+                motion:customFloatValue="1"/>
+        </Constraint>
+
+        <Constraint android:id="@+id/btn_event_back"
+            android:layout_height="30dp"
+            android:layout_width="30dp"
+            motion:layout_constraintVertical_bias=".0"
+            motion:layout_constraintHorizontal_bias=".0"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            motion:layout_constraintBottom_toBottomOf="@id/event_toolbar"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            />
+
+        <Constraint
+            android:id="@+id/event_details_titel"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="@id/event_detail_photo"
+            android:layout_marginBottom="10dp"
+            motion:layout_constraintStart_toEndOf="@id/event_detail_photo"
+            motion:layout_constraintHorizontal_bias="0.0"
+            android:layout_marginStart="16dp"
+            >
+        </Constraint>
+
+        <Constraint
+            android:id="@+id/event_toolbar"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_width="match_parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <Constraint
+            android:id="@+id/event_view"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_width="match_parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <Constraint
+            android:id="@+id/event_details_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="@id/event_view"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintHorizontal_bias=".0"
+            motion:layout_constraintVertical_bias=".0"
+
+            />
+    </ConstraintSet>
+
+</MotionScene>

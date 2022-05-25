@@ -59,7 +59,9 @@ public class MyGroupAdapter extends RecyclerView.Adapter<MyGroupAdapter.ViewHold
 
     public void onBindViewHolder(@NonNull ViewHolder  viewHolder, int g) {
         int i = viewHolder.getAdapterPosition();
+
         User tmp = users.get(i);
+
         viewHolder.name.setText(String.valueOf(tmp.getName()));
         viewHolder.lastName.setText(String.valueOf(tmp.getLastname()));
         viewHolder.who.setText(String.valueOf(tmp.getWho()));
