@@ -1,10 +1,16 @@
 package com.example.lastproject;
 
+import android.media.Image;
+import android.net.Uri;
+
+import androidx.constraintlayout.utils.widget.ImageFilterView;
+
 import java.util.ArrayList;
 
 public class Activitie {
 
-    String event_title, event_location, event_date, event_time, event_desc, imageUrl;
+    String event_title, event_location, event_date, event_time, event_desc;
+    String imageUrl;
     ArrayList<String> event_participants;
 
     public Activitie(String event_title, String event_location, String event_date, String event_time, String event_desc, String imageUrl, ArrayList<String> event_participants) {
@@ -18,6 +24,7 @@ public class Activitie {
     }
 
     public Activitie() {}
+
 
     public String getEvent_title() {
         return event_title;

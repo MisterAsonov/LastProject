@@ -52,6 +52,9 @@ public class teacher_cr_act_participant_adapter extends RecyclerView.Adapter<Rec
 
     }
 
+    /**
+     *
+     */
     public class ViewHolderMoreStudents extends RecyclerView.ViewHolder {
         TextView num;
 

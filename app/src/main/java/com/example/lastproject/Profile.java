@@ -54,8 +54,8 @@ public class Profile extends AppCompatActivity {
     ImageButton back;
     FloatingActionButton btn_change_photo;
     ImageFilterView photo;
-    private StorageTask mUploadTask;
 
+    private StorageTask mUploadTask;
     private Uri mImageUri;
 
 

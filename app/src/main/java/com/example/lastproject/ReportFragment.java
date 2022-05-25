@@ -66,6 +66,10 @@ public class ReportFragment extends Fragment {
 
         return view;
     }
+
+    /**
+     *9*
+     */
     private void retrieveData() {
         String creatorID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         reportsList.clear();

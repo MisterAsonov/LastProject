@@ -46,7 +46,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
@@ -72,7 +74,7 @@ public class teacher_creation_of_travel extends AppCompatActivity implements Tim
     teacher_cr_act_participant_adapter adapter;
     RecyclerView recyclerView;
 
-    DatabaseReference user_ref;
+    DatabaseReference databaseReference ;
     private StorageReference mStorageRef;
 
     private Uri mImageUri;
@@ -94,6 +96,9 @@ public class teacher_creation_of_travel extends AppCompatActivity implements Tim
         btn_change_image = findViewById(R.id.btn_change_image);
         recyclerView = findViewById(R.id.recycler_invite);
 
+        mStorageRef = FirebaseStorage.getInstance().getReference("Travels");
+        String creatorID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
         Animation fade_in = AnimationUtils.loadAnimation(teacher_creation_of_travel.this, R.anim.fade_in);
         Animation fade_out = AnimationUtils.loadAnimation(teacher_creation_of_travel.this, R.anim.fade_out);
 
@@ -102,7 +107,7 @@ public class teacher_creation_of_travel extends AppCompatActivity implements Tim
         Toast.makeText(teacher_creation_of_travel.this, "Click on photo to change an image", Toast.LENGTH_SHORT).show();
 
 
-        String creatorID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(teacher_creation_of_travel.this,6, LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(gridLayoutManager);
@@ -153,8 +158,68 @@ public class teacher_creation_of_travel extends AppCompatActivity implements Tim
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(teacher_creation_of_travel.this, "save", Toast.LENGTH_SHORT).show();
-                //writeNewTravel(new Activitie(titel,location,date,time,desc,"",""));
+
+                if(titel.getText().toString().isEmpty()){
+                    titel.setError("Titel is empty!");
+                    titel.requestFocus();
+                    return;
+                }
+
+                if(location.getText().toString().isEmpty()){
+                    location.setError("Location is empty!");
+                    location.requestFocus();
+                    return;
+                }
+
+                if(desc.getText().toString().isEmpty()){
+                    desc.setError("Description is empty!");
+                    desc.requestFocus();
+                    return;
+                }
+
+                if(date.getText().toString().isEmpty()){
+                    date.setError("Date is empty!");
+                    date.requestFocus();
+                    return;
+                }
+
+                if(time.getText().toString().isEmpty()){
+                    time.setError("Time is empty!");
+                    time.requestFocus();
+                    return;
+                }
+
+
+                if(mImageUri != null){
+                    StorageReference fileReference = mStorageRef.child(System.currentTimeMillis()
+                            + "." + getFileExtension(mImageUri));
+
+                    mUploadTask = fileReference.putFile(mImageUri)
+                            .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                @Override
+                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                                    fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                        @Override
+                                        public void onSuccess(Uri uri) {
+                                            String url = uri.toString();
+
+                                            writeTravel(new Activitie(titel.getText().toString().trim(),location.getText().toString().trim(),date.getText().toString().trim(),time.getText().toString().trim(),
+                                                    desc.getText().toString().trim(),url,id));
+                                            finish();
+                                        }
+                                    });
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(teacher_creation_of_travel.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                } else {
+                    Toast.makeText(teacher_creation_of_travel.this, "No file selected", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 
@@ -173,15 +238,19 @@ public class teacher_creation_of_travel extends AppCompatActivity implements Tim
             @Override
             public void onClick(View view) {
 
-
                 DialogFragment datePickerFragment = new DatePickerFragment();
                 datePickerFragment.setCancelable(false);
-
 
                 datePickerFragment.show(getSupportFragmentManager(), "datePicker");
 
             }
         });
+
+    }
+
+    public void writeTravel(Activitie activitie) {
+
+        FirebaseDatabase.getInstance().getReference("Travels").push().setValue(activitie);
 
     }
 
@@ -213,7 +282,7 @@ public class teacher_creation_of_travel extends AppCompatActivity implements Tim
 
 
             ArrayList<String> test = data.getStringArrayListExtra("id");
-            //id.clear();
+            id.clear();
             id.addAll(test);
             adapter.notifyDataSetChanged();
 
