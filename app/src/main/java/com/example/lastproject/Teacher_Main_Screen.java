@@ -28,6 +28,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.Calendar;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Teacher_Main_Screen extends AppCompatActivity implements TimePickerFragment.TimePickerListener{
@@ -188,12 +190,21 @@ public class Teacher_Main_Screen extends AppCompatActivity implements TimePicker
     @Override
     public void onTimeSet(TimePicker timePicker, int hour, int minute) {
         String teaceherId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        Calendar mCalendar = Calendar.getInstance();
+
+        int year = mCalendar.get(Calendar.YEAR);
+
+        int month = mCalendar.get(Calendar.MONTH);
+
+        int day = mCalendar.get(Calendar.DAY_OF_MONTH);
+
         reference.child(teaceherId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User uid = snapshot.getValue(User.class);
                 userId = uid.UID;
-                moadon_ref.child(uid.UID).child("Moadon").setValue(new Moadon(hour, minute));
+                moadon_ref.child(uid.UID).child("Moadon").setValue(new Moadon(hour, minute, day, month, year));
             }
 
             @Override
@@ -201,7 +212,6 @@ public class Teacher_Main_Screen extends AppCompatActivity implements TimePicker
 
             }
         });
-        Toast.makeText(Teacher_Main_Screen.this, String.valueOf(hour) + " "+ String.valueOf(minute), Toast.LENGTH_SHORT).show();
     }
 
 
