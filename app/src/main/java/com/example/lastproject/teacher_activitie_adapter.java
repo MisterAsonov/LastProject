@@ -13,6 +13,12 @@ import androidx.constraintlayout.utils.widget.ImageFilterView;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -24,6 +30,8 @@ public class teacher_activitie_adapter extends RecyclerView.Adapter<teacher_acti
     ArrayList<Activitie> activities;
     Context context;
     ArrayList<String> keys;
+
+
 
     public void setKeys(ArrayList<String> keys) {
         this.keys = keys;
@@ -52,11 +60,10 @@ public class teacher_activitie_adapter extends RecyclerView.Adapter<teacher_acti
     }
 
     public teacher_activitie_adapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-        View view = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.activity_teacher_activities_list, viewGroup, false);
 
-        return new teacher_activitie_adapter.ViewHolder(view);
-
+            View view = LayoutInflater.from(viewGroup.getContext())
+                    .inflate(R.layout.activity_teacher_activities_list, viewGroup, false);
+            return new teacher_activitie_adapter.ViewHolder(view);
     }
 
     @Override

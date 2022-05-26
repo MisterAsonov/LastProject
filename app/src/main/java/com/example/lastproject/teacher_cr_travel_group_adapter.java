@@ -106,17 +106,14 @@ public class teacher_cr_travel_group_adapter extends RecyclerView.Adapter<teache
                 if(id_of_participant.contains(viewHolder.UID_of_participant)){
                     viewHolder.isSelected.setVisibility(View.INVISIBLE);
                     id_of_participant.remove(viewHolder.UID_of_participant);
-                    //viewHolder.clear.setVisibility(View.INVISIBLE);
-                    //viewHolder.save.setVisibility(View.INVISIBLE);
+
 
 
 
                 } else {
                     viewHolder.isSelected.setVisibility(View.VISIBLE);
                     id_of_participant.add(viewHolder.UID_of_participant);
-                    //viewHolder.save.setVisibility(View.VISIBLE);
-                    //viewHolder.clear.setVisibility(View.VISIBLE);
-                    //viewHolder.back.setVisibility(View.INVISIBLE);
+
 
                 }
                 ivents.update_selections(id_of_participant.size());

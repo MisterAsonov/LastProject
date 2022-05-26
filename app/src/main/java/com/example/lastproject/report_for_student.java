@@ -51,8 +51,7 @@ public class report_for_student extends AppCompatActivity {
             mPostReference = FirebaseDatabase.getInstance().getReference().child("Reports").child(userID).child(key);
             mPostReference.removeValue();
 
-            Intent intent = new Intent(report_for_student.this, MainActivity.class);
-            startActivity(intent);
+
             finish();
 
             return true;

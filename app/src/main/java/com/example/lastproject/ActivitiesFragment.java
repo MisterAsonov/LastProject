@@ -67,6 +67,9 @@ TextView tv_moadon;
 
         retrieveData1();
 
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
+        itemTouchHelper.attachToRecyclerView(recyclerView);
+
         return view;
     }
 

@@ -25,8 +25,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -44,28 +47,24 @@ public class event_details extends AppCompatActivity {
     String titel, desc, date, time, location;
     String key;
     String url_photo;
+    boolean flag = true;
+
+
     ArrayList<String> event_participants;
 
     teacher_cr_act_participant_adapter adapter;
     RecyclerView recyclerView;
 
     DatabaseReference mPostReference;
+    DatabaseReference user_ref;
     DatabaseReference event_ref;
-
-
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.teacher_event_menu, menu);
-        return true;
-    }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         switch (item.getItemId()) {
             case R.id.delite_event:
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                String userID = user.getUid();
+
                 mPostReference = FirebaseDatabase.getInstance().getReference().child("Travels").child(key);
                 mPostReference.removeValue();
                 finish();
@@ -79,13 +78,16 @@ public class event_details extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-
     }
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_details);
+
+        check();
 
         tv_titel = findViewById(R.id.event_details_titel);
         tv_desc = findViewById(R.id.event_details_desc);
@@ -142,12 +144,41 @@ public class event_details extends AppCompatActivity {
                 Intent intent = new Intent(event_details.this, teacher_cr_travel_participants_list.class);
                 intent.putStringArrayListExtra("id", event_participants);
                 startActivityForResult(intent,SelectObjectRecuest);
+            }
+        });
+    }
 
+    private void check() {
+        user_ref = FirebaseDatabase.getInstance().getReference("Users");
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
+        user_ref.child(userId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User who = snapshot.getValue(User.class);
 
+                if(who.getWho().equals("Teacher")){
+                    flag = false;
+                }else{
+                    invite.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
+
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        if(!flag){
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.teacher_event_menu, menu);
+            return true;
+        }
+        return  false;
     }
 
     @Override
@@ -181,11 +212,6 @@ public class event_details extends AppCompatActivity {
 
             adapter.notifyDataSetChanged();
 
-
-
         }
-
     }
-
-
 }
