@@ -127,7 +127,7 @@ public class Profile extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(Profile.this, "Back", Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
         btn_change_photo = findViewById(R.id.float_btn_add_photo_profile);

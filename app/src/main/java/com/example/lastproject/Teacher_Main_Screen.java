@@ -161,7 +161,8 @@ public class Teacher_Main_Screen extends AppCompatActivity implements TimePicker
                         break;
 
                     case R.id.support:
-                        Toast.makeText(Teacher_Main_Screen.this, "support is Clicked", Toast.LENGTH_SHORT).show();
+                        Intent intent4 = new Intent(Teacher_Main_Screen.this, Support_page.class);
+                        startActivity(intent4);
                         break;
 
                     case R.id.settings:

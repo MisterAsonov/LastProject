@@ -16,7 +16,7 @@
 
         <item android:id="@+id/support"
             android:icon="@drawable/ic_help"
-            android:title="Support"/>
+            android:title="Contact us"/>
 
 
 

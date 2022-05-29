@@ -154,7 +154,8 @@ public class MainActivity extends AppCompatActivity  {
                         break;
 
                     case R.id.support:
-                        Toast.makeText(MainActivity.this, "support is Clicked", Toast.LENGTH_SHORT).show();
+                        Intent intent4 = new Intent(MainActivity.this, Support_page.class);
+                        startActivity(intent4);
                         break;
 
                     case R.id.settings:

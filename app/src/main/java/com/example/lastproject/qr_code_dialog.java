@@ -1,6 +1,7 @@
 package com.example.lastproject;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -60,17 +61,31 @@ public class qr_code_dialog extends DialogFragment {
         name = view.findViewById(R.id.name_qr_code);
         share = view.findViewById(R.id.btn_qr_code_ok);
 
-
-        share.setOnClickListener(new View.OnClickListener() {
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "Share button", Toast.LENGTH_SHORT).show();
+                dismiss();
             }
         });
+
+
+
 
         users = FirebaseDatabase.getInstance().
                 getReference("Users");
         userID = FirebaseAuth.getInstance().getCurrentUser().getUid();;
+
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myIntent = new Intent(Intent.ACTION_SEND);
+                myIntent.setType("text/plain");
+                String body = "Hi this is my invite code: \n" + userID + " \nYou can copy it to join my group.";
+                myIntent.putExtra(Intent.EXTRA_TEXT,body);
+                startActivity(Intent.createChooser(myIntent, "Share Using"));
+
+            }
+        });
 
         MultiFormatWriter writer = new MultiFormatWriter();
 
@@ -80,9 +95,6 @@ public class qr_code_dialog extends DialogFragment {
             Bitmap bitmap = encoder.createBitmap(matrix);
 
             qr_code.setImageBitmap(bitmap);
-
-
-
 
         } catch (WriterException e) {
             e.printStackTrace();

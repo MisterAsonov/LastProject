@@ -15,6 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".Support_page"
+            android:exported="true" />
+        <activity
             android:name=".forgot_password"
             android:exported="true" />
         <activity
