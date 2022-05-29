@@ -17,7 +17,7 @@
 
             <item
                 android:id="@+id/delite_student"
-                android:title="Delite"
+                android:title="Delete"
                 app:showAsAction="ifRoom"
                 android:icon="@drawable/ic_baseline_delete_24"
                 />

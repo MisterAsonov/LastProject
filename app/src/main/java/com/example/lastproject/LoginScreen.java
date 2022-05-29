@@ -36,7 +36,7 @@ public class LoginScreen extends AppCompatActivity {
         text = findViewById(R.id.log_text);
         tabLayout = findViewById(R.id.tab_layout);
         pager2 = findViewById(R.id.view_pager);
-        google = findViewById(R.id.fab_google);
+
 
         tabLayout.addTab(tabLayout.newTab().setText("Log In"));
         tabLayout.addTab(tabLayout.newTab().setText("Sign Up"));

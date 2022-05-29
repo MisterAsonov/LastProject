@@ -157,7 +157,7 @@ public class teacher_creation_of_travel extends AppCompatActivity implements Tim
             public void onClick(View view) {
 
                 if(titel.getText().toString().isEmpty()){
-                    titel.setError("Titel is empty!");
+                    titel.setError("Title is empty!");
                     titel.requestFocus();
                     return;
                 }

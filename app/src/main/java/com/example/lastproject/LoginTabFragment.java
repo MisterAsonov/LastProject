@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -35,6 +36,7 @@ public class LoginTabFragment extends Fragment {
     Button btn_login;
     CheckBox saveme;
     ImageView visible, invisible;
+    TextView btn_forgot_pas;
 
 
     @Override
@@ -46,6 +48,15 @@ public class LoginTabFragment extends Fragment {
         saveme = view.findViewById(R.id.stayin);
         visible = view.findViewById(R.id.visible_password);
         invisible = view.findViewById(R.id.invisible_password);
+        btn_forgot_pas = view.findViewById(R.id.tv_forgot_pass);
+
+        btn_forgot_pas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), forgot_password.class);
+                startActivity(intent);
+            }
+        });
 
         visible.setVisibility(View.VISIBLE);
         invisible.setVisibility(View.GONE);
