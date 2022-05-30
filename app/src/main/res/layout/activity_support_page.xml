@@ -31,6 +31,19 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/imageView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="-60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_insta"
+        android:background="@color/white"
+        android:src="@drawable/contac_us_anim"
+        />
+
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
@@ -40,9 +53,11 @@
         android:textColor="@color/colorAccent"
         android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintVertical_bias="0."
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar4" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar4"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <View
         android:id="@+id/divider"
@@ -90,15 +105,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView6"
         app:srcCompat="@drawable/instagram_logo" />
 
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="-60dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/contact_us_anim" />
+
 
     <TextView
         android:id="@+id/tv_mail"
@@ -132,12 +139,14 @@
         android:layout_height="wrap_content"
         android:text="Fari_up"
         android:textColor="@color/colorAccent"
+        android:layout_marginTop="24dp"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.395"
         app:layout_constraintStart_toEndOf="@+id/imageView7"
         app:layout_constraintTop_toBottomOf="@+id/tv_telegram"
         app:layout_constraintVertical_bias="0.524" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

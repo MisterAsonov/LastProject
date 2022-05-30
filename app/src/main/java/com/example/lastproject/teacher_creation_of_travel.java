@@ -20,6 +20,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -39,8 +40,11 @@ import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -60,9 +64,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-public class teacher_creation_of_travel extends AppCompatActivity implements TimePickerFragment.TimePickerListener, DatePickerFragment.DatePickerListener{
+public class teacher_creation_of_travel extends AppCompatActivity implements TimePickerFragment.TimePickerListener, DatePickerFragment.DatePickerListener {
     private static final int PICK_IMAGE_REQUEST = 1;
     private static final int SelectObjectRecuest = 789;
+
+    private static final String TAG = "teacher creation";
 
     ArrayList<String> id = new ArrayList<>();
     ImageFilterView image;
@@ -74,7 +80,7 @@ public class teacher_creation_of_travel extends AppCompatActivity implements Tim
     teacher_cr_act_participant_adapter adapter;
     RecyclerView recyclerView;
 
-    DatabaseReference databaseReference ;
+    DatabaseReference databaseReference;
     private StorageReference mStorageRef;
 
     private Uri mImageUri;
@@ -106,7 +112,7 @@ public class teacher_creation_of_travel extends AppCompatActivity implements Tim
 
         Toast.makeText(teacher_creation_of_travel.this, "Click on photo to change an image", Toast.LENGTH_SHORT).show();
 
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(teacher_creation_of_travel.this,6, LinearLayoutManager.VERTICAL,false);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(teacher_creation_of_travel.this, 6, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(gridLayoutManager);
 
         adapter = new teacher_cr_act_participant_adapter(id, teacher_creation_of_travel.this);
@@ -136,11 +142,11 @@ public class teacher_creation_of_travel extends AppCompatActivity implements Tim
 
 
         btn_change_image.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        openFileChooser();
-                    }
-                });
+            @Override
+            public void onClick(View view) {
+                openFileChooser();
+            }
+        });
 
 
         brn_invite.setOnClickListener(new View.OnClickListener() {
@@ -148,7 +154,7 @@ public class teacher_creation_of_travel extends AppCompatActivity implements Tim
             public void onClick(View view) {
                 Intent intent = new Intent(teacher_creation_of_travel.this, teacher_cr_travel_participants_list.class);
                 intent.putStringArrayListExtra("id", id);
-                startActivityForResult(intent,SelectObjectRecuest);
+                startActivityForResult(intent, SelectObjectRecuest);
             }
         });
 
@@ -156,66 +162,72 @@ public class teacher_creation_of_travel extends AppCompatActivity implements Tim
             @Override
             public void onClick(View view) {
 
-                if(titel.getText().toString().isEmpty()){
+                if (titel.getText().toString().isEmpty()) {
                     titel.setError("Title is empty!");
                     titel.requestFocus();
                     return;
                 }
 
-                if(location.getText().toString().isEmpty()){
+                if (location.getText().toString().isEmpty()) {
                     location.setError("Location is empty!");
                     location.requestFocus();
                     return;
                 }
 
-                if(desc.getText().toString().isEmpty()){
+                if (desc.getText().toString().isEmpty()) {
                     desc.setError("Description is empty!");
                     desc.requestFocus();
                     return;
                 }
 
-                if(date.getText().toString().isEmpty()){
+                if (date.getText().toString().isEmpty()) {
                     date.setError("Date is empty!");
                     date.requestFocus();
                     return;
                 }
 
-                if(time.getText().toString().isEmpty()){
+                if (time.getText().toString().isEmpty()) {
                     time.setError("Time is empty!");
                     time.requestFocus();
                     return;
                 }
 
-
-                if(mImageUri != null){
+                if (mImageUri != null) {
                     StorageReference fileReference = mStorageRef.child(System.currentTimeMillis()
                             + "." + getFileExtension(mImageUri));
 
-                    mUploadTask = fileReference.putFile(mImageUri)
-                            .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    fileReference.putFile(mImageUri)
+                            .continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                                 @Override
-                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
 
-                                    fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                        @Override
-                                        public void onSuccess(Uri uri) {
-                                            String url = uri.toString();
+                                    if (task.isSuccessful()) {
+                                        return fileReference.getDownloadUrl();
+                                    } else {
+                                        Toast.makeText(teacher_creation_of_travel.this, "Error", Toast.LENGTH_SHORT).show();
+                                        throw task.getException();
 
-                                            writeTravel(new Activitie(titel.getText().toString().trim(),location.getText().toString().trim(),date.getText().toString().trim(),time.getText().toString().trim(),
-                                                    desc.getText().toString().trim(),url,id));
-                                            finish();
-                                        }
-                                    });
+                                    }
                                 }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(teacher_creation_of_travel.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                                }
-                            });
+                            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Uri> task) {
+                            String url = task.getResult().toString();
+
+                            if (!task.isSuccessful()) {
+                                Toast.makeText(teacher_creation_of_travel.this, "Error", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+
+                            writeTravel(new Activitie(titel.getText().toString().trim(), location.getText().toString().trim(), date.getText().toString().trim(), time.getText().toString().trim(),
+                                    desc.getText().toString().trim(), url, id));
+
+                        }
+                    });
                 } else {
                     Toast.makeText(teacher_creation_of_travel.this, "No file selected", Toast.LENGTH_SHORT).show();
                 }
+
 
             }
         });
@@ -227,7 +239,7 @@ public class teacher_creation_of_travel extends AppCompatActivity implements Tim
                 DialogFragment timePickerFragment = new TimePickerFragment();
                 timePickerFragment.setCancelable(false);
 
-                timePickerFragment.show(getSupportFragmentManager(),"timePicker");
+                timePickerFragment.show(getSupportFragmentManager(), "timePicker");
             }
         });
 
@@ -248,7 +260,7 @@ public class teacher_creation_of_travel extends AppCompatActivity implements Tim
     public void writeTravel(Activitie activitie) {
 
         FirebaseDatabase.getInstance().getReference("Travels").push().setValue(activitie);
-
+        finish();
     }
 
 
@@ -274,8 +286,8 @@ public class teacher_creation_of_travel extends AppCompatActivity implements Tim
             } else {
                 //nothing
             }
-        }else if(requestCode == SelectObjectRecuest && resultCode == RESULT_OK
-                && data != null ){
+        } else if (requestCode == SelectObjectRecuest && resultCode == RESULT_OK
+                && data != null) {
 
 
             ArrayList<String> test = data.getStringArrayListExtra("id");
@@ -296,7 +308,7 @@ public class teacher_creation_of_travel extends AppCompatActivity implements Tim
     @Override
     public void onTimeSet(TimePicker timePicker, int hour, int minute) {
         time.setText(hour + ":" + minute);
-        Toast.makeText(teacher_creation_of_travel.this, String.valueOf(hour) + ":"+ String.valueOf(minute), Toast.LENGTH_SHORT).show();
+        Toast.makeText(teacher_creation_of_travel.this, String.valueOf(hour) + ":" + String.valueOf(minute), Toast.LENGTH_SHORT).show();
     }
 
 
