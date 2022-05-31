@@ -1,28 +1,19 @@
 package com.example.lastproject;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.constraintlayout.utils.widget.ImageFilterView;
 
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.SubMenu;
 import android.view.View;
 import android.webkit.MimeTypeMap;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,7 +27,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
@@ -72,15 +62,16 @@ public class Profile extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.change_name:
-                Toast.makeText(Profile.this, "change_name selected", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(Profile.this, change_my_name.class);
+                startActivity(intent);
                 return true;
             case R.id.new_photo:
                 openFileChooser();
                 return true;
             case R.id.log_out:
                 FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(Profile.this, LoginScreen.class);
-                startActivity(intent);
+                Intent intent2 = new Intent(Profile.this, LoginScreen.class);
+                startActivity(intent2);
                 return true;
 
             default:

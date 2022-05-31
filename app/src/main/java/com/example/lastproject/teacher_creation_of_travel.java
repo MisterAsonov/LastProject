@@ -72,7 +72,6 @@ public class teacher_creation_of_travel extends AppCompatActivity implements Tim
 
     ArrayList<String> id = new ArrayList<>();
     ImageFilterView image;
-    FloatingActionButton fab_add_image;
     EditText titel, location, desc;
     TextView date, time;
     Button btn_save, brn_invite, btn_change_image;

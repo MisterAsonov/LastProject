@@ -39,9 +39,14 @@ public class teacher_Student_Profile extends AppCompatActivity {
     DatabaseReference user_ref;
 
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.teacher_student_profile, menu);
-        return true;
+
+        if(who.equals("Student")) {
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.teacher_student_profile, menu);
+            return true;
+        }else{
+            return false;
+        }
     }
 
     @Override
@@ -56,11 +61,11 @@ public class teacher_Student_Profile extends AppCompatActivity {
                 return true;
 
             case R.id.change_student:
-                /**
-                 * FirebaseAuth.getInstance().signOut();
-                 *                 Intent intent = new Intent(teacher_Student_Profile.this, LoginScreen.class);
-                 *                 startActivity(intent);
-                 */
+                    Intent intent = new Intent(teacher_Student_Profile.this, change_student_name.class);
+                    intent.putExtra("name", name);
+                    intent.putExtra("lastname", lastname);
+                    intent.putExtra("UID", id);
+                    startActivity(intent);
 
                 return true;
 
@@ -92,8 +97,7 @@ public class teacher_Student_Profile extends AppCompatActivity {
          btn_back.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View view) {
-                 Intent intent = new Intent(teacher_Student_Profile.this, Teacher_Main_Screen.class);
-                 startActivity(intent);
+                 finish();
              }
          });
 

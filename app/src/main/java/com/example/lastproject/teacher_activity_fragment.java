@@ -131,10 +131,8 @@ public class teacher_activity_fragment extends Fragment {
 
         adapter = new teacher_activitie_adapter(activitie_list, getActivity());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        //recyclerView.setAdapter(adapter);
 
         retrieveData();
-
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
         itemTouchHelper.attachToRecyclerView(recyclerView);

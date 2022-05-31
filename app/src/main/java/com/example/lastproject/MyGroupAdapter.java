@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ public class MyGroupAdapter extends RecyclerView.Adapter<MyGroupAdapter.ViewHold
     ArrayList<User> users;
     Context context;
     ArrayList<String> keys;
+    String creatorID;
 
     public void setKeys(ArrayList<String> keys) {
         this.keys = keys;
@@ -62,6 +64,8 @@ public class MyGroupAdapter extends RecyclerView.Adapter<MyGroupAdapter.ViewHold
 
         User tmp = users.get(i);
 
+        creatorID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
         viewHolder.name.setText(String.valueOf(tmp.getName()));
         viewHolder.lastName.setText(String.valueOf(tmp.getLastname()));
         viewHolder.who.setText(String.valueOf(tmp.getWho()));
@@ -73,9 +77,19 @@ public class MyGroupAdapter extends RecyclerView.Adapter<MyGroupAdapter.ViewHold
                 .centerCrop()
                 .into(viewHolder.photo);}
 
+
+
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+                if(creatorID.equals(tmp.getUID())){
+                    Intent intent1 = new Intent(context, Profile.class);
+                    context.startActivity(intent1);
+                    return;
+                }
+
                 Intent intent = new Intent(context, teacher_Student_Profile.class);
                 intent.putExtra("tv_name", tmp.getName());
                 intent.putExtra("tv_lname", tmp.getLastname());

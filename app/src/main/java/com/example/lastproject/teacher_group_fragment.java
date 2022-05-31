@@ -59,6 +59,8 @@ public class teacher_group_fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         ViewGroup view = (ViewGroup) inflater.inflate(R.layout.activity_teacher_group_fragment,container,false);
 
+
+
         StudentsList = new ArrayList<User>();
         keys = new ArrayList<String>();
 
@@ -82,7 +84,7 @@ public class teacher_group_fragment extends Fragment {
         });
 
         adapter = new MyGroupAdapter(StudentsList, getActivity());
-
+        adapter.notifyDataSetChanged();
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),3));
 
         post_ref = FirebaseDatabase.getInstance().
