@@ -44,16 +44,14 @@ public class teacher_activity_fragment extends Fragment {
     FloatingActionButton fab;
     FloatingActionButton fab1;
     FloatingActionButton fab2;
-    FloatingActionButton fab3;
 
-    private boolean FAB_Status = false;
+    boolean isOpen = false;
 
-    Animation show_fab_1;
-    Animation hide_fab_1;
-    Animation show_fab_2;
-    Animation hide_fab_2;
-    Animation show_fab_3;
-    Animation hide_fab_3;
+    Animation fab_open;
+    Animation fab_close;
+    Animation rotate_forward;
+    Animation rotate_backward;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -63,33 +61,23 @@ public class teacher_activity_fragment extends Fragment {
 
         //Floating Action Buttons
         fab = view.findViewById(R.id.fab_teacher_add_activitie);
-        fab1 = view.findViewById(R.id.fab_1);
-        fab2 = view.findViewById(R.id.fab_2);
-        fab3 = view.findViewById(R.id.fab_3);
+        fab1 = view.findViewById(R.id.fab1);
+        fab2 = view.findViewById(R.id.fab2);
+
 
         //Animations
-        show_fab_1 = AnimationUtils.loadAnimation(getActivity(), R.anim.fab1_show);
-        hide_fab_1 = AnimationUtils.loadAnimation(getActivity(), R.anim.fab1_hide);
-        show_fab_2 = AnimationUtils.loadAnimation(getActivity(), R.anim.fab2_show);
-        hide_fab_2 = AnimationUtils.loadAnimation(getActivity(), R.anim.fab2_hide);
-        show_fab_3 = AnimationUtils.loadAnimation(getActivity(), R.anim.fab3_show);
-        hide_fab_3 = AnimationUtils.loadAnimation(getActivity(), R.anim.fab3_hide);
+        fab_open = AnimationUtils.loadAnimation(getActivity(), R.anim.fab_open);
+        fab_close = AnimationUtils.loadAnimation(getActivity(), R.anim.fab_close);
+        rotate_forward = AnimationUtils.loadAnimation(getActivity(), R.anim.rotate_forward);
+        rotate_backward = AnimationUtils.loadAnimation(getActivity(), R.anim.rotate_backward);
+
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                if (FAB_Status == false) {
-                    //Display FAB menu
-                    expandFAB();
-                    FAB_Status = true;
-                } else {
-                    //Close FAB menu
-                    hideFAB();
-                    FAB_Status = false;
-                }
-
+                animateFAB();
             }
+
         });
 
         fab1.setOnClickListener(new View.OnClickListener() {
@@ -102,14 +90,9 @@ public class teacher_activity_fragment extends Fragment {
             }
         });
 
-        fab2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity(), "Floating Action Button 2", Toast.LENGTH_SHORT).show();
-            }
-        });
 
-        fab3.setOnClickListener(new View.OnClickListener() {
+
+        fab2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), teacher_creation_of_travel.class);
@@ -191,70 +174,23 @@ public class teacher_activity_fragment extends Fragment {
 
 
 
-    private void expandFAB() {
-
-        //Floating Action Button 1
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) fab1.getLayoutParams();
-        layoutParams.rightMargin = 0;
-        layoutParams.bottomMargin = 0;
-        layoutParams.rightMargin += (int) (fab1.getWidth() * 1.7);
-        layoutParams.bottomMargin += (int) (fab1.getHeight() * 0.25);
-        fab1.setLayoutParams(layoutParams);
-        fab1.startAnimation(show_fab_1);
-        fab1.setClickable(true);
-
-        //Floating Action Button 2
-        FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) fab2.getLayoutParams();
-        layoutParams2.rightMargin = 0;
-        layoutParams2.bottomMargin =0 ;
-        layoutParams2.rightMargin += (int) (fab2.getWidth() * 1.5);
-        layoutParams2.bottomMargin += (int) (fab2.getHeight() * 1.5);
-        fab2.setLayoutParams(layoutParams2);
-        fab2.startAnimation(show_fab_2);
-        fab2.setClickable(true);
-
-        //Floating Action Button 3
-        FrameLayout.LayoutParams layoutParams3 = (FrameLayout.LayoutParams) fab3.getLayoutParams();
-        layoutParams3.rightMargin = 0;
-        layoutParams3.bottomMargin = 0;
-        layoutParams3.rightMargin += (int) (fab3.getWidth() * 0.25);
-        layoutParams3.bottomMargin += (int) (fab3.getHeight() * 1.7);
-        fab3.setLayoutParams(layoutParams3);
-        fab3.startAnimation(show_fab_3);
-        fab3.setClickable(true);
+    private void animateFAB() {
+        if(isOpen){
+            fab.startAnimation(rotate_backward);
+            fab1.startAnimation(fab_close);
+            fab2.startAnimation(fab_close);
+            fab1.setClickable(false);
+            fab2.setClickable(false);
+            isOpen=false;
+        }else{
+            fab.startAnimation(rotate_forward);
+            fab1.startAnimation(fab_open);
+            fab2.startAnimation(fab_open);
+            fab1.setClickable(true);
+            fab2.setClickable(true);
+            isOpen=true;
+        }
     }
-
-
-    private void hideFAB() {
-
-        //Floating Action Button 1
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) fab1.getLayoutParams();
-
-        layoutParams.rightMargin -= (int) (fab1.getWidth() * 1.7);
-        layoutParams.bottomMargin -= (int) (fab1.getHeight() * 0.25);
-        fab1.setLayoutParams(layoutParams);
-        fab1.startAnimation(hide_fab_1);
-        fab1.setClickable(false);
-
-        //Floating Action Button 2
-        FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) fab2.getLayoutParams();
-
-        layoutParams2.rightMargin -= (int) (fab2.getWidth() * 1.5);
-        layoutParams2.bottomMargin -= (int) (fab2.getHeight() * 1.5);
-        fab2.setLayoutParams(layoutParams2);
-        fab2.startAnimation(hide_fab_2);
-        fab2.setClickable(false);
-
-        //Floating Action Button 3
-        FrameLayout.LayoutParams layoutParams3 = (FrameLayout.LayoutParams) fab3.getLayoutParams();
-
-        layoutParams3.rightMargin -= (int) (fab3.getWidth() * 0.25);
-        layoutParams3.bottomMargin -= (int) (fab3.getHeight() * 1.7);
-        fab3.setLayoutParams(layoutParams3);
-        fab3.startAnimation(hide_fab_3);
-        fab3.setClickable(false);
-    }
-
 
     private void retrieveData() {
         String MyID = FirebaseAuth.getInstance().getCurrentUser().getUid();
