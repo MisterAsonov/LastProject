@@ -71,8 +71,17 @@ public class event_details extends AppCompatActivity {
                 return true;
 
             case R.id.change_event:
-                //nothing yet
-
+                Intent intent = new Intent(event_details.this, change_travel.class);
+                intent.putExtra("change_trip_key",key);
+                intent.putExtra("change_event_titel",titel);
+                intent.putExtra("change_event_location", location);
+                intent.putExtra("change_event_date", date);
+                intent.putExtra("change_event_time", time);
+                intent.putExtra("change_event_desc", desc);
+                intent.putExtra("change_event_imageUrl", url_photo);
+                intent.putStringArrayListExtra("change_event_participants", event_participants);
+                startActivity(intent);
+                finish();
                 return true;
 
             default:

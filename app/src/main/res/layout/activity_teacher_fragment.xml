@@ -1,52 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".teacher_activity_fragment">
 
+    <TextView
+        android:id="@+id/tv_teacher_moadon"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:text="Group talk today at: "
+        android:textSize="25sp"
+        android:gravity="center"
+        android:layout_margin="3dp"
+        android:textColor="@color/colorAccent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0."
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+       />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/teacher_activities_rv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="2dp" />
+        android:layout_height="0dp"
+        android:layout_margin="3dp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_teacher_moadon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/fab1"
-        android:layout_gravity="bottom|end"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="100dp"
         android:visibility="invisible"
         android:src="@drawable/ic_baseline_group_24"
         app:backgroundTint="#64957b"
         android:elevation="6dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
         />
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/fab2"
-        android:layout_gravity="bottom|end"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="170dp"
         android:src="@android:drawable/ic_menu_compass"
         android:visibility="invisible"
         app:backgroundTint="#95647d"
         android:elevation="6dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_teacher_add_activitie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
         android:layout_margin="32dp"
         app:backgroundTint="@color/colorAccent"
         android:elevation="6dp"
-        android:src="@drawable/ic_baseline_add_24"/>
+        android:src="@drawable/ic_baseline_add_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

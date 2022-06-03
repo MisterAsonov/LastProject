@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -29,6 +30,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 
@@ -38,8 +40,9 @@ public class teacher_activity_fragment extends Fragment {
     ArrayList<Activitie> activitie_list;
     ArrayList<String> keys;
     teacher_activitie_adapter adapter;
+    TextView tv_moadon;
 
-    DatabaseReference act_ref;
+    DatabaseReference act_ref,user_ref,group_ref;
 
     FloatingActionButton fab;
     FloatingActionButton fab1;
@@ -58,7 +61,7 @@ public class teacher_activity_fragment extends Fragment {
         ViewGroup view = (ViewGroup) inflater.inflate(R.layout.activity_teacher_fragment,container,false);
 
 
-
+        tv_moadon = view.findViewById(R.id.tv_teacher_moadon);
         //Floating Action Buttons
         fab = view.findViewById(R.id.fab_teacher_add_activitie);
         fab1 = view.findViewById(R.id.fab1);
@@ -103,6 +106,8 @@ public class teacher_activity_fragment extends Fragment {
 
         act_ref = FirebaseDatabase.getInstance().
                 getReference("Travels");
+        user_ref = FirebaseDatabase.getInstance().getReference("Users");
+        group_ref = FirebaseDatabase.getInstance().getReference("Groups");
 
         activitie_list = new ArrayList<Activitie>();
         keys = new ArrayList<String>();
@@ -117,6 +122,7 @@ public class teacher_activity_fragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         retrieveData();
+        retrieveData1();
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
         itemTouchHelper.attachToRecyclerView(recyclerView);
@@ -215,6 +221,65 @@ public class teacher_activity_fragment extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 //no interesting in our purpose in the lesson
+            }
+        });
+    }
+
+    private void retrieveData1() {
+
+        Calendar mCalendar = Calendar.getInstance();
+
+        int year = mCalendar.get(Calendar.YEAR);
+
+        int month = mCalendar.get(Calendar.MONTH);
+
+        int day = mCalendar.get(Calendar.DAY_OF_MONTH);
+
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        user_ref.child(userId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User uid = snapshot.getValue(User.class);
+
+                group_ref.child(uid.referal_link).child("Moadon").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot snapshot) {
+                        Moadon moadon = snapshot.getValue(Moadon.class);
+
+                        if(moadon.getYear() == year && moadon.getMonth() == month && moadon.getDay() == day) {
+
+                            if (moadon != null) {
+
+                                if (moadon.getMinute() != 0) {
+
+                                    if (moadon.getMinute() < 10) {
+                                        tv_moadon.setText("Group talk today at:  " + moadon.getHours() + ":0" + moadon.getMinute());
+                                    }else{
+                                        tv_moadon.setText("Group talk today at:  " + moadon.getHours() + ":" + moadon.getMinute());
+                                    }
+
+                                }else {
+                                    tv_moadon.setText("Group talk today at:  " + moadon.getHours() + ":00");
+                                }
+                            }
+                            else
+                                tv_moadon.setVisibility(View.GONE);
+
+                        }else{
+                            tv_moadon.setVisibility(View.GONE);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        //no interesting in our purpose in the lesson
+                    }
+                });
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
     }

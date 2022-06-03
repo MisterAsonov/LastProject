@@ -1,127 +1,112 @@
 package com.example.lastproject;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.utils.widget.ImageFilterView;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.DatePickerDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.webkit.MimeTypeMap;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
-import com.google.android.gms.common.GooglePlayServicesRepairableException;
-import com.google.android.gms.location.places.Place;
-import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
+import java.util.HashMap;
+import java.util.Map;
 
-public class teacher_creation_of_travel extends AppCompatActivity implements TimePickerFragment.TimePickerListener, DatePickerFragment.DatePickerListener {
+public class change_travel extends AppCompatActivity implements TimePickerFragment.TimePickerListener, DatePickerFragment.DatePickerListener {
     private static final int PICK_IMAGE_REQUEST = 1;
     private static final int SelectObjectRecuest = 789;
 
-    private static final String TAG = "teacher creation";
-
-    ArrayList<String> id = new ArrayList<>();
-    ImageFilterView image;
-    EditText titel, location, desc;
-    TextView date, time;
+    ArrayList<String> event_participants = new ArrayList<>();
+    ImageFilterView photo;
+    EditText ETtitel, ETlocation, ETdesc;
+    TextView TVdate, TVtime;
     Button btn_save, brn_invite, btn_change_image;
     Handler handler;
     teacher_cr_act_participant_adapter adapter;
     RecyclerView recyclerView;
 
-    DatabaseReference databaseReference;
-    private StorageReference mStorageRef;
+    String key,url_photo;
 
+    private StorageReference mStorageRef;
     private Uri mImageUri;
+    DatabaseReference event_ref;
     private StorageTask mUploadTask;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_teacher_creation_of_travel);
+        setContentView(R.layout.activity_change_travel);
 
-        image = findViewById(R.id.image_of_event);
-        titel = findViewById(R.id.event_title);
-        location = findViewById(R.id.set_location);
-        desc = findViewById(R.id.disc_of_event);
-        date = findViewById(R.id.start_date);
-        time = findViewById(R.id.start_time);
+        photo = findViewById(R.id.image_of_change_event);
+        ETtitel = findViewById(R.id.change_event_title);
+        ETlocation = findViewById(R.id.change_trip_location);
+        ETdesc = findViewById(R.id.change_disc_of_event);
+        TVdate = findViewById(R.id.change_trip_date);
+        TVtime = findViewById(R.id.change_trip_time);
 
-        btn_save = findViewById(R.id.btn_save_trip);
-        brn_invite= findViewById(R.id.btn_invite);
+        btn_save = findViewById(R.id.change_event_btn_update);
+        brn_invite= findViewById(R.id.change_trip_btn_invite);
 
-        btn_change_image = findViewById(R.id.btn_change_image);
-        recyclerView = findViewById(R.id.recycler_invite);
+        btn_change_image = findViewById(R.id.change_trip_btn_change_image);
+        recyclerView = findViewById(R.id.change_trip_recycler_invite);
 
+        event_ref = FirebaseDatabase.getInstance().
+                getReference("Travels");
         mStorageRef = FirebaseStorage.getInstance().getReference("Travels");
-        String creatorID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        Animation fade_in = AnimationUtils.loadAnimation(teacher_creation_of_travel.this, R.anim.fade_in);
-        Animation fade_out = AnimationUtils.loadAnimation(teacher_creation_of_travel.this, R.anim.fade_out);
+        Intent intent = getIntent();
+
+        key = intent.getStringExtra("change_trip_key");
+        String titel = intent.getStringExtra("change_event_titel");
+        String location = intent.getStringExtra("change_event_location");
+        String date = intent.getStringExtra("change_event_date");
+        String time = intent.getStringExtra("change_event_time");
+        String desc = intent.getStringExtra("change_event_desc");
+        url_photo = intent.getStringExtra("change_event_imageUrl");
+        event_participants = intent.getStringArrayListExtra("change_event_participants");
+
+        ETtitel.setText(titel);
+        ETdesc.setText(desc);
+        TVdate.setText(date);
+        TVtime.setText(time);
+        ETlocation .setText(location);
+
+        Animation fade_in = AnimationUtils.loadAnimation(change_travel.this, R.anim.fade_in);
+        Animation fade_out = AnimationUtils.loadAnimation(change_travel.this, R.anim.fade_out);
 
         handler = new Handler();
 
-        Toast.makeText(teacher_creation_of_travel.this, "Click on photo to change an image", Toast.LENGTH_SHORT).show();
+        Toast.makeText(change_travel.this, "Click on photo to change an image", Toast.LENGTH_SHORT).show();
 
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(teacher_creation_of_travel.this, 6, LinearLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(gridLayoutManager);
-
-        adapter = new teacher_cr_act_participant_adapter(id, teacher_creation_of_travel.this);
-        id.add(creatorID);
-
-        recyclerView.setAdapter(adapter);
-
-        image.setOnClickListener(new View.OnClickListener() {
+        photo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 btn_change_image.startAnimation(fade_in);
@@ -141,7 +126,6 @@ public class teacher_creation_of_travel extends AppCompatActivity implements Tim
             }
         });
 
-
         btn_change_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -149,53 +133,61 @@ public class teacher_creation_of_travel extends AppCompatActivity implements Tim
             }
         });
 
+        if(!url_photo.equals(""))
+            Picasso.get().load(url_photo).into(photo);
+
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(change_travel.this,6, LinearLayoutManager.VERTICAL,false);
+        recyclerView.setLayoutManager(gridLayoutManager);
+
+        adapter = new teacher_cr_act_participant_adapter(event_participants, change_travel.this);
+
+        recyclerView.setAdapter(adapter);
 
         brn_invite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(teacher_creation_of_travel.this, teacher_cr_travel_participants_list.class);
-                intent.putStringArrayListExtra("id", id);
-                startActivityForResult(intent, SelectObjectRecuest);
+                Intent intent = new Intent(change_travel.this, teacher_cr_travel_participants_list.class);
+                intent.putStringArrayListExtra("id", event_participants);
+                startActivityForResult(intent,SelectObjectRecuest);
             }
         });
 
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                if (titel.getText().toString().isEmpty()) {
-                    titel.setError("Title is empty!");
-                    titel.requestFocus();
+                if (ETtitel.getText().toString().isEmpty()) {
+                    ETtitel.setError("Title is empty!");
+                    ETtitel.requestFocus();
                     return;
                 }
 
-                if(titel.length() < 4){
-                    titel.setError("Min titel length should be 4 characters!");
-                    titel.requestFocus();
+                if(ETtitel.length() < 4){
+                    ETtitel.setError("Min titel length should be 4 characters!");
+                    ETtitel.requestFocus();
                     return;
                 }
 
-                if (location.getText().toString().isEmpty()) {
-                    location.setError("Location is empty!");
-                    location.requestFocus();
+                if (ETlocation.getText().toString().isEmpty()) {
+                    ETlocation.setError("Location is empty!");
+                    ETlocation.requestFocus();
                     return;
                 }
 
-                if (desc.getText().toString().isEmpty()) {
-                    desc.setError("Description is empty!");
-                    desc.requestFocus();
+                if (ETdesc.getText().toString().isEmpty()) {
+                    ETdesc.setError("Description is empty!");
+                    ETdesc.requestFocus();
                     return;
                 }
 
-                if (date.getText().toString().isEmpty()) {
-                    date.setError("Date is empty!");
-                    date.requestFocus();
+                if (TVdate.getText().toString().isEmpty()) {
+                    TVdate.setError("Date is empty!");
+                    TVdate.requestFocus();
                     return;
                 }
 
-                if (time.getText().toString().isEmpty()) {
-                    time.setError("Time is empty!");
-                    time.requestFocus();
+                if (TVtime.getText().toString().isEmpty()) {
+                    TVtime.setError("Time is empty!");
+                    TVtime.requestFocus();
                     return;
                 }
 
@@ -211,7 +203,7 @@ public class teacher_creation_of_travel extends AppCompatActivity implements Tim
                                     if (task.isSuccessful()) {
                                         return fileReference.getDownloadUrl();
                                     } else {
-                                        Toast.makeText(teacher_creation_of_travel.this, "Error", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(change_travel.this, "Error", Toast.LENGTH_SHORT).show();
                                         throw task.getException();
 
                                     }
@@ -222,24 +214,27 @@ public class teacher_creation_of_travel extends AppCompatActivity implements Tim
                             String url = task.getResult().toString();
 
                             if (!task.isSuccessful()) {
-                                Toast.makeText(teacher_creation_of_travel.this, "Error", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(change_travel.this, "Error", Toast.LENGTH_SHORT).show();
                                 return;
                             }
 
-                            writeTravel(new Activitie(titel.getText().toString().trim(), location.getText().toString().trim(), date.getText().toString().trim(), time.getText().toString().trim(),
-                                    desc.getText().toString().trim(), url, id));
+                            updateTravel(ETtitel.getText().toString().trim(), ETlocation.getText().toString().trim(), TVdate.getText().toString().trim(), TVtime.getText().toString().trim(),
+                                    ETdesc.getText().toString().trim(), url, event_participants);
 
                         }
+
+
                     });
-                } else {
-                    Toast.makeText(teacher_creation_of_travel.this, "No file selected", Toast.LENGTH_SHORT).show();
+                }else {
+                    updateTravel(ETtitel.getText().toString().trim(), ETlocation.getText().toString().trim(), TVdate.getText().toString().trim(), TVtime.getText().toString().trim(),
+                            ETdesc.getText().toString().trim(), url_photo, event_participants);
                 }
 
 
             }
         });
 
-        time.setOnClickListener(new View.OnClickListener() {
+        TVtime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -250,7 +245,7 @@ public class teacher_creation_of_travel extends AppCompatActivity implements Tim
             }
         });
 
-        date.setOnClickListener(new View.OnClickListener() {
+        TVdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -264,12 +259,35 @@ public class teacher_creation_of_travel extends AppCompatActivity implements Tim
 
     }
 
-    public void writeTravel(Activitie activitie) {
+    private void updateTravel(String titel, String location, String date, String time, String desc, String url, ArrayList<String> event_participants) {
+        Map<String, Object> activitie = new HashMap<>();
 
-        FirebaseDatabase.getInstance().getReference("Travels").push().setValue(activitie);
-        finish();
+        activitie.put("event_date",date);
+        activitie.put("event_desc",desc);
+        activitie.put("event_location",location);
+        activitie.put("event_participants",event_participants);
+        activitie.put("event_time",time);
+        activitie.put("event_title",titel);
+        activitie.put("imageUrl",url);
+
+        event_ref.child(key).updateChildren(activitie).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()){
+
+                    Toast.makeText(change_travel.this,"Successfully Updated",Toast.LENGTH_SHORT).show();
+                    finish();
+                }else {
+
+                    Toast.makeText(change_travel.this,"Failed to Update",Toast.LENGTH_SHORT).show();
+
+                }
+            }
+        });
+
+
+
     }
-
 
     private void openFileChooser() {
         Intent intent = new Intent();
@@ -277,6 +295,8 @@ public class teacher_creation_of_travel extends AppCompatActivity implements Tim
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, PICK_IMAGE_REQUEST);
     }
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -286,10 +306,10 @@ public class teacher_creation_of_travel extends AppCompatActivity implements Tim
 
             mImageUri = data.getData();
 
-            Picasso.get().load(mImageUri).into(image);
+            Picasso.get().load(mImageUri).into(photo);
 
             if (mUploadTask != null && mUploadTask.isInProgress()) {
-                Toast.makeText(teacher_creation_of_travel.this, "Upload in progress", Toast.LENGTH_SHORT).show();
+                Toast.makeText(change_travel.this, "Upload in progress", Toast.LENGTH_SHORT).show();
             } else {
                 //nothing
             }
@@ -298,8 +318,8 @@ public class teacher_creation_of_travel extends AppCompatActivity implements Tim
 
 
             ArrayList<String> test = data.getStringArrayListExtra("id");
-            id.clear();
-            id.addAll(test);
+            event_participants.clear();
+            event_participants.addAll(test);
             adapter.notifyDataSetChanged();
 
         }
@@ -314,14 +334,13 @@ public class teacher_creation_of_travel extends AppCompatActivity implements Tim
 
     @Override
     public void onTimeSet(TimePicker timePicker, int hour, int minute) {
-        time.setText(hour + ":" + minute);
+        TVtime.setText(hour + ":" + minute);
 
     }
-
 
     @Override
     public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
         i1 = i1 + 1;
-        date.setText(i2 + "/" + i1 + "/" + i);
+        TVdate.setText(i2 + "/" + i1 + "/" + i);
     }
 }
