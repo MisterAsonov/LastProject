@@ -123,13 +123,14 @@ public class teacher_activity_fragment extends Fragment {
 
         activitie_list = new ArrayList<Activitie>();
         keys = new ArrayList<String>();
-        activitie_list.clear();
+
 
 
         recyclerView = view.findViewById(R.id.teacher_activities_rv);
 
 
         adapter = new teacher_activitie_adapter(activitie_list, getActivity());
+        adapter.notifyDataSetChanged();
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         retrieveData();
@@ -176,7 +177,7 @@ public class teacher_activity_fragment extends Fragment {
         public void onChildDraw (Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder,float dX, float dY,int actionState, boolean isCurrentlyActive){
 
            new RecyclerViewSwipeDecorator.Builder(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
-                   .addSwipeRightLabel("Delite")
+                   .addSwipeRightLabel("Delete")
 
                    .addSwipeRightBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorAccent))
                    .addSwipeRightActionIcon(R.drawable.ic_baseline_delete_white_24)
@@ -262,6 +263,7 @@ public class teacher_activity_fragment extends Fragment {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 activitie_list.clear();
+                keys.clear();
                 for (DataSnapshot data : snapshot.getChildren()) {
                     Activitie p = data.getValue(Activitie.class);
                     if(p.getEvent_participants().contains(MyID)) {

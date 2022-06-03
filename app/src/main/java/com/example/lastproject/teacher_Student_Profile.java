@@ -58,6 +58,7 @@ public class teacher_Student_Profile extends AppCompatActivity {
                 String userID = user.getUid();
                 mPostReference = FirebaseDatabase.getInstance().getReference().child("Groups").child(userID).child(key);
                 mPostReference.removeValue();
+                finish();
                 return true;
 
             case R.id.change_student:

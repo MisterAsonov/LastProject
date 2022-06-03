@@ -96,8 +96,10 @@ public class teacher_creation_of_travel extends AppCompatActivity implements Tim
         desc = findViewById(R.id.disc_of_event);
         date = findViewById(R.id.start_date);
         time = findViewById(R.id.start_time);
-        btn_save = findViewById(R.id.btn_save_trip);
-        brn_invite = findViewById(R.id.btn_invite);
+
+        brn_invite = findViewById(R.id.btn_save_trip);
+          btn_save = findViewById(R.id.btn_invite);
+
         btn_change_image = findViewById(R.id.btn_change_image);
         recyclerView = findViewById(R.id.recycler_invite);
 
@@ -313,6 +315,7 @@ public class teacher_creation_of_travel extends AppCompatActivity implements Tim
 
     @Override
     public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+        i1 = i1 + 1;
         date.setText(i2 + "/" + i1 + "/" + i);
     }
 }

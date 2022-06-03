@@ -111,6 +111,7 @@ public class teacher_group_fragment extends Fragment {
                     @Override
                     public void onDataChange(DataSnapshot snapshot) {
                         StudentsList.clear();
+                        keys.clear();
                         for (DataSnapshot tmp : snapshot.getChildren()) {
                             if(tmp.getKey().equals("Moadon")) continue;
                             PersonInGroup st = tmp.getValue(PersonInGroup.class);

@@ -74,6 +74,7 @@ public class ReportFragment extends Fragment {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 reportsList.clear();
+                keys.clear();
                 for (DataSnapshot data : snapshot.getChildren()) {
                     Report p = data.getValue(Report.class);
 

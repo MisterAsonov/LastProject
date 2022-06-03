@@ -186,6 +186,7 @@ TextView tv_moadon;
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 activitie_list.clear();
+                keys.clear();
                 for (DataSnapshot data : snapshot.getChildren()) {
                     Activitie p = data.getValue(Activitie.class);
                     if(p.getEvent_participants().contains(MyID)) {

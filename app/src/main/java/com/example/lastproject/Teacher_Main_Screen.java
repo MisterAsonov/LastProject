@@ -156,18 +156,9 @@ public class Teacher_Main_Screen extends AppCompatActivity implements TimePicker
                     case R.id.Home:
                         break;
 
-                    case R.id.notification:
-                        Toast.makeText(Teacher_Main_Screen.this, "notification is Clicked", Toast.LENGTH_SHORT).show();
-                        break;
-
                     case R.id.support:
                         Intent intent4 = new Intent(Teacher_Main_Screen.this, Support_page.class);
                         startActivity(intent4);
-                        break;
-
-                    case R.id.settings:
-                        Intent intent3 = new Intent(Teacher_Main_Screen.this, Profile.class);
-                        startActivity(intent3);
                         break;
 
                     case R.id.logout:

@@ -149,19 +149,12 @@ public class MainActivity extends AppCompatActivity  {
                     case R.id.Home:
                         break;
 
-                    case R.id.notification:
-                        Toast.makeText(MainActivity.this, "notification is Clicked", Toast.LENGTH_SHORT).show();
-                        break;
 
                     case R.id.support:
                         Intent intent4 = new Intent(MainActivity.this, Support_page.class);
                         startActivity(intent4);
                         break;
 
-                    case R.id.settings:
-                        Intent intent3 = new Intent(MainActivity.this, Profile.class);
-                        startActivity(intent3);
-                        break;
 
                     case R.id.logout:
                         FirebaseAuth.getInstance().signOut();

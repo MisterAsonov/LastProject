@@ -71,6 +71,7 @@ public class teacher_requests_fragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User uid = snapshot.getValue(User.class);
                 reportsList.clear();
+                keys.clear();
                 grup_ref.child(uid.referal_link).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
