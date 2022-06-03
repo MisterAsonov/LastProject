@@ -86,14 +86,6 @@ public class teacher_Student_Profile extends AppCompatActivity {
          ETwho = findViewById(R.id.who20);
          photo = findViewById(R.id.photo_of_student_profile);
 
-        btn_add_photo = findViewById(R.id.float_btn_add_photo);
-        btn_add_photo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(teacher_Student_Profile.this, "Send message", Toast.LENGTH_SHORT).show();
-            }
-        });
-
          btn_back = findViewById(R.id.arrow_btn);
          btn_back.setOnClickListener(new View.OnClickListener() {
              @Override
