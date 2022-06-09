@@ -29,9 +29,6 @@ class com.example.lastproject.main_teacher_tab_adapter {
 + Fragment createFragment(int)
 + int getItemCount()
 }
-class com.example.lastproject.Notifications {
-# void onCreate(Bundle)
-}
 class com.example.lastproject.ReportFragment {
 ~ RecyclerView recyclerView
 ~ ArrayList<Report> reportsList
@@ -137,6 +134,7 @@ class com.example.lastproject.teacher_activity_fragment {
 ~ ArrayList<Activitie> activitie_list
 ~ ArrayList<String> keys
 ~ teacher_activitie_adapter adapter
+~ TextView tv_moadon
 ~ DatabaseReference act_ref
 ~ FloatingActionButton fab
 ~ FloatingActionButton fab1
@@ -151,6 +149,7 @@ class com.example.lastproject.teacher_activity_fragment {
 + View onCreateView(LayoutInflater,ViewGroup,Bundle)
 - void animateFAB()
 - void retrieveData()
+- void retrieveData1()
 }
 class com.example.lastproject.teacher_cr_travel_participants_list {
 ~ RecyclerView recyclerView
@@ -237,6 +236,30 @@ class com.example.lastproject.teacher_group_fragment {
 - FirebaseAuth mAuth
 + View onCreateView(LayoutInflater,ViewGroup,Bundle)
 - void retrieveData()
+}
+class com.example.lastproject.change_travel {
+- {static} int PICK_IMAGE_REQUEST
+- {static} int SelectObjectRecuest
+~ ArrayList<String> event_participants
+~ ImageFilterView photo
+~ EditText ETtitel
+~ TextView TVdate
+~ Button btn_save
+~ Handler handler
+~ teacher_cr_act_participant_adapter adapter
+~ RecyclerView recyclerView
+~ String key
+- StorageReference mStorageRef
+- Uri mImageUri
+~ DatabaseReference event_ref
+- StorageTask mUploadTask
+# void onCreate(Bundle)
+- void updateTravel(String,String,String,String,String,String,ArrayList<String>)
+- void openFileChooser()
+# void onActivityResult(int,int,Intent)
+- String getFileExtension(Uri)
++ void onTimeSet(TimePicker,int,int)
++ void onDateSet(DatePicker,int,int,int)
 }
 class com.example.lastproject.LoginTabFragment {
 ~ SharedPreferences sp
@@ -535,7 +558,6 @@ class com.example.lastproject.MyGroupAdapter.ViewHolder {
 
 
 androidx.viewpager2.adapter.FragmentStateAdapter <|-- com.example.lastproject.main_teacher_tab_adapter
-androidx.appcompat.app.AppCompatActivity <|-- com.example.lastproject.Notifications
 androidx.fragment.app.Fragment <|-- com.example.lastproject.ReportFragment
 com.example.lastproject.Adapter <|-- com.example.lastproject.teacher_cr_act_participant_adapter
 com.example.lastproject.teacher_cr_act_participant_adapter +.. com.example.lastproject.teacher_cr_act_participant_adapter.ViewHolder
@@ -561,6 +583,9 @@ com.example.lastproject.Adapter <|-- com.example.lastproject.teacher_activitie_a
 com.example.lastproject.teacher_activitie_adapter +.. com.example.lastproject.teacher_activitie_adapter.ViewHolder
 com.example.lastproject.ViewHolder <|-- com.example.lastproject.teacher_activitie_adapter.ViewHolder
 androidx.fragment.app.Fragment <|-- com.example.lastproject.teacher_group_fragment
+com.example.lastproject.TimePickerListener <|.. com.example.lastproject.change_travel
+com.example.lastproject.DatePickerListener <|.. com.example.lastproject.change_travel
+androidx.appcompat.app.AppCompatActivity <|-- com.example.lastproject.change_travel
 androidx.fragment.app.Fragment <|-- com.example.lastproject.LoginTabFragment
 androidx.appcompat.app.AppCompatActivity <|-- com.example.lastproject.event_details
 androidx.fragment.app.DialogFragment <|-- com.example.lastproject.qr_code_dialog

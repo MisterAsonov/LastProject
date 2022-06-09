@@ -9,7 +9,9 @@ public class Report {
     private String building;
     private String creator_id;
 
-
+    /**
+     * מחלקה ממשת מה שה בקשה
+     */
     public Report() {
     }
 
@@ -23,6 +25,10 @@ public class Report {
         this.creator_id = creator_id;
     }
 
+    /**
+     * מחלקה מחזירה את הנושא של בקשה
+     * @return
+     */
     public String getTitle() {
         return title;
     }
@@ -30,7 +36,10 @@ public class Report {
     public void setTitle(String title) {
         this.title = title;
     }
-
+    /**
+     * מחלקה מחזירה את התיאור של בקשה
+     * @return
+     */
     public String getExplanation() {
         return explanation;
     }
@@ -38,7 +47,10 @@ public class Report {
     public void setExplanation(String explanation) {
         this.explanation = explanation;
     }
-
+    /**
+     * מחלקה מחזירה את מצב של בקשה
+     * @return
+     */
     public String getStatus() {
         return status;
     }
@@ -46,7 +58,10 @@ public class Report {
     public void setStatus(String status) {
         this.status = status;
     }
-
+    /**
+     * מחלקה מחזירה את התאריך של בקשה
+     * @return
+     */
     public String getDate() {
         return date;
     }
@@ -54,7 +69,10 @@ public class Report {
     public void setDate(String date) {
         this.date = date;
     }
-
+    /**
+     * מחלקה מחזירה את החדר של בקשה
+     * @return
+     */
     public String getRoom() {
         return room;
     }
@@ -62,7 +80,10 @@ public class Report {
     public void setRoom(String room) {
         this.room = room;
     }
-
+    /**
+     * מחלקה מחזירה את הבניין של בקשה
+     * @return
+     */
     public String getBuilding() {
         return building;
     }
@@ -70,7 +91,10 @@ public class Report {
     public void setBuilding(String building) {
         this.building = building;
     }
-
+    /**
+     * מחלקה מחזירה את מזהה יוצר של בקשה
+     * @return
+     */
     public String getCreator_id() {
         return creator_id;
     }

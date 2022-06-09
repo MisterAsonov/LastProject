@@ -74,6 +74,10 @@ public class Create_Report extends AppCompatActivity {
         });
     }
 
+    /**
+     * מחלקה ששומרת את הבקשה של משתמש במסד נתונים
+     * @param report
+     */
     public void writeNewReport(Report report) {
 
         FirebaseDatabase.getInstance().getReference("Reports").child(creatorID).push().setValue(report);

@@ -34,6 +34,9 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
 
     @NonNull
     @Override
+    /**
+     * מחלקה שמציגה את הדיאלוג עם DatePicker
+     */
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         Calendar mCalendar = Calendar.getInstance();
 

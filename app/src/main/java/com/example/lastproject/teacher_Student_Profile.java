@@ -38,6 +38,11 @@ public class teacher_Student_Profile extends AppCompatActivity {
     DatabaseReference mPostReference;
     DatabaseReference user_ref;
 
+    /**
+     * מחלקה מחזירה True כאשר סוג המשתמש הוא חניך אחרת מחזירה false
+     * @param menu
+     * @return
+     */
     public boolean onCreateOptionsMenu(Menu menu) {
 
         if(who.equals("Student")) {
@@ -54,6 +59,9 @@ public class teacher_Student_Profile extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.delite_student:
+                /**
+                 * פעולה שמסירה את החניך מהקבוצה במסד נתונים
+                 */
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 String userID = user.getUid();
                 mPostReference = FirebaseDatabase.getInstance().getReference().child("Groups").child(userID).child(key);
@@ -62,6 +70,9 @@ public class teacher_Student_Profile extends AppCompatActivity {
                 return true;
 
             case R.id.change_student:
+                /**
+                 * פעולה שמפנה למסך שינוי החניך
+                 */
                     Intent intent = new Intent(teacher_Student_Profile.this, change_student_name.class);
                     intent.putExtra("name", name);
                     intent.putExtra("lastname", lastname);
@@ -89,6 +100,9 @@ public class teacher_Student_Profile extends AppCompatActivity {
          btn_back = findViewById(R.id.arrow_btn);
          btn_back.setOnClickListener(new View.OnClickListener() {
              @Override
+             /**
+              * מחלקה שסוגרת את הActivity
+              */
              public void onClick(View view) {
                  finish();
              }

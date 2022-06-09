@@ -60,6 +60,9 @@ public class event_details extends AppCompatActivity {
     DatabaseReference event_ref;
 
     @Override
+    /**
+     * מחלקה שמסירה את הטיול ממסד נתונים או מפנה למסך עם שינוי הטיול
+     */
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         switch (item.getItemId()) {
@@ -157,6 +160,9 @@ public class event_details extends AppCompatActivity {
         });
     }
 
+    /**
+     * מחלקה שמחזירה true כאשר משתמש הוא חניך וfalse כאשר הוא מדריך
+     */
     private void check() {
         user_ref = FirebaseDatabase.getInstance().getReference("Users");
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -181,6 +187,11 @@ public class event_details extends AppCompatActivity {
 
     }
 
+    /**
+     * מחלקה מציגה את התפרית אם משתמש הוא מדריך ולא מציגה את התפרית אם משתמש הוא חניך
+     * @param menu
+     * @return
+     */
     public boolean onCreateOptionsMenu(Menu menu) {
         if(!flag){
             MenuInflater inflater = getMenuInflater();
@@ -204,6 +215,9 @@ public class event_details extends AppCompatActivity {
             Map<String, Object> Event = new HashMap<>();
             Event.put("event_participants", event_participants);
 
+/**
+ * מחלקה שמשנה את הרשימת המשתתפים בטיול במסד נתונים
+ */
             event_ref.child(key).updateChildren(Event).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {

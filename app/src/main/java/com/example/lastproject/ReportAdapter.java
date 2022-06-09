@@ -28,11 +28,21 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ViewHolder
     private String userID;
     ArrayList<String> keys;
 
+    /**
+     * מחלקה שמקבלת את הKey
+     * של בקשה
+     * @param keys
+     */
     public void setKeys(ArrayList<String> keys) {
         this.keys = keys;
         notifyDataSetChanged();
     }
 
+    /**
+     * מחלקה מגדירה מה זה בקשה
+     * @param reports
+     * @param context
+     */
     public ReportAdapter(ArrayList<Report> reports, Context context) {
         this.reports = reports;
         this.context = context;
@@ -81,6 +91,10 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ViewHolder
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /**
+                 * אם id של משתמש שווה לid של יוצר הבקשה מפנה למסך עם פרטים הבקשה מצד חניך
+                 * אחרת מפנה למסך עם פרטים הבקשה מצד מדריך
+                 */
                 if(userID.equals(tmp.getCreator_id())) {
                     Intent intent = new Intent(context, report_for_student.class);
                     intent.putExtra("report_title", tmp.getTitle());
@@ -109,6 +123,10 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ViewHolder
         });
     }
 
+    /**
+     * מחלקה מחזירה מספר בקשות
+     * @return
+     */
     @Override
     public int getItemCount() {
         return reports.size();

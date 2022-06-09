@@ -62,12 +62,14 @@ public class SplashScreen extends AppCompatActivity {
             @Override
             public void run() {
 
-                //Не работает если есть пробел после почты например
+
                 mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
 
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-
+/**
+ * מחלקה שמכניסה את המשתמש לחשבונו
+ */
                         Log.d(TAG, "enter " + task.isSuccessful());
 
                         if (task.isSuccessful()) {
@@ -83,18 +85,11 @@ public class SplashScreen extends AppCompatActivity {
 
 
                                     whois = userProfile.who;
-
-                                    if (whois.equals("Boss")) {
-
-                                        Log.d(TAG, "boss");
-
-                                        Intent intent = new Intent(SplashScreen.this, MainActivity.class);
-                                        startActivity(intent);
-                                        finish();
-                                    }
-
                                     if (whois.equals("Teacher")) {
-
+/**
+ * פעולה בודקת אם משתמש הוא מדריך ומפנה למסך ראשי של מדרעך
+ * אחרת מפנה למסך ראשי של חניך
+ */
                                         Intent intent = new Intent(SplashScreen.this, Teacher_Main_Screen.class);
                                         startActivity(intent);
                                         finish();
@@ -119,20 +114,16 @@ public class SplashScreen extends AppCompatActivity {
                             });
 
 
-
-
-
-
                         } else {
-
+/**
+ *אם המשתמש לא מצליח להיכנס מחזירה אותו למסך כניסה
+ */
                             Log.d(TAG, "back");
                             Toast.makeText(SplashScreen.this, "Faild to enter! Check your email or password", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(SplashScreen.this, LoginScreen.class);
                             startActivity(intent);
                             finish();
 
-
-                            //Что бы на логин скрине появился тост что авторизация не прошла
 
                         }
                     }

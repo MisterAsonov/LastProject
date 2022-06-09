@@ -40,7 +40,9 @@ public class HelloScreen extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("your_key", MODE_PRIVATE);
         flag = prefs.getBoolean("First_open", false);
 
-
+/**
+ * מחלקה בודרת האם משצמש נכנס לאפליקציה פעם ראשונה אם כן מציגה את המסך אם לא מפנה למסך כניסה
+ */
         if(!flag) {
                     flag = true;
                     SharedPreferences.Editor editor = getSharedPreferences("your_key", MODE_PRIVATE).edit();
@@ -57,6 +59,9 @@ public class HelloScreen extends AppCompatActivity {
 
         btn_start.setOnClickListener(new View.OnClickListener() {
             @Override
+            /**
+             * מחלקה שמפנה למסך כניסה
+             */
             public void onClick(View view) {
 
                 Intent intent = new Intent(HelloScreen.this, LoginScreen.class);

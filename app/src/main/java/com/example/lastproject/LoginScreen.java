@@ -49,6 +49,9 @@ public class LoginScreen extends AppCompatActivity {
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
+                /**
+                 * מחלקה שמחזירה פרגמנת שמתאים לViewPager2
+                 */
                 pager2.setCurrentItem(tab.getPosition());
             }
 

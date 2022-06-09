@@ -47,7 +47,7 @@ public class report_for_teacher extends AppCompatActivity {
     }
 
     /**
-     *
+     *מחלקה שמסירה את הבקשה ממסד נתונים
      * @param item
      * @return
      */
@@ -57,7 +57,9 @@ public class report_for_teacher extends AppCompatActivity {
 
             mPostReference = FirebaseDatabase.getInstance().getReference().child("Reports").child(creatorId).child(key);
             mPostReference.removeValue();
-
+/**
+ * פעולה שמפנה שמסך ראשי של מדריך
+ */
             Intent intent = new Intent(report_for_teacher.this, Teacher_Main_Screen.class);
             startActivity(intent);
             finish();
@@ -67,7 +69,9 @@ public class report_for_teacher extends AppCompatActivity {
         }
 
         if(item.getItemId() == R.id.edit){
-
+/**
+ *פעולה שמשנה את ההגדר נראות של כפתור וספיננר
+ */
             update.setVisibility(View.VISIBLE);
             spinner.setVisibility(View.VISIBLE);
 
@@ -136,8 +140,12 @@ public class report_for_teacher extends AppCompatActivity {
         tv_date.setText(date);
         tv_status.setText(status);
 
+
         update.setOnClickListener(new View.OnClickListener() {
             @Override
+            /**
+             * מחלקה שעושה שינוי של בקשה במסד נתונים
+             */
             public void onClick(View view) {
                 Map<String, Object> Report = new HashMap<>();
 
@@ -150,7 +158,9 @@ public class report_for_teacher extends AppCompatActivity {
                     public void onComplete(@NonNull Task task) {
 
                         if (task.isSuccessful()){
-
+/**
+ * פעולה שמפנה למסך ראשי של המדריך
+ */
                             Intent intent = new Intent(report_for_teacher.this, Teacher_Main_Screen.class);
                             startActivity(intent);
                             finish();

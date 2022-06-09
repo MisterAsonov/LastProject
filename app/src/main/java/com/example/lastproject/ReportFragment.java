@@ -41,6 +41,9 @@ public class ReportFragment extends Fragment {
         fab_btn = view.findViewById(R.id.fab_btn);
         fab_btn.setOnClickListener(new View.OnClickListener() {
             @Override
+            /**
+             * מחלקה שמפנה למסך יותר הבקשה
+             */
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), Create_Report.class);
                 startActivity(intent);
@@ -65,7 +68,7 @@ public class ReportFragment extends Fragment {
     }
 
     /**
-     *9*
+     *מחלקה שמקבלת את הרשימת הבקשות ממסד נתונים
      */
     private void retrieveData() {
         String creatorID = FirebaseAuth.getInstance().getCurrentUser().getUid();

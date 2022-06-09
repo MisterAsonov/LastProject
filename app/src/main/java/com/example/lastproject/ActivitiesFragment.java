@@ -73,6 +73,10 @@ TextView tv_moadon;
         return view;
     }
 
+    /**
+     *מחלקה שמקבלת את הזמן לשיחת קבוצה ובודקת אם זמן השיחה רלונתית להיום
+     */
+
     private void retrieveData1() {
 
         Calendar mCalendar = Calendar.getInstance();
@@ -140,6 +144,11 @@ TextView tv_moadon;
             return false;
         }
 
+        /**
+         * מחלקה שמסירת נסיעה מהרשימה על ידי החלקה ימינה
+         * @param viewHolder
+         * @param direction
+         */
         @Override
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
 
@@ -164,6 +173,16 @@ TextView tv_moadon;
 
         }
 
+        /**
+         * מחלקה שמציירת רקע להסרת טיול מרשימת הנסיעות על ידי החלקה ימינה
+         * @param c
+         * @param recyclerView
+         * @param viewHolder
+         * @param dX
+         * @param dY
+         * @param actionState
+         * @param isCurrentlyActive
+         */
         @Override
         public void onChildDraw (Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive){
 
@@ -179,6 +198,10 @@ TextView tv_moadon;
         }
     };
 
+
+    /**
+     * מחלקה מקבלת רשימה של נסיעות ממסד הנתונים המכילות את מזהה המשתמש
+     */
     private void retrieveData() {
         String MyID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 

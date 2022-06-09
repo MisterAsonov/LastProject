@@ -123,6 +123,9 @@ public class teacher_creation_of_travel extends AppCompatActivity implements Tim
 
         image.setOnClickListener(new View.OnClickListener() {
             @Override
+            /**
+             * מחלקה שמשנה שת הראות שלכפתור על ידי למיצה על תמונה
+             */
             public void onClick(View view) {
                 btn_change_image.startAnimation(fade_in);
                 btn_change_image.setVisibility(View.VISIBLE);
@@ -152,6 +155,9 @@ public class teacher_creation_of_travel extends AppCompatActivity implements Tim
 
         brn_invite.setOnClickListener(new View.OnClickListener() {
             @Override
+            /**
+             * מחלקה שמפנה למסך עם רשימת המשתתפים בטיול
+             */
             public void onClick(View view) {
                 Intent intent = new Intent(teacher_creation_of_travel.this, teacher_cr_travel_participants_list.class);
                 intent.putStringArrayListExtra("id", id);
@@ -241,6 +247,9 @@ public class teacher_creation_of_travel extends AppCompatActivity implements Tim
 
         time.setOnClickListener(new View.OnClickListener() {
             @Override
+            /**
+             * מחלקה שמציגה את הTimePicker
+             */
             public void onClick(View view) {
 
                 DialogFragment timePickerFragment = new TimePickerFragment();
@@ -252,6 +261,9 @@ public class teacher_creation_of_travel extends AppCompatActivity implements Tim
 
         date.setOnClickListener(new View.OnClickListener() {
             @Override
+            /**
+             * מחלקה שמציגה את הDatePicker
+             */
             public void onClick(View view) {
 
                 DialogFragment datePickerFragment = new DatePickerFragment();
@@ -264,13 +276,18 @@ public class teacher_creation_of_travel extends AppCompatActivity implements Tim
 
     }
 
+    /**
+     * מחלקה שמגדירה את הטיול במסד נתונים
+     */
     public void writeTravel(Activitie activitie) {
 
         FirebaseDatabase.getInstance().getReference("Travels").push().setValue(activitie);
         finish();
     }
 
-
+    /**
+     * מחלקה שמאפשרת בחירה לתמונת הטיול מזיכרון של טלפון
+     */
     private void openFileChooser() {
         Intent intent = new Intent();
         intent.setType("image/*");

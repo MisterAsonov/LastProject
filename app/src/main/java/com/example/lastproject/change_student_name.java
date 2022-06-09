@@ -83,6 +83,9 @@ public class change_student_name extends AppCompatActivity {
 
                 user_ref.child(id).updateChildren(User).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
+                    /**
+                     * מחלקה שמשנה את השם ושם המשפחה של החניך במסד נתונים
+                     */
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
 

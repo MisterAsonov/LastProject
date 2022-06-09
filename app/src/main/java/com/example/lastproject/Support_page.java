@@ -20,6 +20,9 @@ public class Support_page extends AppCompatActivity {
         back = findViewById(R.id.btn_contact_back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
+            /**
+             * מחלקה שסוגרת את הActivity
+             */
             public void onClick(View view) {
                 finish();
             }

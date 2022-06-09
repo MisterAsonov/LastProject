@@ -45,7 +45,9 @@ public class report_for_student extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         if(item.getItemId() == R.id.delete){
-
+/**
+ * פעולה שמסירה את הבקשה ממסד נתונים
+ */
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             String userID = user.getUid();
             mPostReference = FirebaseDatabase.getInstance().getReference().child("Reports").child(userID).child(key);
@@ -57,7 +59,9 @@ public class report_for_student extends AppCompatActivity {
             return true;
 
         }
-
+/**
+ * פעולה שמשנה את הגדר מופעל של שדות עם נושא, תיאור ,בניין, חדר
+ */
         if(item.getItemId() == R.id.edit){
 
             tv_titel.setEnabled(true);
@@ -119,6 +123,9 @@ public class report_for_student extends AppCompatActivity {
 
         update.setOnClickListener(new View.OnClickListener() {
             @Override
+            /**
+             * מחלקה שעושה שינוי של בקשה במסד נתונים
+             */
             public void onClick(View view) {
                 Map<String, Object> Report = new HashMap<>();
                 Report.put("title", tv_titel.getText().toString());

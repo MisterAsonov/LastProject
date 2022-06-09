@@ -100,6 +100,9 @@ public class Teacher_Main_Screen extends AppCompatActivity implements TimePicker
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
+            /**
+             * מחלקה שפותחת את התפריט צד
+             */
             public void onClick(View v) {
 
                 drawer.openDrawer(GravityCompat.START);
@@ -117,6 +120,9 @@ public class Teacher_Main_Screen extends AppCompatActivity implements TimePicker
 
         reference.child(creatorID).addValueEventListener(new ValueEventListener() {
             @Override
+            /**
+             * נחלקה שמקבל תמונת פרופיל, שם ושם המשפחה ודואר של משתמש ממסד נתונים
+             */
             public void onDataChange(DataSnapshot snapshot) {
                     User p = snapshot.getValue(User.class);
                     header_email.setText(p.getEmail());
@@ -140,6 +146,9 @@ public class Teacher_Main_Screen extends AppCompatActivity implements TimePicker
 
         headerImage.setOnClickListener(new View.OnClickListener() {
             @Override
+            /**
+             * מחלקה שמפנה למסך פרופיל של משתמש
+             */
             public void onClick(View view) {
                 Intent intent2 = new Intent(Teacher_Main_Screen.this, Profile.class);
                 startActivity(intent2);
@@ -157,11 +166,17 @@ public class Teacher_Main_Screen extends AppCompatActivity implements TimePicker
                         break;
 
                     case R.id.support:
+                        /**
+                         * מחלקה שמפנה למסך עם צור קשר
+                         */
                         Intent intent4 = new Intent(Teacher_Main_Screen.this, Support_page.class);
                         startActivity(intent4);
                         break;
 
                     case R.id.logout:
+                        /**
+                         * מחלקה שיוצאת מחשבון של משתמש ומפנה למסך כניסה
+                         */
                         FirebaseAuth.getInstance().signOut();
                         Intent intent = new Intent(Teacher_Main_Screen.this, LoginScreen.class);
                         startActivity(intent);
@@ -179,6 +194,12 @@ public class Teacher_Main_Screen extends AppCompatActivity implements TimePicker
 
     }
 
+    /**
+     * מחלקה שפותחת את הTimePickerFragment ושומרת זמן לשיחת קבוצה במסד נתונים
+     * @param timePicker
+     * @param hour
+     * @param minute
+     */
     @Override
     public void onTimeSet(TimePicker timePicker, int hour, int minute) {
         String teaceherId = FirebaseAuth.getInstance().getCurrentUser().getUid();

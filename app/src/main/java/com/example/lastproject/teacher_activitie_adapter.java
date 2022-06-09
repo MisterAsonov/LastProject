@@ -32,7 +32,11 @@ public class teacher_activitie_adapter extends RecyclerView.Adapter<teacher_acti
     ArrayList<String> keys;
 
 
-
+    /**
+     * מחלקה מקבלת Key
+     * של הטיול
+     * @param keys
+     */
     public void setKeys(ArrayList<String> keys) {
         this.keys = keys;
         notifyDataSetChanged();
@@ -85,6 +89,9 @@ public class teacher_activitie_adapter extends RecyclerView.Adapter<teacher_acti
 
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
+            /**
+             * מחלקה שמפנה למסך עם פרטים של טיול
+             */
             public void onClick(View v) {
 
                 Intent intent = new Intent(context, event_details.class);
@@ -105,6 +112,10 @@ public class teacher_activitie_adapter extends RecyclerView.Adapter<teacher_acti
 
     }
 
+    /**
+     * מחלקה שמחזירה את המספר הטיולים
+     * @return
+     */
     @Override
     public int getItemCount() {
         return activities.size();

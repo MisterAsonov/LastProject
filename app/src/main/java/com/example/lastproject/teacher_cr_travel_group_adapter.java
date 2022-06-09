@@ -37,12 +37,23 @@ public class teacher_cr_travel_group_adapter extends RecyclerView.Adapter<teache
     boolean isSelected = false;
     ArrayList<String> id_of_participant = new ArrayList<>();
 
-
+    /**
+     * מחלקה שמקבלת את הkey
+     * ל המשתתפ בטיול
+     * @param keys
+     */
     public void setKeys(ArrayList<String> keys) {
         this.keys = keys;
         notifyDataSetChanged();
     }
 
+    /**
+     * מחלקה שמגדירה מי זה משתתפ בטיול
+     * @param users
+     * @param context
+     * @param ids
+     * @param ivents
+     */
     public teacher_cr_travel_group_adapter(ArrayList<User> users, Context context, ArrayList<String> ids,teacher_ivents ivents) {
         this.id_of_participant = ids;
         this.ivents = ivents;
@@ -98,6 +109,11 @@ public class teacher_cr_travel_group_adapter extends RecyclerView.Adapter<teache
                     .into(viewHolder.photo);}
 
         viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            /**
+             * מחלקה שמחזהרה true כאשר היתה לחיצה ארוכה על משתתף ומסיפה אותו לרשימת המשתתפים בטיול אחרת מסירה אותו מרשימה ומחזירה false
+             * @param view
+             * @return
+             */
             @Override
             public boolean onLongClick(View view) {
 
@@ -146,10 +162,17 @@ public class teacher_cr_travel_group_adapter extends RecyclerView.Adapter<teache
 
     }
 
+    /**
+     * מחלקה מחזירה מספר משתתפים בטיול
+     * @return
+     */
     public int getItemCount() {
         return users.size();
     }
 
+    /**
+     * מחלקה מסירה כל המשתתפים בטיול
+     */
     public void ClearSelections(){
         id_of_participant.clear();
         isSelected = false;
@@ -158,6 +181,10 @@ public class teacher_cr_travel_group_adapter extends RecyclerView.Adapter<teache
 
     }
 
+    /**
+     * מחלקה מחזירה רשימה חדשה אם משתתפים בטיול
+     * @return
+     */
     public ArrayList<String> getList(){
         return id_of_participant;
     }

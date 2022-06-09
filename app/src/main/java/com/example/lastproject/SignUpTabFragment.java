@@ -66,6 +66,9 @@ public class SignUpTabFragment extends Fragment {
 
             spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
+                /**
+                 * מחלקה שמציגה את הסיגי המשתמשים
+                 */
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                     who = adapterView.getItemAtPosition(i).toString();
 
@@ -91,6 +94,9 @@ public class SignUpTabFragment extends Fragment {
             qr_scanner.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    /**
+                     * מחלקה שמפנה למסך עם סריקת הקוד
+                     */
                     Intent intent = new Intent(getActivity(), qr_scanner.class);
 
                     startActivityForResult(intent, SighAppTabRequestCode );
@@ -114,6 +120,10 @@ public class SignUpTabFragment extends Fragment {
 
     }
 
+    /**
+     * מחלקה שרושמת את המשתמש במסד הנתונים
+     * ןבודקת שדות עם דואר וסיסמה לדרישןת
+     */
     private void registerUser(){
 
             String email = ETemail.getText().toString().trim();

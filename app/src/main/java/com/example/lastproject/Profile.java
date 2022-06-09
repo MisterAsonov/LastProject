@@ -62,13 +62,22 @@ public class Profile extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.change_name:
+                /**
+                 * פעולה שמפנה למסך עם שינוי שם של משתמש
+                 */
                 Intent intent = new Intent(Profile.this, change_my_name.class);
                 startActivity(intent);
                 return true;
             case R.id.new_photo:
+                /**
+                 * פעולה מאפשרת שינוי תמונת פרופיל
+                 */
                 openFileChooser();
                 return true;
             case R.id.log_out:
+                /**
+                 * פעולה שיוצאת מחשבון ומפנה למסך כניסה
+                 */
                 FirebaseAuth.getInstance().signOut();
                 Intent intent2 = new Intent(Profile.this, LoginScreen.class);
                 startActivity(intent2);
@@ -80,6 +89,9 @@ public class Profile extends AppCompatActivity {
 
     }
 
+    /**
+     * מחלקה שפותחת את התמונות מזכרון של תלפון
+     */
     private void openFileChooser() {
         Intent intent = new Intent();
         intent.setType("image/*");
@@ -137,6 +149,9 @@ public class Profile extends AppCompatActivity {
 
         mStorageRef = FirebaseStorage.getInstance().getReference("Users");
 
+        /**
+         * פעולה שמקבלת את הדואר, שם והסוג המשתמש ממסד נתונים
+         */
         user_ref.child(creatorID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
@@ -166,6 +181,9 @@ public class Profile extends AppCompatActivity {
         return mime.getExtensionFromMimeType(cR.getType(uri));
     }
 
+    /**
+     * מחלקה שעושה שינוי של שתמונת פרופיל במסד נתונים
+     */
     private void uploadFile() {
         if (mImageUri != null) {
             StorageReference fileReference = mStorageRef.child(System.currentTimeMillis()

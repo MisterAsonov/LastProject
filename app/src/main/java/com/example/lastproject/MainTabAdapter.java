@@ -14,6 +14,9 @@ public class MainTabAdapter extends FragmentStateAdapter {
 
     @NonNull
     @Override
+    /**
+     * מחלקה מחזירה את הפרגמת על ישי לחיצה על TabView
+     */
     public Fragment createFragment(int position) {
         switch (position){
             case 0:
@@ -22,7 +25,10 @@ public class MainTabAdapter extends FragmentStateAdapter {
         }
         return new ReportFragment();
     }
-
+    /**
+     * מחלקה שמחזירה מספר פרגמנתים בTabView
+     * @return
+     */
     @Override
     public int getItemCount() {
         return 2;

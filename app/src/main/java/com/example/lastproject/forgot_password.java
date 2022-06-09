@@ -33,6 +33,9 @@ public class forgot_password extends AppCompatActivity {
 
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
+            /**
+             * מחלקה סוגרת את הActivity
+             */
             public void onClick(View view) {
                 finish();
             }
@@ -62,7 +65,10 @@ public class forgot_password extends AppCompatActivity {
 
     }
 
-
+    /**
+     * מחלקה שעושה שיחזור סיסמה של משתמש על ידי מסד נתונים
+     * @param mail
+     */
     private void reset(String mail){
         auth = FirebaseAuth.getInstance();
         auth.sendPasswordResetEmail(mail).addOnCompleteListener(new OnCompleteListener<Void>() {

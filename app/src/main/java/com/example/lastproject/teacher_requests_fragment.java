@@ -63,6 +63,9 @@ public class teacher_requests_fragment extends Fragment {
         return view;
     }
 
+    /**
+     * מחלקה שמקבלת רשימת הבקשות ממסד הנתונים
+     */
     private void retrieveData() {
         String creatorID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 

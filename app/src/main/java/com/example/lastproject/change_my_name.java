@@ -95,6 +95,9 @@ public class change_my_name extends AppCompatActivity {
 
                 user_ref.child(creatorID).updateChildren(User).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
+                    /**
+                     * מחלקה שמשנה את השם ושם המשפחה של משתמש במסד נתונים
+                     */
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
 

@@ -22,25 +22,39 @@
         <entry key="..\:/LastProject/app/src/main/res/drawable/curcle.xml" value="0.3365740740740741" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/edit_text_bg.xml" value="0.37864583333333335" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/fon1.xml" value="0.37864583333333335" />
+        <entry key="..\:/LastProject/app/src/main/res/drawable/ic_baseline_access_time_24.xml" value="0.26614583333333336" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.37395833333333334" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/ic_baseline_add.xml" value="0.37864583333333335" />
+        <entry key="..\:/LastProject/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.26614583333333336" />
+        <entry key="..\:/LastProject/app/src/main/res/drawable/ic_baseline_add_a_photo_24.xml" value="0.26614583333333336" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.3365740740740741" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/ic_baseline_arrow_back_ios_24.xml" value="0.37395833333333334" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/ic_baseline_arrow_forward_ios_24.xml" value="0.37395833333333334" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/ic_baseline_check_24.xml" value="0.37864583333333335" />
+        <entry key="..\:/LastProject/app/src/main/res/drawable/ic_baseline_clear_24.xml" value="0.26614583333333336" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.3365740740740741" />
+        <entry key="..\:/LastProject/app/src/main/res/drawable/ic_baseline_edit_24.xml" value="0.26614583333333336" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/ic_baseline_event_note_24.xml" value="0.37864583333333335" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/ic_baseline_group_24.xml" value="0.37864583333333335" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/ic_baseline_hearing_24.xml" value="0.37864583333333335" />
+        <entry key="..\:/LastProject/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.26614583333333336" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/ic_baseline_image_24.xml" value="0.37395833333333334" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/ic_baseline_keyboard_arrow_left_24.xml" value="0.37395833333333334" />
+        <entry key="..\:/LastProject/app/src/main/res/drawable/ic_baseline_login_purp_24.xml" value="0.26614583333333336" />
+        <entry key="..\:/LastProject/app/src/main/res/drawable/ic_baseline_mail_outline_24.xml" value="0.26614583333333336" />
+        <entry key="..\:/LastProject/app/src/main/res/drawable/ic_baseline_menu_24.xml" value="0.26614583333333336" />
+        <entry key="..\:/LastProject/app/src/main/res/drawable/ic_baseline_more_vert_24.xml" value="0.26614583333333336" />
+        <entry key="..\:/LastProject/app/src/main/res/drawable/ic_baseline_notifications_24.xml" value="0.26614583333333336" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/ic_baseline_outlined_flag_24.xml" value="0.37864583333333335" />
+        <entry key="..\:/LastProject/app/src/main/res/drawable/ic_baseline_person_outline_24.xml" value="0.26614583333333336" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/ic_baseline_place_24.xml" value="0.37864583333333335" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/ic_baseline_qr_code_24.xml" value="0.3365740740740741" />
+        <entry key="..\:/LastProject/app/src/main/res/drawable/ic_baseline_qr_code_white_24.xml" value="0.26614583333333336" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.37395833333333334" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/ic_baseline_visibility_24.xml" value="0.3365740740740741" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/ic_baseline_visibility_off_24.xml" value="0.3365740740740741" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/ic_chat.xml" value="0.37864583333333335" />
+        <entry key="..\:/LastProject/app/src/main/res/drawable/ic_check_white.xml" value="0.26614583333333336" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/ic_events.xml" value="0.37864583333333335" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/ic_flag.xml" value="0.37864583333333335" />
         <entry key="..\:/LastProject/app/src/main/res/drawable/ic_help.xml" value="0.37864583333333335" />
@@ -82,7 +96,7 @@
         <entry key="..\:/LastProject/app/src/main/res/layout/activity_teacher_creation_of_peilut.xml" value="0.32222222222222224" />
         <entry key="..\:/LastProject/app/src/main/res/layout/activity_teacher_creation_of_travel.xml" value="0.25" />
         <entry key="..\:/LastProject/app/src/main/res/layout/activity_teacher_fragment.xml" value="0.32222222222222224" />
-        <entry key="..\:/LastProject/app/src/main/res/layout/activity_teacher_group_fragment.xml" value="0.3625" />
+        <entry key="..\:/LastProject/app/src/main/res/layout/activity_teacher_group_fragment.xml" value="0.33" />
         <entry key="..\:/LastProject/app/src/main/res/layout/activity_teacher_grouptalk_dialog.xml" value="0.32222222222222224" />
         <entry key="..\:/LastProject/app/src/main/res/layout/activity_teacher_main_screen.xml" value="0.264" />
         <entry key="..\:/LastProject/app/src/main/res/layout/activity_teacher_requests_fragment.xml" value="0.32222222222222224" />
@@ -99,7 +113,7 @@
         <entry key="..\:/LastProject/app/src/main/res/layout/layout_listitem.xml" value="0.3625" />
         <entry key="..\:/LastProject/app/src/main/res/layout/layout_top_bar.xml" value="0.3625" />
         <entry key="..\:/LastProject/app/src/main/res/layout/layout_top_tabs.xml" value="0.3625" />
-        <entry key="..\:/LastProject/app/src/main/res/layout/login_tab_fragment.xml" value="0.3625" />
+        <entry key="..\:/LastProject/app/src/main/res/layout/login_tab_fragment.xml" value="0.22" />
         <entry key="..\:/LastProject/app/src/main/res/layout/more_participants_list.xml" value="0.3625" />
         <entry key="..\:/LastProject/app/src/main/res/layout/nav_header.xml" value="0.3625" />
         <entry key="..\:/LastProject/app/src/main/res/layout/participants_list.xml" value="0.3625" />
@@ -127,6 +141,12 @@
         <entry key="..\:/LastProject/app/src/main/res/xml/activity_teacher_student_profile_scence.xml" value="0.32222222222222224" />
       </map>
     </option>
+  </component>
+  <component name="JavadocGenerationManager">
+    <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/../javadoc" />
+    <option name="OPTION_DOCUMENT_TAG_USE" value="true" />
+    <option name="OPTION_DOCUMENT_TAG_AUTHOR" value="true" />
+    <option name="OPTION_DOCUMENT_TAG_VERSION" value="true" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />

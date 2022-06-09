@@ -14,6 +14,9 @@ public class main_teacher_tab_adapter extends FragmentStateAdapter {
 
     @NonNull
     @Override
+    /**
+     * מחלקה מחזירה את הפרגמת על ישי לחיצה על TabView
+     */
     public Fragment createFragment(int position) {
         switch (position){
             case 0:
@@ -27,7 +30,10 @@ public class main_teacher_tab_adapter extends FragmentStateAdapter {
         }
         return new teacher_requests_fragment();
     }
-
+    /**
+     * מחלקה שמחזירה מספר פרגמנתים בTabView
+     * @return
+     */
     @Override
     public int getItemCount() {
         return 3;

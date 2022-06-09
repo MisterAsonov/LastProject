@@ -76,6 +76,7 @@ public class teacher_activity_fragment extends Fragment {
 
 
         fab.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 animateFAB();
@@ -84,6 +85,10 @@ public class teacher_activity_fragment extends Fragment {
         });
 
         fab1.setOnClickListener(new View.OnClickListener() {
+            /**
+             * מחלקה שמציגה את הTimePickerDialog
+             * @param v
+             */
             @Override
             public void onClick(View v) {
                 DialogFragment timePickerFragment = new TimePickerFragment();
@@ -97,6 +102,9 @@ public class teacher_activity_fragment extends Fragment {
 
         fab2.setOnClickListener(new View.OnClickListener() {
             @Override
+            /**
+             * חלקה שמםנה למסך יוצר טיול חדש
+             */
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), teacher_creation_of_travel.class);
                 startActivity(intent);
@@ -137,7 +145,11 @@ public class teacher_activity_fragment extends Fragment {
         public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
             return false;
         }
-
+        /**
+         * מחלקה שמסירת נסיעה מהרשימה על ידי החלקה ימינה
+         * @param viewHolder
+         * @param direction
+         */
         @Override
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
 
@@ -162,6 +174,16 @@ public class teacher_activity_fragment extends Fragment {
 
         }
 
+        /**
+         * מחלקה שמציירת רקע להסרת טיול מרשימת הנסיעות על ידי החלקה ימינה
+         * @param c
+         * @param recyclerView
+         * @param viewHolder
+         * @param dX
+         * @param dY
+         * @param actionState
+         * @param isCurrentlyActive
+         */
         @Override
         public void onChildDraw (Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder,float dX, float dY,int actionState, boolean isCurrentlyActive){
 
@@ -178,8 +200,10 @@ public class teacher_activity_fragment extends Fragment {
     };
 
 
-
-
+    /**
+     * מחלקה שמציגה את התפריט הכפתורים אם היה לחיצה על כפתור
+     * אחרת סוגרת את התפריט
+     */
     private void animateFAB() {
         if(isOpen){
             fab.startAnimation(rotate_backward);
@@ -197,7 +221,9 @@ public class teacher_activity_fragment extends Fragment {
             isOpen=true;
         }
     }
-
+    /**
+     * מחלקה מקבלת רשימה של נסיעות ממסד הנתונים המכילות את מזהה המשתמש
+     */
     private void retrieveData() {
         String MyID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
@@ -224,6 +250,9 @@ public class teacher_activity_fragment extends Fragment {
             }
         });
     }
+    /**
+     *מחלקה שמקבלת את הזמן לשיחת קבוצה ובודקת אם זמן השיחה רלונתית להיום
+     */
 
     private void retrieveData1() {
 

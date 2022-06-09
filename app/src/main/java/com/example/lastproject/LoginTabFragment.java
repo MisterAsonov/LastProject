@@ -53,6 +53,9 @@ public class LoginTabFragment extends Fragment {
         btn_forgot_pas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                /**
+                 * מחלקה למפנה למסך עם שיחזור סיסמה
+                 */
                 Intent intent = new Intent(getActivity(), forgot_password.class);
                 startActivity(intent);
             }
@@ -63,6 +66,9 @@ public class LoginTabFragment extends Fragment {
 
         visible.setOnClickListener(new View.OnClickListener() {
             @Override
+            /**
+             * מחלקה שמשנה את הראות סיסמה בתוך סדה הסיסמה
+             */
             public void onClick(View view) {
                 ETpassword.setInputType(InputType.TYPE_CLASS_TEXT);
                 visible.setVisibility(View.GONE);
@@ -72,6 +78,9 @@ public class LoginTabFragment extends Fragment {
 
         invisible.setOnClickListener(new View.OnClickListener() {
             @Override
+            /**
+             * מחלקה שמשנה את הראות סיסמה בתוך סדה הסיסמה
+             */
             public void onClick(View view) {
                 ETpassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                 visible.setVisibility(View.VISIBLE);
@@ -113,7 +122,9 @@ public class LoginTabFragment extends Fragment {
     }
 
     private boolean userLogin(){
-
+/**
+ * מחלקה שמחזירה true כאשר משתמש קיים במסד נתונים וכל סדות מתאימות לדרישות אחרת מחזירה false
+ */
         boolean isChecked = saveme.isChecked();
         String email = ETemail.getText().toString().trim();
         String password = ETpassword.getText().toString().trim();
@@ -142,7 +153,6 @@ public class LoginTabFragment extends Fragment {
             return false;
         }
 
-        //если только аторизация прошла сохранить логин и пароль
 
         if(isChecked){
             saveUserData();
@@ -151,6 +161,9 @@ public class LoginTabFragment extends Fragment {
         return true;
     }
 
+    /**
+     * חלקה שומר שם המשתמש וסיסמה של משתמש וזיכרון פנימי בטלפון
+     */
     private void saveUserData() {
         String email = ETemail.getText().toString();
         String password = ETpassword.getText().toString();

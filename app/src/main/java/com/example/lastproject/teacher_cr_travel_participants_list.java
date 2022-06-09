@@ -54,6 +54,10 @@ public class teacher_cr_travel_participants_list extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         adapter = new teacher_cr_travel_group_adapter(StudentsList, this, data.getStringArrayListExtra("id"),new teacher_cr_travel_group_adapter.teacher_ivents() {
+            /**
+             * אם מספר המשתתפים גדול מ8 משנה את מראת של כפטורים אחרת משנה את מראת הכפתורים
+             * @param count
+             */
             @Override
             public void update_selections(int count) {
                 if(count>0) {
@@ -70,6 +74,9 @@ public class teacher_cr_travel_participants_list extends AppCompatActivity {
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
+            /**
+             * מחלקה שסוגרת את הActivity
+             */
             public void onClick(View view) {
                 finish();
             }
@@ -77,6 +84,9 @@ public class teacher_cr_travel_participants_list extends AppCompatActivity {
 
         clear.setOnClickListener(new View.OnClickListener() {
             @Override
+            /**
+             * מחלקה שמסירה כל המשתתפים מרשימה
+             */
             public void onClick(View view) {
                 adapter.ClearSelections();
             }
@@ -86,6 +96,9 @@ public class teacher_cr_travel_participants_list extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                /**
+                 * מחלקה ששומרת שינוים וסוגרת הActivity
+                 */
             Intent returnIntent = new Intent();
                             returnIntent.putStringArrayListExtra("id",adapter.getList());
                             setResult(Activity.RESULT_OK, returnIntent);
@@ -105,6 +118,9 @@ public class teacher_cr_travel_participants_list extends AppCompatActivity {
 
     }
 
+    /**
+     * מחלקה מקבלת את המספר המשתתפים בטיול במסד נתונים
+     */
     private void retrieveData() {
 
         String teaceherId = FirebaseAuth.getInstance().getCurrentUser().getUid();

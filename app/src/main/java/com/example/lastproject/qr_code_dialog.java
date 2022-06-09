@@ -63,6 +63,9 @@ public class qr_code_dialog extends DialogFragment {
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
+            /**
+             * מחלקה שסוגרת דיאלוג
+             */
             public void onClick(View view) {
                 dismiss();
             }
@@ -77,6 +80,9 @@ public class qr_code_dialog extends DialogFragment {
 
         share.setOnClickListener(new View.OnClickListener() {
             @Override
+            /**
+             * מחלקה שמאפשרת שיתוף קוד בזמנה דרך סמס
+             */
             public void onClick(View view) {
                 Intent myIntent = new Intent(Intent.ACTION_SEND);
                 myIntent.setType("text/plain");
@@ -106,8 +112,9 @@ public class qr_code_dialog extends DialogFragment {
     }
 
 
-
-
+    /**
+     * מחלקה שמקבלת את התמונת הפרופיל ושם המשתמש ממסד נתונים
+     */
     private void retrieveData() {
 
         users.child(userID).addValueEventListener(new ValueEventListener() {
@@ -133,6 +140,9 @@ public class qr_code_dialog extends DialogFragment {
 
     @NonNull
     @Override
+    /**
+     * מחלקה שסוגרת דיאלוג
+     */
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         Dialog dialog = super.onCreateDialog(savedInstanceState);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);

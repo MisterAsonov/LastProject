@@ -71,6 +71,9 @@ public class teacher_group_fragment extends Fragment {
 
         btn_addStudent.setOnClickListener(new View.OnClickListener() {
             @Override
+            /**
+             * מחלקה שפותחת דיאלוג אם קוד הזמנה
+             */
             public void onClick(View view) {
 
                 FragmentManager fragmentManager = getParentFragmentManager();
@@ -99,6 +102,9 @@ public class teacher_group_fragment extends Fragment {
 
     }
 
+    /**
+     * מחלקה שמקבלת את הרשימה עם כל המשתתפים בקבוצה ממסד נתונים
+     */
     private void retrieveData() {
 
         String teaceherId = FirebaseAuth.getInstance().getCurrentUser().getUid();

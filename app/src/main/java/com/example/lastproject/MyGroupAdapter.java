@@ -26,11 +26,21 @@ public class MyGroupAdapter extends RecyclerView.Adapter<MyGroupAdapter.ViewHold
     ArrayList<String> keys;
     String creatorID;
 
+    /**
+     * מחלקה שמקבל את הkey
+     * של משתתף בקבוצה
+     * @param keys
+     */
     public void setKeys(ArrayList<String> keys) {
         this.keys = keys;
         notifyDataSetChanged();
     }
 
+    /**
+     * מחלקה שממשת את המשתתף בקבוצה
+     * @param users
+     * @param context
+     */
     public MyGroupAdapter(ArrayList<User> users, Context context) {
         this.users = users;
         this.context = context;
@@ -83,13 +93,18 @@ public class MyGroupAdapter extends RecyclerView.Adapter<MyGroupAdapter.ViewHold
             @Override
             public void onClick(View v) {
 
-
+/**
+ * מחלקה שמפנה למסך פרופיל המשתמש אם הוא לחץ על עצמו ברשימת האנשים בקבוצה
+ */
                 if(creatorID.equals(tmp.getUID())){
                     Intent intent1 = new Intent(context, Profile.class);
                     context.startActivity(intent1);
                     return;
                 }
 
+                /**
+                 * מחלקה שמפנה למסך עם פרטים של בן אדם בקבוצה
+                 */
                 Intent intent = new Intent(context, teacher_Student_Profile.class);
                 intent.putExtra("tv_name", tmp.getName());
                 intent.putExtra("tv_lname", tmp.getLastname());
@@ -104,6 +119,11 @@ public class MyGroupAdapter extends RecyclerView.Adapter<MyGroupAdapter.ViewHold
             }
         });
     }
+
+    /**
+     * מחלקה שמחזירה את המספר האנשים בקבוצה
+     * @return
+     */
     public int getItemCount() {
         return users.size();
     }

@@ -108,6 +108,9 @@ public class change_travel extends AppCompatActivity implements TimePickerFragme
 
         photo.setOnClickListener(new View.OnClickListener() {
             @Override
+            /**
+             * מחלקה שמשנה שת הראות שלכפתור על ידי למיצה על תמונה
+             */
             public void onClick(View view) {
                 btn_change_image.startAnimation(fade_in);
                 btn_change_image.setVisibility(View.VISIBLE);
@@ -145,6 +148,9 @@ public class change_travel extends AppCompatActivity implements TimePickerFragme
 
         brn_invite.setOnClickListener(new View.OnClickListener() {
             @Override
+            /**
+             * מחלקה שמפנה למסך עם רשימת המשתתפים בטיול
+             */
             public void onClick(View view) {
                 Intent intent = new Intent(change_travel.this, teacher_cr_travel_participants_list.class);
                 intent.putStringArrayListExtra("id", event_participants);
@@ -154,6 +160,7 @@ public class change_travel extends AppCompatActivity implements TimePickerFragme
 
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
+
             public void onClick(View view) {
                 if (ETtitel.getText().toString().isEmpty()) {
                     ETtitel.setError("Title is empty!");
@@ -236,6 +243,9 @@ public class change_travel extends AppCompatActivity implements TimePickerFragme
 
         TVtime.setOnClickListener(new View.OnClickListener() {
             @Override
+            /**
+             * מחלקה שמציגה את הTimePicker
+             */
             public void onClick(View view) {
 
                 DialogFragment timePickerFragment = new TimePickerFragment();
@@ -247,6 +257,9 @@ public class change_travel extends AppCompatActivity implements TimePickerFragme
 
         TVdate.setOnClickListener(new View.OnClickListener() {
             @Override
+            /**
+             * מחלקה שמציגה את הDatePicker
+             */
             public void onClick(View view) {
 
                 DialogFragment datePickerFragment = new DatePickerFragment();
@@ -259,6 +272,9 @@ public class change_travel extends AppCompatActivity implements TimePickerFragme
 
     }
 
+    /**
+     * מחלקה ששומרת שינוים של הטיול במסד נתונים
+     */
     private void updateTravel(String titel, String location, String date, String time, String desc, String url, ArrayList<String> event_participants) {
         Map<String, Object> activitie = new HashMap<>();
 
@@ -289,6 +305,9 @@ public class change_travel extends AppCompatActivity implements TimePickerFragme
 
     }
 
+    /**
+     * מחלקה שמאפשרת בחירה לתמונת הטיול מזיכרון של טלפון
+     */
     private void openFileChooser() {
         Intent intent = new Intent();
         intent.setType("image/*");

@@ -98,7 +98,9 @@ public class MainActivity extends AppCompatActivity  {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+/**
+ * מחלקה שפותחת את התפריט צד
+ */
                 drawer.openDrawer(GravityCompat.START);
 
             }
@@ -114,6 +116,9 @@ public class MainActivity extends AppCompatActivity  {
 
         reference.child(creatorID).addValueEventListener(new ValueEventListener() {
             @Override
+            /**
+             * נחלקה שמקבל תמונת פרופיל, שם ושם המשפחה ודואר של משתמש ממסד נתונים
+             */
             public void onDataChange(DataSnapshot snapshot) {
                 User p = snapshot.getValue(User.class);
                 header_email.setText(p.getEmail());
@@ -133,6 +138,9 @@ public class MainActivity extends AppCompatActivity  {
 
         headerImage.setOnClickListener(new View.OnClickListener() {
             @Override
+            /**
+             * מחלקה שמפנה למסך פרופיל של משתמש
+             */
             public void onClick(View view) {
                 Intent intent2 = new Intent(MainActivity.this, Profile.class);
                 startActivity(intent2);
@@ -151,12 +159,18 @@ public class MainActivity extends AppCompatActivity  {
 
 
                     case R.id.support:
+                        /**
+                         * מחלקה שמפנה למסך עם צור קשר
+                         */
                         Intent intent4 = new Intent(MainActivity.this, Support_page.class);
                         startActivity(intent4);
                         break;
 
 
                     case R.id.logout:
+                        /**
+                         * מחלקה שיוצאת מחשבון של משתמש ומפנה למסך כניסה
+                         */
                         FirebaseAuth.getInstance().signOut();
                         Intent intent = new Intent(MainActivity.this, LoginScreen.class);
                         startActivity(intent);
