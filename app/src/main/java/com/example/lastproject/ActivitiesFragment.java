@@ -40,7 +40,7 @@ TextView tv_moadon;
     teacher_activitie_adapter adapter;
 
     DatabaseReference act_ref;
-
+boolean chek;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
