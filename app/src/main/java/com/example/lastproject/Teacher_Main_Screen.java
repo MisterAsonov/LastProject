@@ -72,6 +72,7 @@ public class Teacher_Main_Screen extends AppCompatActivity implements TimePicker
 
         FragmentManager fm = getSupportFragmentManager();
         adapter = new main_teacher_tab_adapter(fm, getLifecycle());
+
         pager2.setAdapter(adapter);
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {

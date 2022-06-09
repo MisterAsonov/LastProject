@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,21 +31,22 @@ import java.util.Calendar;
 
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 
-public class ActivitiesFragment extends Fragment {
+public class ActivitiesFragment extends Fragment{
 DatabaseReference group_ref,user_ref;
 TextView tv_moadon;
 
+    SwipeRefreshLayout mSwipeRefreshLayout;
     RecyclerView recyclerView;
     ArrayList<Activitie> activitie_list;
     ArrayList<String> keys;
     teacher_activitie_adapter adapter;
 
     DatabaseReference act_ref;
-boolean chek;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         ViewGroup view = (ViewGroup) inflater.inflate(R.layout.activities_fragment,container,false);
+
 
         group_ref = FirebaseDatabase.getInstance().getReference("Groups");
         user_ref = FirebaseDatabase.getInstance().getReference("Users");
@@ -73,6 +75,8 @@ boolean chek;
         return view;
     }
 
+
+
     private void retrieveData1() {
 
         Calendar mCalendar = Calendar.getInstance();
@@ -92,30 +96,31 @@ boolean chek;
                 group_ref.child(uid.referal_link).child("Moadon").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot snapshot) {
+
                       Moadon moadon = snapshot.getValue(Moadon.class);
 
-                      if(moadon.getYear() == year && moadon.getMonth() == month && moadon.getDay() == day) {
+                      if(moadon != null) {
 
-                          if (moadon != null) {
+                          if (moadon.getYear() == year && moadon.getMonth() == month && moadon.getDay() == day || moadon != null) {
 
-                              if (moadon.getMinute() != 0) {
 
-                                  if (moadon.getMinute() < 10) {
-                                      tv_moadon.setText("Group talk today at:  " + moadon.getHours() + ":0" + moadon.getMinute());
-                                  }else{
-                                      tv_moadon.setText("Group talk today at:  " + moadon.getHours() + ":" + moadon.getMinute());
+                                  if (moadon.getMinute() != 0) {
+
+                                      if (moadon.getMinute() < 10) {
+                                          tv_moadon.setText("Group talk today at:  " + moadon.getHours() + ":0" + moadon.getMinute());
+                                      } else {
+                                          tv_moadon.setText("Group talk today at:  " + moadon.getHours() + ":" + moadon.getMinute());
+                                      }
+
+                                  } else {
+                                      tv_moadon.setText("Group talk today at:  " + moadon.getHours() + ":00");
                                   }
 
-                              }else {
-                                  tv_moadon.setText("Group talk today at:  " + moadon.getHours() + ":00");
-                              }
-                          }
-                          else
+                          } else {
                               tv_moadon.setVisibility(View.GONE);
-
-                      }else{
-                          tv_moadon.setVisibility(View.GONE);
+                          }
                       }
+                        tv_moadon.setVisibility(View.GONE);
                     }
 
                     @Override
@@ -181,7 +186,6 @@ boolean chek;
 
     private void retrieveData() {
         String MyID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
         act_ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
@@ -204,5 +208,7 @@ boolean chek;
                 //no interesting in our purpose in the lesson
             }
         });
+
     }
+
 }

@@ -246,28 +246,28 @@ public class teacher_activity_fragment extends Fragment {
                     public void onDataChange(DataSnapshot snapshot) {
                         Moadon moadon = snapshot.getValue(Moadon.class);
 
-                        if(moadon.getYear() == year && moadon.getMonth() == month && moadon.getDay() == day) {
+                        if(moadon != null) {
 
-                            if (moadon != null) {
+                            if (moadon.getYear() == year && moadon.getMonth() == month && moadon.getDay() == day || moadon != null) {
+
 
                                 if (moadon.getMinute() != 0) {
 
                                     if (moadon.getMinute() < 10) {
                                         tv_moadon.setText("Group talk today at:  " + moadon.getHours() + ":0" + moadon.getMinute());
-                                    }else{
+                                    } else {
                                         tv_moadon.setText("Group talk today at:  " + moadon.getHours() + ":" + moadon.getMinute());
                                     }
 
-                                }else {
+                                } else {
                                     tv_moadon.setText("Group talk today at:  " + moadon.getHours() + ":00");
                                 }
-                            }
-                            else
-                                tv_moadon.setVisibility(View.GONE);
 
-                        }else{
-                            tv_moadon.setVisibility(View.GONE);
+                            } else {
+                                tv_moadon.setVisibility(View.GONE);
+                            }
                         }
+                        tv_moadon.setVisibility(View.GONE);
                     }
 
                     @Override
