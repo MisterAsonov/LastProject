@@ -16,6 +16,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -26,10 +28,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class teacher_Student_Profile extends AppCompatActivity {
 
     ImageButton btn_back;
-    FloatingActionButton btn_add_photo;
     TextView ETname, ETemail, ETwho;
     ImageView photo;
     String name, lastname, email, who, id;
@@ -54,10 +58,66 @@ public class teacher_Student_Profile extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.delite_student:
+
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 String userID = user.getUid();
-                mPostReference = FirebaseDatabase.getInstance().getReference().child("Groups").child(userID).child(key);
-                mPostReference.removeValue();
+
+
+                FirebaseDatabase.getInstance().getReference("Users").child(userID).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        User user = snapshot.getValue(User.class);
+                        //тут он получает приглосительный код учителя
+                        FirebaseDatabase.getInstance().getReference().child("Groups").child(user.getReferal_link()).child(key).addValueEventListener(new ValueEventListener() {
+                            /**
+                             *
+                             * @param snapshot - это id ученика в группе которого я хочу удалить
+                             */
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                                PersonInGroup person = snapshot.getValue(PersonInGroup.class);
+
+                                Map<String, Object> User = new HashMap<>();
+                                User.put("referal_link","");
+
+                                /**
+                                 * тут я хочу убрать приглосительную ссылку у ученика которого я хочу удалить
+                                 */
+                                FirebaseDatabase.getInstance().getReference("Users").child(person.getId_of_student()).updateChildren(User).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if(task.isSuccessful()){
+                                            /**
+                                             * тут я хочу удалить ученика из группы
+                                             */
+                                            mPostReference = FirebaseDatabase.getInstance().getReference().child("Groups").child(user.getReferal_link()).child(key);
+                                            mPostReference.removeValue();
+                                            //в FireBase всё удаляеться как надо но приложение вылетает и пишет что в 87 строчке person.getId_of_student() is null object reference
+                                        }
+                                    }
+                                });
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+
+
+
                 finish();
                 return true;
 

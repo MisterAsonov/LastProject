@@ -1,0 +1,619 @@
+@startuml
+class com.example.lastproject.Report {
+- String title
+- String explanation
+- String status
+- String date
+- String room
+- String building
+- String creator_id
++ <<Create>> Report()
++ <<Create>> Report(String,String,String,String,String,String,String)
++ String getTitle()
++ void setTitle(String)
++ String getExplanation()
++ void setExplanation(String)
++ String getStatus()
++ void setStatus(String)
++ String getDate()
++ void setDate(String)
++ String getRoom()
++ void setRoom(String)
++ String getBuilding()
++ void setBuilding(String)
++ String getCreator_id()
++ void setCreator_id(String)
+}
+class com.example.lastproject.main_teacher_tab_adapter {
++ <<Create>> main_teacher_tab_adapter(FragmentManager,Lifecycle)
++ Fragment createFragment(int)
++ int getItemCount()
+}
+class com.example.lastproject.ReportFragment {
+~ RecyclerView recyclerView
+~ ArrayList<Report> reportsList
+~ ArrayList<String> keys
+~ ReportAdapter adapter
+~ FloatingActionButton fab_btn
+~ boolean flag
+~ DatabaseReference post_ref
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
+- void retrieveData()
+}
+class com.example.lastproject.teacher_cr_act_participant_adapter {
+~ ArrayList<String> id
+~ ArrayList<String> keys
+~ Context context
+~ DatabaseReference student
++ <<Create>> teacher_cr_act_participant_adapter(ArrayList<String>,Context)
++ void setKeys(ArrayList<String>)
++ int getItemViewType(int)
++ RecyclerView.ViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(RecyclerView.ViewHolder,int)
++ int getItemCount()
+}
+class com.example.lastproject.teacher_cr_act_participant_adapter.ViewHolder {
+~ CircleImageView image
++ <<Create>> ViewHolder(View)
+}
+class com.example.lastproject.teacher_cr_act_participant_adapter.ViewHolderMoreStudents {
+~ TextView num
++ <<Create>> ViewHolderMoreStudents(View)
+}
+class com.example.lastproject.ActivitiesFragment {
+~ DatabaseReference group_ref
+~ TextView tv_moadon
+~ RecyclerView recyclerView
+~ ArrayList<Activitie> activitie_list
+~ ArrayList<String> keys
+~ teacher_activitie_adapter adapter
+~ DatabaseReference act_ref
+~ Activitie deleted
+~ ItemTouchHelper.SimpleCallback simpleCallback
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
+- void retrieveData1()
+- void retrieveData()
+}
+class com.example.lastproject.Create_Report {
+~ EditText titel
+~ String status
+~ Button btn_confirm
+- DatabaseReference mDatabase
+# void onCreate(Bundle)
++ void writeNewReport(Report)
+}
+class com.example.lastproject.report_for_student {
+~ EditText tv_titel
+~ TextView tv_date
+~ String title
+~ Button update
+~ String key
+~ DatabaseReference databaseReference
+~ DatabaseReference mPostReference
++ boolean onCreateOptionsMenu(Menu)
++ boolean onOptionsItemSelected(MenuItem)
+# void onCreate(Bundle)
+}
+class com.example.lastproject.Moadon {
+~ int hours
++ <<Create>> Moadon()
++ <<Create>> Moadon(int,int,int,int,int)
++ String toString()
++ int getHours()
++ void setHours(int)
++ int getMinute()
++ void setMinute(int)
++ int getDay()
++ void setDay(int)
++ int getMonth()
++ void setMonth(int)
++ int getYear()
++ void setYear(int)
+}
+class com.example.lastproject.Profile {
+~ String creatorID
+- {static} int PICK_IMAGE_REQUEST
+~ DatabaseReference user_ref
+- StorageReference mStorageRef
+~ TextView name
+~ ImageButton back
+~ FloatingActionButton btn_change_photo
+~ ImageFilterView photo
+- StorageTask mUploadTask
+- Uri mImageUri
++ boolean onCreateOptionsMenu(Menu)
++ boolean onOptionsItemSelected(MenuItem)
+- void openFileChooser()
+# void onActivityResult(int,int,Intent)
+# void onCreate(Bundle)
+- String getFileExtension(Uri)
+- void uploadFile()
+}
+class com.example.lastproject.teacher_activity_fragment {
+~ RecyclerView recyclerView
+~ ArrayList<Activitie> activitie_list
+~ ArrayList<String> keys
+~ teacher_activitie_adapter adapter
+~ TextView tv_moadon
+~ DatabaseReference act_ref
+~ FloatingActionButton fab
+~ FloatingActionButton fab1
+~ FloatingActionButton fab2
+~ boolean isOpen
+~ Animation fab_open
+~ Animation fab_close
+~ Animation rotate_forward
+~ Animation rotate_backward
+~ Activitie deleted
+~ ItemTouchHelper.SimpleCallback simpleCallback
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
+- void animateFAB()
+- void retrieveData()
+- void retrieveData1()
+}
+class com.example.lastproject.teacher_cr_travel_participants_list {
+~ RecyclerView recyclerView
+~ ArrayList<User> StudentsList
+~ ArrayList<String> keys
+~ teacher_cr_travel_group_adapter adapter
+~ ImageButton back
+~ DatabaseReference post_ref
+# void onCreate(Bundle)
+- void retrieveData()
+}
+class com.example.lastproject.MainTabAdapter {
++ <<Create>> MainTabAdapter(FragmentManager,Lifecycle)
++ Fragment createFragment(int)
++ int getItemCount()
+}
+class com.example.lastproject.Support_page {
+~ ImageButton back
+~ TextView mail
+# void onCreate(Bundle)
+}
+class com.example.lastproject.LoginAdapter {
++ <<Create>> LoginAdapter(FragmentManager,Lifecycle)
++ Fragment createFragment(int)
++ int getItemCount()
+}
+class com.example.lastproject.forgot_password {
+~ ImageButton btn_back
+~ Button btn_reset
+~ EditText email
+~ FirebaseAuth auth
+# void onCreate(Bundle)
+- void reset(String)
+}
+class com.example.lastproject.change_student_name {
+~ EditText ETname
+~ ImageButton back
+~ String name
+~ DatabaseReference user_ref
+# void onCreate(Bundle)
+}
+class com.example.lastproject.teacher_requests_fragment {
+~ RecyclerView recyclerView
+~ ArrayList<Report> reportsList
+~ ArrayList<String> keys
+~ ReportAdapter adapter
+~ DatabaseReference post_ref
+- {static} String TAG
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
+- void retrieveData()
+}
+class com.example.lastproject.DatePickerFragment {
+~ DatePickerFragment.DatePickerListener mListener
++ void onAttach(Context)
++ Dialog onCreateDialog(Bundle)
++ void onDateSet(DatePicker,int,int,int)
+}
+interface com.example.lastproject.DatePickerFragment.DatePickerListener {
+~ void onDateSet(DatePicker,int,int,int)
+}
+class com.example.lastproject.teacher_activitie_adapter {
+~ ArrayList<Activitie> activities
+~ Context context
+~ ArrayList<String> keys
++ <<Create>> teacher_activitie_adapter(ArrayList<Activitie>,Context)
++ void setKeys(ArrayList<String>)
++ teacher_activitie_adapter.ViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(ViewHolder,int)
++ int getItemCount()
+}
+class com.example.lastproject.teacher_activitie_adapter.ViewHolder {
+~ TextView title
+~ ImageFilterView image
++ <<Create>> ViewHolder(View)
+}
+class com.example.lastproject.teacher_group_fragment {
+~ RecyclerView recyclerView
+~ ArrayList<User> StudentsList
+~ ArrayList<String> keys
+~ MyGroupAdapter adapter
+~ FloatingActionButton btn_addStudent
+- {static} String TAG
+~ DatabaseReference post_ref
+- FirebaseAuth mAuth
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
+- void retrieveData()
+}
+class com.example.lastproject.change_travel {
+- {static} int PICK_IMAGE_REQUEST
+- {static} int SelectObjectRecuest
+~ ArrayList<String> event_participants
+~ ImageFilterView photo
+~ EditText ETtitel
+~ TextView TVdate
+~ Button btn_save
+~ Handler handler
+~ teacher_cr_act_participant_adapter adapter
+~ RecyclerView recyclerView
+~ String key
+- StorageReference mStorageRef
+- Uri mImageUri
+~ DatabaseReference event_ref
+- StorageTask mUploadTask
+# void onCreate(Bundle)
+- void updateTravel(String,String,String,String,String,String,ArrayList<String>)
+- void openFileChooser()
+# void onActivityResult(int,int,Intent)
+- String getFileExtension(Uri)
++ void onTimeSet(TimePicker,int,int)
++ void onDateSet(DatePicker,int,int,int)
+}
+class com.example.lastproject.LoginTabFragment {
+~ SharedPreferences sp
+~ SharedPreferences.Editor editor
+~ EditText ETemail
+~ Button btn_login
+~ CheckBox saveme
+~ ImageView visible
+~ TextView btn_forgot_pas
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
+- boolean userLogin()
+- void saveUserData()
+}
+class com.example.lastproject.event_details {
+- {static} int SelectObjectRecuest
+~ ImageButton btn_back
+~ Button invite
+~ ImageView photo
+~ TextView tv_titel
+~ String titel
+~ String key
+~ String url_photo
+~ boolean flag
+~ ArrayList<String> event_participants
+~ teacher_cr_act_participant_adapter adapter
+~ RecyclerView recyclerView
+~ DatabaseReference mPostReference
+~ DatabaseReference user_ref
+~ DatabaseReference event_ref
++ boolean onOptionsItemSelected(MenuItem)
+# void onCreate(Bundle)
+- void check()
++ boolean onCreateOptionsMenu(Menu)
+# void onActivityResult(int,int,Intent)
+}
+class com.example.lastproject.PersonInGroup {
+~ String Id_of_student
++ <<Create>> PersonInGroup(String)
++ <<Create>> PersonInGroup()
++ String toString()
++ String getId_of_student()
++ void setId_of_student(String)
+}
+class com.example.lastproject.qr_code_dialog {
+~ CircleImageView photo
+~ ImageView qr_code
+~ TextView name
+~ Button share
+~ String userID
+~ DatabaseReference users
+~ FirebaseAuth mAuth
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
+- void retrieveData()
++ Dialog onCreateDialog(Bundle)
+}
+class com.example.lastproject.qr_scanner {
+- CodeScanner mCodeScanner
+# void onCreate(Bundle)
+# void onResume()
+# void onPause()
+}
+class com.example.lastproject.teacher_cr_travel_group_adapter {
+~ teacher_ivents ivents
+~ ArrayList<User> users
+~ Context context
+~ ArrayList<String> keys
+~ boolean isSelected
+~ ArrayList<String> id_of_participant
++ <<Create>> teacher_cr_travel_group_adapter(ArrayList<User>,Context,ArrayList<String>,teacher_ivents)
++ void setKeys(ArrayList<String>)
++ teacher_cr_travel_group_adapter.ViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(teacher_cr_travel_group_adapter.ViewHolder,int)
++ int getItemCount()
++ void ClearSelections()
++ ArrayList<String> getList()
+}
+interface com.example.lastproject.teacher_cr_travel_group_adapter.teacher_ivents {
+~ void update_selections(int)
+}
+class com.example.lastproject.teacher_cr_travel_group_adapter.ViewHolder {
+~ String UID_of_participant
+~ TextView name
+~ CircleImageView photo
++ <<Create>> ViewHolder(View)
+}
+class com.example.lastproject.teacher_creation_of_travel {
+- {static} int PICK_IMAGE_REQUEST
+- {static} int SelectObjectRecuest
+- {static} String TAG
+~ ArrayList<String> id
+~ ImageFilterView image
+~ EditText titel
+~ TextView date
+~ Button btn_save
+~ Handler handler
+~ teacher_cr_act_participant_adapter adapter
+~ RecyclerView recyclerView
+~ DatabaseReference databaseReference
+- StorageReference mStorageRef
+- Uri mImageUri
+- StorageTask mUploadTask
+# void onCreate(Bundle)
++ void writeTravel(Activitie)
+- void openFileChooser()
+# void onActivityResult(int,int,Intent)
+- String getFileExtension(Uri)
++ void onTimeSet(TimePicker,int,int)
++ void onDateSet(DatePicker,int,int,int)
+}
+class com.example.lastproject.SignUpTabFragment {
+- FirebaseAuth mAuth
+~ FirebaseDatabase database
+~ String who
+~ Spinner spinner
+~ EditText ETemail
+~ ImageView qr_scanner
+~ Button btn_signup
++ {static} int SighAppTabRequestCode
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
++ void onActivityResult(int,int,Intent)
+- void registerUser()
+}
+class com.example.lastproject.change_my_name {
+~ EditText ETname
+~ ImageButton back
+~ String creatorID
+~ DatabaseReference user_ref
+# void onCreate(Bundle)
+}
+class com.example.lastproject.User {
+~ String email
++ <<Create>> User()
++ <<Create>> User(String,String,String,String,String,String,String)
++ String getEmail()
++ void setEmail(String)
++ String getName()
++ void setName(String)
++ String getLastname()
++ void setLastname(String)
++ String getWho()
++ void setWho(String)
++ String getReferal_link()
++ void setReferal_link(String)
++ String getUID()
++ void setUID(String)
++ String getmImageUrl()
++ void setmImageUrl(String)
+}
+class com.example.lastproject.SplashScreen {
+- {static} String TAG
+~ ImageView logo
+~ Animation rotate
+~ Handler handler
+~ String whois
+- FirebaseAuth mAuth
+- DatabaseReference reference
+- String userID
+# void onCreate(Bundle)
+}
+class com.example.lastproject.Activitie {
+~ String event_title
+~ String imageUrl
+~ ArrayList<String> event_participants
++ <<Create>> Activitie(String,String,String,String,String,String,ArrayList<String>)
++ <<Create>> Activitie()
++ String getEvent_title()
++ void setEvent_title(String)
++ String getEvent_location()
++ void setEvent_location(String)
++ String getEvent_date()
++ void setEvent_date(String)
++ String getEvent_time()
++ void setEvent_time(String)
++ String getEvent_desc()
++ void setEvent_desc(String)
++ ArrayList<String> getEvent_participants()
++ void setEvent_participants(ArrayList<String>)
++ String getImageUrl()
++ void setImageUrl(String)
+}
+class com.example.lastproject.Teacher_Main_Screen {
+- DrawerLayout drawer
+~ TabLayout tabLayout
+~ ViewPager2 pager2
+~ main_teacher_tab_adapter adapter
+~ NavigationView navigationView
+~ MaterialToolbar toolbar
+~ CircleImageView photo
+~ TextView header_email
+~ String userId
+- DatabaseReference reference
+# void onCreate(Bundle)
++ void onTimeSet(TimePicker,int,int)
+}
+class com.example.lastproject.MainActivity {
+- DrawerLayout drawer
+~ TabLayout tabLayout
+~ ViewPager2 pager2
+~ MainTabAdapter adapter
+~ NavigationView navigationView
+~ MaterialToolbar toolbar
+~ TextView header_email
+~ CircleImageView photo
+- DatabaseReference reference
+# void onCreate(Bundle)
+}
+class com.example.lastproject.ReportAdapter {
+~ ArrayList<Report> reports
+~ Context context
+- FirebaseAuth mAuth
+- String userID
+~ ArrayList<String> keys
++ <<Create>> ReportAdapter(ArrayList<Report>,Context)
++ void setKeys(ArrayList<String>)
++ ViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(ViewHolder,int)
++ int getItemCount()
+}
+class com.example.lastproject.ReportAdapter.ViewHolder {
+~ TextView title
+~ TextView explanation
+~ TextView status
+~ TextView date
++ <<Create>> ViewHolder(View)
+}
+class com.example.lastproject.teacher_Student_Profile {
+~ ImageButton btn_back
+~ FloatingActionButton btn_add_photo
+~ TextView ETname
+~ ImageView photo
+~ String name
+~ String key
+~ String url_photo
+~ DatabaseReference mPostReference
+~ DatabaseReference user_ref
++ boolean onCreateOptionsMenu(Menu)
++ boolean onOptionsItemSelected(MenuItem)
+# void onCreate(Bundle)
+}
+class com.example.lastproject.HelloScreen {
+~ Button btn_start
+~ ImageView logo
+~ TextView text
+~ boolean flag
+# void onCreate(Bundle)
+}
+class com.example.lastproject.LoginScreen {
+~ TabLayout tabLayout
+~ ViewPager2 pager2
+~ FloatingActionButton google
+~ LoginAdapter adapter
+~ ImageView logo
+~ TextView text
+~ ConstraintLayout constraintLayout
+~ float v
+# void onCreate(Bundle)
+}
+class com.example.lastproject.report_for_teacher {
+~ TextView tv_titel
+~ String status_report
+~ String title
+~ Spinner spinner
+~ Button update
+~ String key
+~ DatabaseReference mPostReference
+~ DatabaseReference databaseReference
++ boolean onCreateOptionsMenu(Menu)
++ boolean onOptionsItemSelected(MenuItem)
+# void onCreate(Bundle)
+}
+class com.example.lastproject.TimePickerFragment {
+~ TimePickerListener mListener
++ void onAttach(Context)
++ Dialog onCreateDialog(Bundle)
++ void onTimeSet(TimePicker,int,int)
+}
+interface com.example.lastproject.TimePickerFragment.TimePickerListener {
+~ void onTimeSet(TimePicker,int,int)
+}
+class com.example.lastproject.MyGroupAdapter {
+~ ArrayList<User> users
+~ Context context
+~ ArrayList<String> keys
+~ String creatorID
++ <<Create>> MyGroupAdapter(ArrayList<User>,Context)
++ void setKeys(ArrayList<String>)
++ ViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(ViewHolder,int)
++ int getItemCount()
+}
+class com.example.lastproject.MyGroupAdapter.ViewHolder {
+~ TextView name
+~ CircleImageView photo
++ <<Create>> ViewHolder(View)
+}
+
+
+androidx.viewpager2.adapter.FragmentStateAdapter <|-- com.example.lastproject.main_teacher_tab_adapter
+androidx.fragment.app.Fragment <|-- com.example.lastproject.ReportFragment
+com.example.lastproject.Adapter <|-- com.example.lastproject.teacher_cr_act_participant_adapter
+com.example.lastproject.teacher_cr_act_participant_adapter +.. com.example.lastproject.teacher_cr_act_participant_adapter.ViewHolder
+com.example.lastproject.ViewHolder <|-- com.example.lastproject.teacher_cr_act_participant_adapter.ViewHolder
+com.example.lastproject.teacher_cr_act_participant_adapter +.. com.example.lastproject.teacher_cr_act_participant_adapter.ViewHolderMoreStudents
+com.example.lastproject.ViewHolder <|-- com.example.lastproject.teacher_cr_act_participant_adapter.ViewHolderMoreStudents
+androidx.fragment.app.Fragment <|-- com.example.lastproject.ActivitiesFragment
+androidx.appcompat.app.AppCompatActivity <|-- com.example.lastproject.Create_Report
+androidx.appcompat.app.AppCompatActivity <|-- com.example.lastproject.report_for_student
+androidx.appcompat.app.AppCompatActivity <|-- com.example.lastproject.Profile
+androidx.fragment.app.Fragment <|-- com.example.lastproject.teacher_activity_fragment
+androidx.appcompat.app.AppCompatActivity <|-- com.example.lastproject.teacher_cr_travel_participants_list
+androidx.viewpager2.adapter.FragmentStateAdapter <|-- com.example.lastproject.MainTabAdapter
+androidx.appcompat.app.AppCompatActivity <|-- com.example.lastproject.Support_page
+androidx.viewpager2.adapter.FragmentStateAdapter <|-- com.example.lastproject.LoginAdapter
+androidx.appcompat.app.AppCompatActivity <|-- com.example.lastproject.forgot_password
+androidx.appcompat.app.AppCompatActivity <|-- com.example.lastproject.change_student_name
+androidx.fragment.app.Fragment <|-- com.example.lastproject.teacher_requests_fragment
+com.example.lastproject.OnDateSetListener <|.. com.example.lastproject.DatePickerFragment
+androidx.fragment.app.DialogFragment <|-- com.example.lastproject.DatePickerFragment
+com.example.lastproject.DatePickerFragment +.. com.example.lastproject.DatePickerFragment.DatePickerListener
+com.example.lastproject.Adapter <|-- com.example.lastproject.teacher_activitie_adapter
+com.example.lastproject.teacher_activitie_adapter +.. com.example.lastproject.teacher_activitie_adapter.ViewHolder
+com.example.lastproject.ViewHolder <|-- com.example.lastproject.teacher_activitie_adapter.ViewHolder
+androidx.fragment.app.Fragment <|-- com.example.lastproject.teacher_group_fragment
+com.example.lastproject.TimePickerListener <|.. com.example.lastproject.change_travel
+com.example.lastproject.DatePickerListener <|.. com.example.lastproject.change_travel
+androidx.appcompat.app.AppCompatActivity <|-- com.example.lastproject.change_travel
+androidx.fragment.app.Fragment <|-- com.example.lastproject.LoginTabFragment
+androidx.appcompat.app.AppCompatActivity <|-- com.example.lastproject.event_details
+androidx.fragment.app.DialogFragment <|-- com.example.lastproject.qr_code_dialog
+androidx.appcompat.app.AppCompatActivity <|-- com.example.lastproject.qr_scanner
+com.example.lastproject.Adapter <|-- com.example.lastproject.teacher_cr_travel_group_adapter
+com.example.lastproject.teacher_cr_travel_group_adapter +.. com.example.lastproject.teacher_cr_travel_group_adapter.teacher_ivents
+com.example.lastproject.teacher_cr_travel_group_adapter +.. com.example.lastproject.teacher_cr_travel_group_adapter.ViewHolder
+com.example.lastproject.ViewHolder <|-- com.example.lastproject.teacher_cr_travel_group_adapter.ViewHolder
+com.example.lastproject.TimePickerListener <|.. com.example.lastproject.teacher_creation_of_travel
+com.example.lastproject.DatePickerListener <|.. com.example.lastproject.teacher_creation_of_travel
+androidx.appcompat.app.AppCompatActivity <|-- com.example.lastproject.teacher_creation_of_travel
+androidx.fragment.app.Fragment <|-- com.example.lastproject.SignUpTabFragment
+androidx.appcompat.app.AppCompatActivity <|-- com.example.lastproject.change_my_name
+androidx.appcompat.app.AppCompatActivity <|-- com.example.lastproject.SplashScreen
+com.example.lastproject.TimePickerListener <|.. com.example.lastproject.Teacher_Main_Screen
+androidx.appcompat.app.AppCompatActivity <|-- com.example.lastproject.Teacher_Main_Screen
+androidx.appcompat.app.AppCompatActivity <|-- com.example.lastproject.MainActivity
+com.example.lastproject.Adapter <|-- com.example.lastproject.ReportAdapter
+com.example.lastproject.ReportAdapter +.. com.example.lastproject.ReportAdapter.ViewHolder
+com.example.lastproject.ViewHolder <|-- com.example.lastproject.ReportAdapter.ViewHolder
+androidx.appcompat.app.AppCompatActivity <|-- com.example.lastproject.teacher_Student_Profile
+androidx.appcompat.app.AppCompatActivity <|-- com.example.lastproject.HelloScreen
+androidx.appcompat.app.AppCompatActivity <|-- com.example.lastproject.LoginScreen
+androidx.appcompat.app.AppCompatActivity <|-- com.example.lastproject.report_for_teacher
+com.example.lastproject.OnTimeSetListener <|.. com.example.lastproject.TimePickerFragment
+androidx.fragment.app.DialogFragment <|-- com.example.lastproject.TimePickerFragment
+com.example.lastproject.TimePickerFragment +.. com.example.lastproject.TimePickerFragment.TimePickerListener
+com.example.lastproject.Adapter <|-- com.example.lastproject.MyGroupAdapter
+com.example.lastproject.MyGroupAdapter +.. com.example.lastproject.MyGroupAdapter.ViewHolder
+com.example.lastproject.ViewHolder <|-- com.example.lastproject.MyGroupAdapter.ViewHolder
+@enduml
