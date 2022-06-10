@@ -2,9 +2,7 @@ package com.example.lastproject;
 
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
@@ -14,10 +12,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
@@ -38,7 +35,10 @@ public class MainActivity extends AppCompatActivity  {
     private DrawerLayout drawer;
     TabLayout tabLayout;
     ViewPager2 pager2;
+
     MainTabAdapter adapter;
+    student_tab_no_group_adapter adapter2;
+
     NavigationView navigationView;
     MaterialToolbar toolbar;
     TextView header_email, header_name;
@@ -58,10 +58,10 @@ public class MainActivity extends AppCompatActivity  {
 
         reference = FirebaseDatabase.getInstance().
                 getReference("Users");
-        String creatorID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        tabLayout = findViewById(R.id.tab_layout2);
-        pager2 = findViewById(R.id.view_pager2);
+
+        tabLayout = findViewById(R.id.tab_layout22);
+        pager2 = findViewById(R.id.view_pager22);
 
         tabLayout.addTab(tabLayout.newTab().setText("ACTIVITIES"));
         tabLayout.addTab(tabLayout.newTab().setText("REPORTS"));
@@ -69,7 +69,27 @@ public class MainActivity extends AppCompatActivity  {
 
         FragmentManager fm = getSupportFragmentManager();
         adapter = new MainTabAdapter(fm, getLifecycle());
-        pager2.setAdapter(adapter);
+        adapter2 = new student_tab_no_group_adapter(fm, getLifecycle());
+
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                drawer.openDrawer(GravityCompat.START);
+
+            }
+        });
+
+        View headerView = getLayoutInflater().inflate(R.layout.nav_header, navigationView, false);
+        navigationView.addHeaderView(headerView);
+
+        ImageView headerImage = headerView.findViewById(R.id.profile);
+        header_email = headerView.findViewById(R.id.header_email);
+        header_name = headerView.findViewById(R.id.header_name);
+        photo = headerImage.findViewById(R.id.profile);
+
+        retriveData();
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -94,42 +114,6 @@ public class MainActivity extends AppCompatActivity  {
                 tabLayout.selectTab(tabLayout.getTabAt(position));
             }
         });
-
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                drawer.openDrawer(GravityCompat.START);
-
-            }
-        });
-
-        View headerView = getLayoutInflater().inflate(R.layout.nav_header, navigationView, false);
-        navigationView.addHeaderView(headerView);
-
-        ImageView headerImage = headerView.findViewById(R.id.profile);
-        header_email = headerView.findViewById(R.id.header_email);
-        header_name = headerView.findViewById(R.id.header_name);
-        photo = headerImage.findViewById(R.id.profile);
-
-        reference.child(creatorID).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot snapshot) {
-                User p = snapshot.getValue(User.class);
-                header_email.setText(p.getEmail());
-                header_name.setText(p.getName() + " " + p.getLastname());
-
-                String link = p.getmImageUrl();
-                if(!link.equals(""))
-                    Picasso.get().load(link).into(photo);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                //no interesting in our purpose in the lesson
-            }
-        });
-
 
         headerImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -171,6 +155,35 @@ public class MainActivity extends AppCompatActivity  {
             }
         });
 
+    }
+
+    public void retriveData(){
+
+        String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        reference.child(userID).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                User p = snapshot.getValue(User.class);
+                header_email.setText(p.getEmail());
+                header_name.setText(p.getName() + " " + p.getLastname());
+
+                if(p.getReferal_link().equals("")){
+                    pager2.setAdapter(adapter2);
+                }else{
+                    pager2.setAdapter(adapter);
+                }
+
+                String link = p.getmImageUrl();
+                if(!link.equals(""))
+                    Picasso.get().load(link).into(photo);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                //no interesting in our purpose in the lesson
+            }
+        });
     }
 
 }

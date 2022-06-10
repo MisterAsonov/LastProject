@@ -84,14 +84,6 @@ public class SplashScreen extends AppCompatActivity {
 
                                     whois = userProfile.who;
 
-                                    if (whois.equals("Boss")) {
-
-                                        Log.d(TAG, "boss");
-
-                                        Intent intent = new Intent(SplashScreen.this, MainActivity.class);
-                                        startActivity(intent);
-                                        finish();
-                                    }
 
                                     if (whois.equals("Teacher")) {
 
