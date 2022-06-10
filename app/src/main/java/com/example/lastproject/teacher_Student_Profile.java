@@ -67,12 +67,9 @@ public class teacher_Student_Profile extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         User user = snapshot.getValue(User.class);
-                        //тут он получает приглосительный код учителя
-                        FirebaseDatabase.getInstance().getReference().child("Groups").child(user.getReferal_link()).child(key).addValueEventListener(new ValueEventListener() {
-                            /**
-                             *
-                             * @param snapshot - это id ученика в группе которого я хочу удалить
-                             */
+
+                        FirebaseDatabase.getInstance().getReference().child("Groups").child(user.getReferal_link()).child(key).addListenerForSingleValueEvent(new ValueEventListener() {
+
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
@@ -81,19 +78,14 @@ public class teacher_Student_Profile extends AppCompatActivity {
                                 Map<String, Object> User = new HashMap<>();
                                 User.put("referal_link","");
 
-                                /**
-                                 * тут я хочу убрать приглосительную ссылку у ученика которого я хочу удалить
-                                 */
                                 FirebaseDatabase.getInstance().getReference("Users").child(person.getId_of_student()).updateChildren(User).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if(task.isSuccessful()){
-                                            /**
-                                             * тут я хочу удалить ученика из группы
-                                             */
+
                                             mPostReference = FirebaseDatabase.getInstance().getReference().child("Groups").child(user.getReferal_link()).child(key);
                                             mPostReference.removeValue();
-                                            //в FireBase всё удаляеться как надо но приложение вылетает и пишет что в 87 строчке person.getId_of_student() is null object reference
+
                                         }
                                     }
                                 });
