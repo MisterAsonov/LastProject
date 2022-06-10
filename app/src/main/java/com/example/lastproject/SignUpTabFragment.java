@@ -190,9 +190,7 @@ public class SignUpTabFragment extends Fragment {
                                 });
                                 if(!referal_link.isEmpty()){
                                     PersonInGroup person = new PersonInGroup(id);
-                                        FirebaseDatabase.getInstance().getReference("Groups")
-                                        .child(referal_link).push()
-                                        .setValue(person).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        FirebaseDatabase.getInstance().getReference("Groups").child(referal_link).push().setValue(person).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if(task.isSuccessful()){

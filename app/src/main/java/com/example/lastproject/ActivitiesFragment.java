@@ -32,10 +32,8 @@ import java.util.Calendar;
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 
 public class ActivitiesFragment extends Fragment{
-DatabaseReference group_ref,user_ref;
-TextView tv_moadon;
-
-    SwipeRefreshLayout mSwipeRefreshLayout;
+    DatabaseReference group_ref,user_ref;
+    TextView tv_moadon;
     RecyclerView recyclerView;
     ArrayList<Activitie> activitie_list;
     ArrayList<String> keys;
@@ -119,8 +117,9 @@ TextView tv_moadon;
                           } else {
                               tv_moadon.setVisibility(View.GONE);
                           }
+                      }else {
+                          tv_moadon.setVisibility(View.GONE);
                       }
-                        tv_moadon.setVisibility(View.GONE);
                     }
 
                     @Override

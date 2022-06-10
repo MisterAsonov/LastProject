@@ -102,6 +102,7 @@ public class teacher_group_fragment extends Fragment {
     private void retrieveData() {
 
         String teaceherId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
         student.child(teaceherId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

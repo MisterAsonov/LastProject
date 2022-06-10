@@ -7,7 +7,9 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context=".MainActivity"
-    tools:openDrawer="end">
+    tools:openDrawer="end"
+    android:background="@color/white"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,7 +29,8 @@
         />
 
         <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tab_layout2"
+            android:background="@color/white"
+            android:id="@+id/tab_layout22"
             android:layout_width="match_parent"
             android:layout_height="54dp"
             app:tabIndicator="@drawable/tab_indicator"
@@ -40,7 +43,7 @@
 
 
         <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/view_pager2"
+            android:id="@+id/view_pager22"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"

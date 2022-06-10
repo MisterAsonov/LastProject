@@ -266,8 +266,9 @@ public class teacher_activity_fragment extends Fragment {
                             } else {
                                 tv_moadon.setVisibility(View.GONE);
                             }
+                        }else {
+                            tv_moadon.setVisibility(View.GONE);
                         }
-                        tv_moadon.setVisibility(View.GONE);
                     }
 
                     @Override
