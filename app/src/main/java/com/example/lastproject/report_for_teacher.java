@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +37,8 @@ public class report_for_teacher extends AppCompatActivity {
     Button update;
     String key;
 
+    ImageButton back, clear;
+
     DatabaseReference mPostReference;
     DatabaseReference databaseReference;
 
@@ -46,11 +49,7 @@ public class report_for_teacher extends AppCompatActivity {
         return true;
     }
 
-    /**
-     *
-     * @param item
-     * @return
-     */
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.delete){
@@ -71,6 +70,9 @@ public class report_for_teacher extends AppCompatActivity {
             update.setVisibility(View.VISIBLE);
             spinner.setVisibility(View.VISIBLE);
 
+            back.setVisibility(View.INVISIBLE);
+            clear.setVisibility(View.VISIBLE);
+
             return true;
         }
 
@@ -83,6 +85,26 @@ public class report_for_teacher extends AppCompatActivity {
         setContentView(R.layout.activity_report_for_teacher);
 
         setSupportActionBar(findViewById(R.id.toolbar2));
+
+        back = findViewById(R.id.btn_rft_back);
+        clear = findViewById(R.id.btn_rft_clear);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+        clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                update.setVisibility(View.INVISIBLE);
+                spinner.setVisibility(View.GONE);
+                clear.setVisibility(View.INVISIBLE);
+                back.setVisibility(View.VISIBLE);
+            }
+        });
 
         tv_titel = findViewById(R.id.title_teacher_rs);
         tv_desc = findViewById(R.id.description_teacher_rs);

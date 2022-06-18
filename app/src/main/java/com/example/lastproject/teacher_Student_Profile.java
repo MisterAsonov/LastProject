@@ -62,7 +62,6 @@ public class teacher_Student_Profile extends AppCompatActivity {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 String userID = user.getUid();
 
-
                 FirebaseDatabase.getInstance().getReference("Users").child(userID).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -106,10 +105,7 @@ public class teacher_Student_Profile extends AppCompatActivity {
 
                     }
                 });
-
-
-
-
+                
                 finish();
                 return true;
 

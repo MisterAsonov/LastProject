@@ -3,6 +3,9 @@ package com.example.lastproject;
 public class Moadon {
     int hours, minute, day, month, year;
 
+    /**
+     * מחלקה שממשת מה זה שיחת קבוצה
+     */
     public Moadon() {
     }
 
@@ -22,6 +25,10 @@ public class Moadon {
         this.year = year;
     }
 
+    /**
+     * מחלקה שמחזירה את השעה של שיחת קבוצה
+     * @return
+     */
     public int getHours() {
         return hours;
     }
@@ -29,7 +36,10 @@ public class Moadon {
     public void setHours(int hours) {
         this.hours = hours;
     }
-
+    /**
+     * מחלקה שמחזירה את הדקה של שיחת קבוצה
+     * @return
+     */
     public int getMinute() {
         return minute;
     }
@@ -37,7 +47,10 @@ public class Moadon {
     public void setMinute(int minute) {
         this.minute = minute;
     }
-
+    /**
+     * מחלקה שמחזירה את היום של שיחת קבוצה
+     * @return
+     */
     public int getDay() {
         return day;
     }
@@ -45,7 +58,10 @@ public class Moadon {
     public void setDay(int day) {
         this.day = day;
     }
-
+    /**
+     * מחלקה שמחזירה את החודש של שיחת קבוצה
+     * @return
+     */
     public int getMonth() {
         return month;
     }
@@ -53,7 +69,10 @@ public class Moadon {
     public void setMonth(int month) {
         this.month = month;
     }
-
+    /**
+     * מחלקה שמחזירה את השנה של שיחת קבוצה
+     * @return
+     */
     public int getYear() {
         return year;
     }

@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -55,7 +57,11 @@ public class student_not_in_class_fragment extends Fragment{
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                FragmentManager fragmentManager = getParentFragmentManager();
+                enter_invite_code_dialog newFragmen = new enter_invite_code_dialog();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                transaction.add(android.R.id.content, newFragmen).addToBackStack(null).commit();
 
             }
         });

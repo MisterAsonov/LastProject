@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +32,8 @@ public class report_for_student extends AppCompatActivity {
     String title, desc, building, room, date, status, creatorId;
     Button update;
     String key;
+
+    ImageButton back, clear;
 
     DatabaseReference databaseReference;
     DatabaseReference mPostReference;
@@ -66,6 +69,8 @@ public class report_for_student extends AppCompatActivity {
             tv_room.setEnabled(true);
 
             update.setVisibility(View.VISIBLE);
+            back.setVisibility(View.INVISIBLE);
+            clear.setVisibility(View.VISIBLE);
 
             return true;
         }
@@ -80,6 +85,9 @@ public class report_for_student extends AppCompatActivity {
         setContentView(R.layout.activity_report_for_student);
 
         setSupportActionBar(findViewById(R.id.toolbar2));
+
+        back = findViewById(R.id.btn_rfs_back);
+        clear = findViewById(R.id.btn_rfs_clear);
 
         tv_titel = findViewById(R.id.title_student_rs);
         tv_titel.setEnabled(false);
@@ -96,6 +104,26 @@ public class report_for_student extends AppCompatActivity {
         tv_date = findViewById(R.id.date_student_rs);
         et_status = findViewById(R.id.status_student_rs);
         update = findViewById(R.id.btn_update_student);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+        clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tv_titel.setEnabled(false);
+                tv_desc.setEnabled(false);
+                tv_building.setEnabled(false);
+                tv_room.setEnabled(false);
+                update.setVisibility(View.INVISIBLE);
+                clear.setVisibility(View.INVISIBLE);
+                back.setVisibility(View.VISIBLE);
+            }
+        });
 
         update.setVisibility(View.GONE);
 

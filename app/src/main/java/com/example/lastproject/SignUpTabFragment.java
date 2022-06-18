@@ -131,7 +131,7 @@ public class SignUpTabFragment extends Fragment {
             }
 
             if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-                ETemail.setError("Please provide valid email!");
+                ETemail.setError("Please provide a valid email!");
                 ETemail.requestFocus();
                 return;
             }

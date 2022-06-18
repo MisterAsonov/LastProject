@@ -6,6 +6,29 @@
     android:layout_height="match_parent"
     tools:context=".Create_Report">
 
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar12"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorAccent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:titleTextColor="@color/white" />
+
+    <ImageButton
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/btn_cr_back"
+        android:background="@drawable/ic_baseline_arrow_back_24"
+        app:layout_constraintBottom_toBottomOf="@id/toolbar12"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias=".0"
+        app:layout_constraintHorizontal_bias=".0"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"/>
+
     <TextView
         android:id="@+id/textView4"
         android:layout_width="match_parent"

@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
+import pl.droidsonroids.gif.GifImageView;
 
 public class ActivitiesFragment extends Fragment{
     DatabaseReference group_ref,user_ref;
@@ -38,6 +39,7 @@ public class ActivitiesFragment extends Fragment{
     ArrayList<Activitie> activitie_list;
     ArrayList<String> keys;
     teacher_activitie_adapter adapter;
+    GifImageView photo;
 
     DatabaseReference act_ref;
 
@@ -45,6 +47,7 @@ public class ActivitiesFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         ViewGroup view = (ViewGroup) inflater.inflate(R.layout.activities_fragment,container,false);
 
+        photo = view.findViewById(R.id.gifImage2);
 
         group_ref = FirebaseDatabase.getInstance().getReference("Groups");
         user_ref = FirebaseDatabase.getInstance().getReference("Users");
@@ -200,6 +203,13 @@ public class ActivitiesFragment extends Fragment{
                         recyclerView.setAdapter(adapter);
                     }
                 }
+
+                if(activitie_list.isEmpty()){
+                    photo.setVisibility(View.VISIBLE);
+                }else {
+                    photo.setVisibility(View.INVISIBLE);
+                }
+
             }
 
             @Override

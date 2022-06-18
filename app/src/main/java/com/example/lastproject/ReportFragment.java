@@ -22,6 +22,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import pl.droidsonroids.gif.GifImageView;
+
 public class ReportFragment extends Fragment {
 
     RecyclerView recyclerView;
@@ -29,6 +31,9 @@ public class ReportFragment extends Fragment {
     ArrayList<String> keys;
     ReportAdapter adapter;
     FloatingActionButton fab_btn;
+
+    GifImageView photo;
+
     boolean flag = false;
 
     DatabaseReference post_ref;
@@ -47,6 +52,8 @@ public class ReportFragment extends Fragment {
             }
         });
 
+        photo = view.findViewById(R.id.gifImage);
+
         reportsList = new ArrayList<Report>();
         keys = new ArrayList<>();
 
@@ -59,6 +66,7 @@ public class ReportFragment extends Fragment {
                 getReference("Reports");
 
         retrieveData();
+
 
 
         return view;
@@ -84,6 +92,12 @@ public class ReportFragment extends Fragment {
                     adapter.setKeys(keys);
                     recyclerView.setAdapter(adapter);
 
+                }
+
+                if(reportsList.isEmpty()){
+                    photo.setVisibility(View.VISIBLE);
+                }else {
+                    photo.setVisibility(View.INVISIBLE);
                 }
 
             }

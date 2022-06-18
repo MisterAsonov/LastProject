@@ -23,11 +23,15 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import pl.droidsonroids.gif.GifImageView;
+
 public class teacher_requests_fragment extends Fragment {
     RecyclerView recyclerView;
     ArrayList<Report> reportsList;
     ArrayList<String> keys;
     ReportAdapter adapter;
+
+    GifImageView photo;
 
     DatabaseReference post_ref,grup_ref, student;
 
@@ -39,6 +43,8 @@ public class teacher_requests_fragment extends Fragment {
 
         reportsList = new ArrayList<Report>();
         keys = new ArrayList<>();
+
+        photo = view.findViewById(R.id.gifImage4);
 
         recyclerView = view.findViewById(R.id.rv_requests);
         recyclerView.setHasFixedSize(true);
@@ -93,6 +99,12 @@ public class teacher_requests_fragment extends Fragment {
 
                                         adapter.setKeys(keys);
                                         recyclerView.setAdapter(adapter);
+                                    }
+
+                                    if(reportsList.isEmpty()){
+                                        photo.setVisibility(View.VISIBLE);
+                                    }else {
+                                        photo.setVisibility(View.INVISIBLE);
                                     }
 
                                     Log.d(TAG, "reportsList2: " + reportsList);

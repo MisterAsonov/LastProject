@@ -16,8 +16,6 @@
             motion:onTouchUp="autoComplete"
             />
 
-        <KeyFrameSet>
-        </KeyFrameSet>
 
     </Transition>
 

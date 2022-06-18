@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -22,6 +23,7 @@ public class Create_Report extends AppCompatActivity {
     EditText titel, room, building, desc;
     String  status, date, creatorID;
     Button btn_confirm;
+    ImageButton back;
 
     private DatabaseReference mDatabase;
 
@@ -30,7 +32,7 @@ public class Create_Report extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_report);
 
-
+        setSupportActionBar(findViewById(R.id.toolbar12));
 
         titel = findViewById(R.id.report_titel);
         room = findViewById(R.id.room);
@@ -39,6 +41,14 @@ public class Create_Report extends AppCompatActivity {
         status = "Waiting for confirmation";
         date = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).format(new Date());
         creatorID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        back = findViewById(R.id.btn_cr_back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
 
         btn_confirm = findViewById(R.id.btn_confirmreport);

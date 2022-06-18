@@ -60,6 +60,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         />
 
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/gifImage3"
+        android:layout_width="320dp"
+        android:layout_height="320dp"
+        android:background="@color/white"
+        android:foregroundGravity="center"
+        android:src="@drawable/no_data"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.25" />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_teacher_add_activitie"
         android:layout_width="wrap_content"

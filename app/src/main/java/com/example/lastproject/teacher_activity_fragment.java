@@ -33,6 +33,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
+import pl.droidsonroids.gif.GifImageView;
 
 
 public class teacher_activity_fragment extends Fragment {
@@ -41,6 +42,7 @@ public class teacher_activity_fragment extends Fragment {
     ArrayList<String> keys;
     teacher_activitie_adapter adapter;
     TextView tv_moadon;
+    GifImageView photo;
 
     DatabaseReference act_ref,user_ref,group_ref;
 
@@ -60,6 +62,7 @@ public class teacher_activity_fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         ViewGroup view = (ViewGroup) inflater.inflate(R.layout.activity_teacher_fragment,container,false);
 
+        photo = view.findViewById(R.id.gifImage3);
 
         tv_moadon = view.findViewById(R.id.tv_teacher_moadon);
         //Floating Action Buttons
@@ -215,6 +218,12 @@ public class teacher_activity_fragment extends Fragment {
                         adapter.setKeys(keys);
                         recyclerView.setAdapter(adapter);
                     }
+                }
+
+                if(activitie_list.isEmpty()){
+                    photo.setVisibility(View.VISIBLE);
+                }else {
+                    photo.setVisibility(View.INVISIBLE);
                 }
             }
 
