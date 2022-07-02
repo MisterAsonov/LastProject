@@ -7,6 +7,7 @@ import androidx.core.view.ViewCompat;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
@@ -41,6 +42,7 @@ public class SplashScreen extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private DatabaseReference reference;
     private String userID;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

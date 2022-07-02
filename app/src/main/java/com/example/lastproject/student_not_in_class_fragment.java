@@ -47,6 +47,9 @@ public class student_not_in_class_fragment extends Fragment{
 
         btn_scan.setOnClickListener(new View.OnClickListener() {
             @Override
+            /**
+             * מחלקה מפנה למסך עם qr scanner
+             */
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), qr_scanner.class);
 
@@ -56,6 +59,9 @@ public class student_not_in_class_fragment extends Fragment{
 
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
+            /**
+             * חלקה פותחת דיאלוג עם הזנה ידנית של קוד הזמנה
+             */
             public void onClick(View view) {
                 FragmentManager fragmentManager = getParentFragmentManager();
                 enter_invite_code_dialog newFragmen = new enter_invite_code_dialog();
@@ -70,6 +76,12 @@ public class student_not_in_class_fragment extends Fragment{
         return view;
     }
 
+    /**
+     * מחלקה מקבלת קוד הזהמנה מqr scanner
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

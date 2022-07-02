@@ -1,5 +1,9 @@
 package com.example.lastproject;
 
+import static com.example.lastproject.Utils.TABLE_NAME_REPORT;
+import static com.example.lastproject.Utils.TABLE_NAME_USER;
+import static com.example.lastproject.Utils.TABLE_USER_COL_EMAIL;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -12,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -54,11 +60,24 @@ public class teacher_group_fragment extends Fragment {
 
     DatabaseReference post_ref, student;
     private FirebaseAuth mAuth;
+    SQLiteDatabase db;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         ViewGroup view = (ViewGroup) inflater.inflate(R.layout.activity_teacher_group_fragment,container,false);
 
+        db = getActivity().openOrCreateDatabase(Utils.DATABASE_NAME,android.content.Context.MODE_PRIVATE ,null);
+        db.execSQL("delete from " + TABLE_NAME_USER);
+
+        db.execSQL("create table if not exists " +
+                Utils.TABLE_NAME_USER +
+                " ("+TABLE_USER_COL_EMAIL + " text,"+
+                Utils.TABLE_USER_COL_NAME + " text, "+
+                Utils.TABLE_USER_COL_LASTNAME + " text, "+
+                Utils.TABLE_USER_COL_REFERALLINK + " text,"+
+                Utils.TABLE_USER_COL_WHO + "text,"+
+                Utils.TABLE_USER_COL_UID + "text,"+
+                Utils.TABLE_USER_COL_MINMAGEURL + " text)");
 
 
         StudentsList = new ArrayList<User>();
@@ -93,9 +112,31 @@ public class teacher_group_fragment extends Fragment {
                 getReference("Users");
 
         retrieveData();
+        retriveDB();
 
         Log.d(TAG, "StudentsList: " + StudentsList);
         return view;
+
+    }
+
+    private void retriveDB() {
+        StudentsList.clear();
+        Cursor cursor3 = db.rawQuery("select * from " + TABLE_NAME_USER, null);
+        while (cursor3.moveToNext()) {
+
+            String email = cursor3.getString(0);
+            String name = cursor3.getString(1);
+            String lastname = cursor3.getString(2);
+            String who = cursor3.getString(3);
+            String referal = cursor3.getString(4);
+            String UID = cursor3.getString(5);
+            String mImageUrl = cursor3.getString(6);
+
+            User user = new User(email, name, lastname, who, referal,UID,mImageUrl);
+
+            StudentsList.add(user);
+            recyclerView.setAdapter(adapter);
+        }
 
     }
 
@@ -123,11 +164,10 @@ public class teacher_group_fragment extends Fragment {
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                                     User p = snapshot.getValue(User.class);
 
-                                    StudentsList.add(p);
-                                    keys.add(tmp.getKey());
+                                    db.execSQL("insert into tbl_user values('" + p.getEmail() + "','" + p.getName() + "','" + p.getLastname() + "','"
+                                           + p.getWho() + "','"  + p.getReferal_link() + "','" + p.getUID() + "','"  + p.getmImageUrl() + "')");
 
                                     adapter.setKeys(keys);
-                                    recyclerView.setAdapter(adapter);
 
                                     Log.d(TAG, "StudentsList2: " + StudentsList);
 

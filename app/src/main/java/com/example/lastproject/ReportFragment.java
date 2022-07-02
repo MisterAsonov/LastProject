@@ -1,6 +1,15 @@
 package com.example.lastproject;
 
+import static android.content.Context.MODE_APPEND;
+import static android.content.Context.MODE_PRIVATE;
+import static android.database.sqlite.SQLiteDatabase.openOrCreateDatabase;
+
+import static com.example.lastproject.Utils.TABLE_NAME_REPORT;
+import static com.example.lastproject.Utils.TABLE_REPORT_COL_TITEL;
+
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,11 +46,23 @@ public class ReportFragment extends Fragment {
     boolean flag = false;
 
     DatabaseReference post_ref;
-
+    SQLiteDatabase db;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         ViewGroup view = (ViewGroup) inflater.inflate(R.layout.reports_fragment,container,false);
+
+        db = getActivity().openOrCreateDatabase(Utils.DATABASE_NAME,android.content.Context.MODE_PRIVATE ,null);
+        db.execSQL("delete from " + TABLE_NAME_REPORT);
+        db.execSQL("create table if not exists " +
+                Utils.TABLE_NAME_REPORT +
+                " ("+TABLE_REPORT_COL_TITEL + " text,"+
+                Utils.TABLE_REPORT_COL_EXPLANATION + " text, "+
+                Utils.TABLE_REPORT_COL_STATUS + " text, "+
+                Utils.TABLE_REPORT_COL_DATE + " text,"+
+                Utils.TABLE_REPORT_COL_ROOM + "text,"+
+                Utils.TABLE_REPORT_COL_BUILDING + " text,"+
+                Utils.TABLE_REPORT_COL_CREATOR_ID + " text)");
 
         fab_btn = view.findViewById(R.id.fab_btn);
         fab_btn.setOnClickListener(new View.OnClickListener() {
@@ -67,37 +88,59 @@ public class ReportFragment extends Fragment {
 
         retrieveData();
 
-
+        retriveDB();
 
         return view;
     }
 
-    /**
-     *9*
-     */
+    private void retriveDB() {
+        reportsList.clear();
+        Cursor cursor3 = db.rawQuery("select * from " + TABLE_NAME_REPORT, null);
+        while (cursor3.moveToNext()) {
+
+            String titel = cursor3.getString(0);
+            String explanation = cursor3.getString(1);
+            String status = cursor3.getString(2);
+            String date = cursor3.getString(3);
+            String room = cursor3.getString(4);
+            String building = cursor3.getString(5);
+            String creator_id = cursor3.getString(6);
+
+            Report report = new Report(titel, explanation, status, date, room,building,creator_id);
+
+            reportsList.add(report);
+            recyclerView.setAdapter(adapter);
+        }
+
+        if(reportsList.isEmpty()){
+            photo.setVisibility(View.VISIBLE);
+        }else {
+            photo.setVisibility(View.INVISIBLE);
+        }
+
+    }
+
+
     private void retrieveData() {
+
         String creatorID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         post_ref.child(creatorID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                reportsList.clear();
                 keys.clear();
+
                 for (DataSnapshot data : snapshot.getChildren()) {
                     Report p = data.getValue(Report.class);
 
-                    reportsList.add(p);
+                    db.execSQL("insert into tbl_report values('" + p.getTitle() + "','" + p.getExplanation() + "','" + p.getStatus() + "','"
+                            + p.getDate() + "','" + p.getRoom() + "','" + p.getBuilding() + "','" + p.getCreator_id() + "')");
+
                     keys.add(data.getKey());
 
                     adapter.setKeys(keys);
-                    recyclerView.setAdapter(adapter);
 
-                }
 
-                if(reportsList.isEmpty()){
-                    photo.setVisibility(View.VISIBLE);
-                }else {
-                    photo.setVisibility(View.INVISIBLE);
                 }
 
             }
@@ -108,4 +151,6 @@ public class ReportFragment extends Fragment {
             }
         });
     }
+
+
 }

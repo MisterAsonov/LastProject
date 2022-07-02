@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -38,6 +39,8 @@ public class report_for_teacher extends AppCompatActivity {
     String key;
 
     ImageButton back, clear;
+
+    SQLiteDatabase db;
 
     DatabaseReference mPostReference;
     DatabaseReference databaseReference;

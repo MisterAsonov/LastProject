@@ -65,6 +65,9 @@ public class enter_invite_code_dialog extends DialogFragment {
 
                 user_ref.child(userID).updateChildren(User).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
+                    /**
+                     * מחלקה מוסיפה קוד הזמנה למחיך
+                     */
                     public void onComplete(@NonNull Task<Void> task) {
 
                         if (task.isSuccessful()) {
