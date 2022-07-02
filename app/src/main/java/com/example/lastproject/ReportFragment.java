@@ -1,9 +1,5 @@
 package com.example.lastproject;
 
-import static android.content.Context.MODE_APPEND;
-import static android.content.Context.MODE_PRIVATE;
-import static android.database.sqlite.SQLiteDatabase.openOrCreateDatabase;
-
 import static com.example.lastproject.Utils.TABLE_NAME_REPORT;
 import static com.example.lastproject.Utils.TABLE_REPORT_COL_TITEL;
 
@@ -54,15 +50,7 @@ public class ReportFragment extends Fragment {
 
         db = getActivity().openOrCreateDatabase(Utils.DATABASE_NAME,android.content.Context.MODE_PRIVATE ,null);
         db.execSQL("delete from " + TABLE_NAME_REPORT);
-        db.execSQL("create table if not exists " +
-                Utils.TABLE_NAME_REPORT +
-                " ("+TABLE_REPORT_COL_TITEL + " text,"+
-                Utils.TABLE_REPORT_COL_EXPLANATION + " text, "+
-                Utils.TABLE_REPORT_COL_STATUS + " text, "+
-                Utils.TABLE_REPORT_COL_DATE + " text,"+
-                Utils.TABLE_REPORT_COL_ROOM + "text,"+
-                Utils.TABLE_REPORT_COL_BUILDING + " text,"+
-                Utils.TABLE_REPORT_COL_CREATOR_ID + " text)");
+
 
         fab_btn = view.findViewById(R.id.fab_btn);
         fab_btn.setOnClickListener(new View.OnClickListener() {

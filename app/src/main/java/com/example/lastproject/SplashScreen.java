@@ -42,7 +42,7 @@ public class SplashScreen extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private DatabaseReference reference;
     private String userID;
-
+    SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,6 +136,9 @@ public class SplashScreen extends AppCompatActivity {
             }
         }, 3000);
 
+        db = openOrCreateDatabase(Utils.DATABASE_NAME,
+                MODE_PRIVATE, null);
+        Utils.createTables(db);
 
         rotate = AnimationUtils.loadAnimation(SplashScreen.this, R.anim.rotate);
 

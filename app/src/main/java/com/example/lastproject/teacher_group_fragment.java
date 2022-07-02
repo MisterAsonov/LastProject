@@ -1,8 +1,9 @@
 package com.example.lastproject;
 
-import static com.example.lastproject.Utils.TABLE_NAME_REPORT;
+
 import static com.example.lastproject.Utils.TABLE_NAME_USER;
 import static com.example.lastproject.Utils.TABLE_USER_COL_EMAIL;
+
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -68,17 +69,6 @@ public class teacher_group_fragment extends Fragment {
 
         db = getActivity().openOrCreateDatabase(Utils.DATABASE_NAME,android.content.Context.MODE_PRIVATE ,null);
         db.execSQL("delete from " + TABLE_NAME_USER);
-
-        db.execSQL("create table if not exists " +
-                Utils.TABLE_NAME_USER +
-                " ("+TABLE_USER_COL_EMAIL + " text,"+
-                Utils.TABLE_USER_COL_NAME + " text, "+
-                Utils.TABLE_USER_COL_LASTNAME + " text, "+
-                Utils.TABLE_USER_COL_REFERALLINK + " text,"+
-                Utils.TABLE_USER_COL_WHO + "text,"+
-                Utils.TABLE_USER_COL_UID + "text,"+
-                Utils.TABLE_USER_COL_MINMAGEURL + " text)");
-
 
         StudentsList = new ArrayList<User>();
         keys = new ArrayList<String>();
@@ -163,9 +153,15 @@ public class teacher_group_fragment extends Fragment {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                                     User p = snapshot.getValue(User.class);
-
-                                    db.execSQL("insert into tbl_user values('" + p.getEmail() + "','" + p.getName() + "','" + p.getLastname() + "','"
-                                           + p.getWho() + "','"  + p.getReferal_link() + "','" + p.getUID() + "','"  + p.getmImageUrl() + "')");
+                                    /**
+                                     * ERROR
+                                     * table tbl_user has 6 columns but 7 values were supplied (code 1 SQLITE_ERROR[1]): , while compiling:
+                                     * insert into tbl_user values('t1@gmail.com','Valery','Asonov','Teacher','pgBMMqxoiuQzb4SwBnZVjDGWj8m1','pgBMMqxoiuQzb4SwBnZVjDGWj8m1',
+                                     * 'https://firebasestorage
+                                     */
+                                    db.execSQL("insert into tbl_user values('"+p.getEmail() +
+                                            "','" + p.getName() + "','" + p.getLastname() + "','" + p.getWho() + "','" +
+                                            p.getReferal_link() + "','" + p.getUID() + "','" + p.getmImageUrl() + "')");
 
                                     adapter.setKeys(keys);
 
